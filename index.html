@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Granada monumental · guía completa</title>
+<meta name="theme-color" content="#16305F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Granada">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECE8DD;--paper:#F8F5ED;--ink:#2A2621;--ink-soft:#5C554A;--line:#D8D0BF;
+    --green:#1C6B55;--cobalt:#20418E;--ochre:#A9741E;--ochre-soft:#F1E4C4;
+    --wood:#7A5230;--indigo:#16305F;
+    --shadow:0 1px 2px rgba(42,38,33,.06), 0 8px 24px rgba(42,38,33,.07);--r:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Public Sans",system-ui,sans-serif;line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+  a{color:var(--cobalt)}
+
+  /* HERO */
+  .hero{background:var(--indigo);color:#F3EFE4;padding:38px 0 30px;position:relative;overflow:hidden;}
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#C9B47E;margin:0 0 12px;}
+  .hero h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,8vw,60px);line-height:1.02;letter-spacing:-.01em;margin:0 0 14px;}
+  .hero h1 em{font-style:italic;color:#E7C77C;font-weight:500}
+  .hero p.lede{max-width:58ch;margin:0;color:#DDD6C4;font-size:clamp(15px,2.4vw,18px);}
+  .hero .band{position:absolute;inset:auto 0 0 0;height:10px;z-index:1;background:repeating-linear-gradient(135deg,#E7C77C 0 10px,transparent 10px 20px);opacity:.5;}
+  .starwatermark{position:absolute;top:-40px;right:-50px;width:230px;height:230px;color:#24417a;opacity:.5;z-index:1;}
+
+  .kicker{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin:0 0 14px;display:flex;align-items:center;gap:9px;}
+  .kicker svg{width:15px;height:15px;color:var(--green);flex:none}
+
+  /* STRATEGY */
+  .strategy{padding:26px 0 6px}
+  .tips{display:grid;gap:12px;grid-template-columns:1fr;}
+  @media(min-width:620px){.tips{grid-template-columns:1fr 1fr}}
+  .tip{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow);}
+  .tip h3{margin:0 0 5px;font-family:"Fraunces",serif;font-size:18px;font-weight:600;display:flex;align-items:baseline;gap:8px;}
+  .tip h3 .dot{font-family:"Space Mono",monospace;font-size:12px;color:var(--ochre);border:1px solid var(--ochre);border-radius:20px;padding:1px 7px;flex:none;transform:translateY(-1px);}
+  .tip p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+  .tip p b{color:var(--ink);font-weight:600}
+  .caveat{margin:16px 0 0;font-size:13px;color:var(--ink-soft);border-left:3px solid var(--line);padding:2px 0 2px 12px;}
+
+  /* ROUTES */
+  .routes{padding:28px 0 4px}
+  .rgrid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:640px){.rgrid{grid-template-columns:1fr 1fr}}
+  .route{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow);}
+  .route h3{margin:0 0 3px;font-family:"Fraunces",serif;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .route-meta{margin:0 0 3px;font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ochre)}
+  .route-price{margin:0 0 11px;font-family:"Space Mono",monospace;font-size:12.5px;font-weight:700;color:var(--green)}
+  .route-bono{margin:0 0 11px;font-size:12.5px;color:var(--ink-soft)}
+  .route-bono b{color:var(--cobalt)}
+  .passes{padding:26px 0 4px}
+  .pgrid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:640px){.pgrid{grid-template-columns:1fr 1fr}}
+  .pass{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
+  .pass h3{margin:0 0 8px;font-family:"Fraunces",serif;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .pass h3 .ptag{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--ochre);border:1px solid var(--ochre);border-radius:20px;padding:2px 7px;margin-left:6px;white-space:nowrap;vertical-align:middle}
+  .pass p{margin:0 0 8px;font-size:14px;color:var(--ink-soft)}
+  .pass p b{color:var(--ink);font-weight:600}
+  .pass .pmeta{font-size:13.5px;color:var(--ink)}
+  .pass .pnote{font-size:13px;color:var(--ink-soft);border-left:3px solid var(--line);padding-left:10px;margin-bottom:0}
+  .info{padding:24px 0 2px}
+  .igrid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:640px){.igrid{grid-template-columns:1fr 1fr}}
+  .ibox{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--cobalt);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
+  .ibox h3{margin:0 0 8px;font-family:"Fraunces",serif;font-size:18px;font-weight:600}
+  .ibox p{margin:0 0 8px;font-size:14px;color:var(--ink-soft)}
+  .ibox p b{color:var(--ink);font-weight:600}
+  .ibox .imeta{font-family:"Space Mono",monospace;font-size:12px;color:var(--ink)}
+  .ibox .inote{font-size:13px;color:var(--ink-soft);border-left:3px solid var(--line);padding-left:10px;margin-bottom:0}
+  .walk{margin:0 0 8px;padding-left:18px;font-size:14px;color:var(--ink)}
+  .walk li{margin:2px 0}
+  .planbtn{width:100%;margin-bottom:8px;border:1px dashed var(--line);background:transparent;color:var(--ink-soft);font-family:"Public Sans",sans-serif;font-weight:600;font-size:13.5px;border-radius:10px;padding:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px}
+  .planbtn svg{width:15px;height:15px}
+  .planbtn .pon{display:none;align-items:center;gap:7px}
+  .planbtn .padd{display:inline-flex;align-items:center;gap:7px}
+  .planbtn:hover{border-color:var(--ochre);color:var(--ochre)}
+  .planbtn:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .card.inplan .planbtn{background:#F6ECD6;border-style:solid;border-color:var(--ochre);color:#8a5d10}
+  .card.inplan .planbtn .pon{display:inline-flex}
+  .card.inplan .planbtn .padd{display:none}
+  .planbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--indigo);color:#F3EFE4;box-shadow:0 -6px 22px rgba(0,0,0,.18)}
+  .planbar[hidden]{display:none}
+  .planbar-main{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 18px}
+  .planbar-toggle{flex:1;text-align:left;background:transparent;border:0;color:#F3EFE4;font-family:"Public Sans",sans-serif;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:8px}
+  .planbar-toggle .chev{transition:transform .2s;color:#E7C77C}
+  .planbar[data-open="true"] .planbar-toggle .chev{transform:rotate(180deg)}
+  .planbar-sum b{color:#E7C77C}
+  .planbar-clear{background:transparent;border:1px solid rgba(255,255,255,.4);color:#F3EFE4;font-family:"Space Mono",monospace;font-size:12px;padding:7px 11px;border-radius:8px;cursor:pointer;white-space:nowrap}
+  .planbar-clear:hover{border-color:#E7C77C;color:#E7C77C}
+  .planbar-list[hidden]{display:none}
+  .planbar-list{max-width:1000px;margin:0 auto;max-height:38vh;overflow-y:auto;padding:2px 18px 14px}
+  .planbar-hint{font-size:12px;color:#C9B47E;margin:6px 0 4px}
+  .planrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid rgba(255,255,255,.12);font-size:14px}
+  .planrow .pn{flex:1}
+  .planrow .pc{font-family:"Space Mono",monospace;font-size:11.5px;color:#DDD6C4;white-space:nowrap}
+  .planrow .prm{background:transparent;border:0;color:#E7C77C;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1}
+  body.hasplan{padding-bottom:62px}
+  .dayplan{padding:22px 0 2px}
+  .daychips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+  .daychips button{font-family:"Public Sans",sans-serif;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:999px;padding:7px 13px;cursor:pointer}
+  .daychips button[aria-pressed="true"]{background:var(--indigo);color:#F3EFE4;border-color:var(--indigo)}
+  .daychips button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .dayhide{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;margin:0 0 8px}
+  .daysum{font-size:14px;color:var(--ink);margin:0}
+  .daysum b{color:var(--ink)}
+  .daypill{display:inline-block;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;margin:0}
+  .daypill[hidden]{display:none}
+  .dp-free{background:#CDE9D3;color:#12633f}
+  .dp-open{background:#E6E1D2;color:#6a6444}
+  .dp-closed{background:#F1D6CE;color:#9a3f26}
+  .dp-cita{background:#E1E8F5;color:#22418c}
+  .card.closedtoday{opacity:.6}
+  .pass details{margin-top:8px;border-top:1px dashed var(--line);padding-top:2px;margin-bottom:0}
+  .pll{margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)}
+  .pll b{color:var(--ink);font-weight:600}
+  .stops{display:flex;flex-wrap:wrap;align-items:center;gap:5px 4px;margin-bottom:11px}
+  .stop{font-family:"Public Sans",sans-serif;font-size:13px;font-weight:600;color:var(--cobalt);background:#EDF0F7;border:1px solid #D6DEEE;border-radius:8px;padding:5px 9px;cursor:pointer;}
+  .stop:hover{background:#E2E9F6}
+  .stop:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .stop.done{background:#E4EFE5;border-color:#BFD6C0;color:#2f6b4f}
+  .stop.done::before{content:"✓ ";font-weight:700}
+  .sep{color:var(--ink-soft);font-size:13px;opacity:.6}
+  .route-note{margin:0;font-size:13px;color:var(--ink-soft)}
+
+  /* CONTROLS */
+  .controls{position:sticky;top:0;z-index:20;background:rgba(236,232,221,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:26px;}
+  .controls .wrap{padding-top:12px;padding-bottom:12px;display:flex;flex-direction:column;gap:11px}
+  .row1{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+  .search{position:relative;flex:1 1 220px;min-width:180px}
+  .search input{width:100%;font-family:"Public Sans",sans-serif;font-size:15px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 34px 9px 15px;}
+  .search input:focus{outline:2px solid var(--cobalt);outline-offset:1px;border-color:var(--cobalt)}
+  .search .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--ink-soft);font-size:18px;line-height:1;cursor:pointer;padding:4px 8px;display:none}
+  .search.has .clr{display:block}
+  .segmented{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+  .segmented button{font-family:"Public Sans",sans-serif;font-weight:600;font-size:13px;border:0;background:transparent;color:var(--ink-soft);padding:7px 13px;border-radius:999px;cursor:pointer;line-height:1;}
+  .segmented button[aria-pressed="true"]{background:var(--indigo);color:#F3EFE4}
+  .segmented button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .progress{display:flex;align-items:center;gap:9px;margin-left:auto}
+  .progress .count{font-family:"Space Mono",monospace;font-size:12.5px;color:var(--ink);white-space:nowrap}
+  .progress .track{width:80px;height:7px;border-radius:9px;background:#DAD3C2;overflow:hidden}
+  .progress .fill{height:100%;width:0;background:var(--green);transition:width .4s ease}
+  .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{height:5px}.chips::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+  .chip{flex:none;font-family:"Public Sans",sans-serif;font-weight:600;font-size:13px;white-space:nowrap;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);border-radius:999px;padding:7px 13px;cursor:pointer;}
+  .chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+  .chip:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .chip-lbl{flex:none;align-self:center;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ochre);margin-right:2px}
+  .showing{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink-soft)}
+  .row2{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .fbtn{font-family:"Public Sans",sans-serif;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .fbtn .chev{transition:transform .2s;font-size:11px;color:var(--ochre)}
+  .fbtn[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+  .fbtn #fcount{color:var(--green);font-weight:700}
+  .fbtn:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .reset-f{margin-left:auto;color:var(--ink-soft)}
+  .reset-f:hover{border-color:var(--wood);color:var(--wood)}
+  #filterrows{display:flex;flex-direction:column;gap:11px}
+  #filterrows.collapsed{display:none}
+  @media(max-width:520px){
+    .controls .wrap{gap:9px}
+    .row1{gap:8px 10px}
+    .search{flex-basis:100%}
+    .progress{margin-left:0}
+    .progress .track{width:60px}
+  }
+
+  /* ZONES + CARDS */
+  main{padding:6px 0 40px}
+  .zone{margin-top:30px}
+  .zone-head{display:flex;align-items:center;gap:11px;margin:0 0 4px}
+  .zone-head svg{width:20px;height:20px;color:var(--green);flex:none}
+  .zone-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(20px,4vw,25px);margin:0;letter-spacing:-.01em;}
+  .zone-sub{margin:0 0 16px 31px;font-size:13.5px;color:var(--ink-soft)}
+  .zcount{font-family:"Space Mono",monospace;font-size:12px;color:var(--ochre)}
+  .grid{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;transition:border-color .2s,box-shadow .2s,transform .2s;}
+  @media(hover:hover){.card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(42,38,33,.07),0 14px 34px rgba(42,38,33,.1)}}
+  .card.done{background:#F3F5EE;border-color:#CBD8C4}
+  .card.hide{display:none}
+  .card.flash{animation:flash 1.4s ease}
+  @keyframes flash{0%{box-shadow:0 0 0 3px var(--ochre)}70%{box-shadow:0 0 0 3px var(--ochre)}100%{box-shadow:var(--shadow)}}
+
+  .card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}
+  .card h3{font-family:"Fraunces",serif;font-weight:600;font-size:20px;line-height:1.14;margin:0;flex:1;letter-spacing:-.01em;}
+  .stamp{flex:none;display:none;align-items:center;gap:5px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--wood);border:1px solid var(--wood);border-radius:20px;padding:3px 8px 3px 6px;text-transform:uppercase;}
+  .stamp svg{width:12px;height:12px}
+  .card.done .stamp{display:inline-flex}
+
+  .desc{margin:0 0 12px;font-size:14.5px;color:var(--ink-soft)}
+  .desc b{color:var(--ink);font-weight:600}.desc i{color:var(--ink-soft)}
+
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+  .badge{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.02em;padding:3px 8px;border-radius:6px;line-height:1.3;white-space:nowrap;}
+  .b-free{background:#DDEBE0;color:#155c41}
+  .b-sun{background:var(--ochre-soft);color:#8a5d10}
+  .b-eu{background:#E1E8F5;color:#22418c}
+  .b-week{background:#F3E1DA;color:#9a4a2c}
+  .b-night{background:#26305c;color:#dfe4f5}
+  .b-season{background:#EAE7D6;color:#6a6444;border:1px solid #DcD6C0}
+  .b-star{background:#E8C86A;color:#5c4718;font-weight:700}
+  .b-sec{background:#EAE7DE;color:#8a8474}
+
+  .facts{margin:0 0 12px;font-size:14px;color:var(--ink)}
+  .facts .price{font-weight:700}
+  .facts .sepd{color:var(--ink-soft);opacity:.6;padding:0 5px}
+  .facts .dur{color:var(--ink-soft)}
+  .itip{margin:0 0 12px;font-size:13.5px;color:var(--ink-soft);background:#FBF3DF;border-left:3px solid var(--ochre);border-radius:0 8px 8px 0;padding:8px 11px}
+  .itip .itip-tag{font-family:"Space Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ochre);margin-right:7px}
+  .itip b{color:var(--ink);font-weight:600}
+
+  details{margin:0 0 0;border-top:1px dashed var(--line);padding-top:4px;margin-bottom:13px}
+  summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--cobalt);list-style:none;display:flex;align-items:center;gap:6px;padding:9px 0 4px;}
+  summary::-webkit-details-marker{display:none}
+  summary .arw{margin-left:auto;transition:transform .2s;font-size:11px}
+  details[open] summary .arw{transform:rotate(180deg)}
+  summary:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;border-radius:4px}
+  .meta{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:13.5px;margin:8px 0 11px;}
+  .meta dt{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ochre);padding-top:2px;}
+  .meta dd{margin:0;color:var(--ink)}
+  .meta dd .hint{color:var(--ink-soft)}
+  .links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+  .links a{display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-weight:600;color:var(--cobalt)}
+  .links a:hover{text-decoration:underline}.links a svg{width:14px;height:14px}
+
+  .toggle{margin-top:auto;width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);font-family:"Public Sans",sans-serif;font-weight:600;font-size:14px;border-radius:10px;padding:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s,border-color .15s,color .15s;min-height:44px;}
+  .toggle svg{width:16px;height:16px}.toggle .ck{display:none}
+  .toggle:hover{border-color:var(--green);color:var(--green)}
+  .toggle:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .card.done .toggle{background:var(--green);border-color:var(--green);color:#fff}
+  .card.done .toggle:hover{background:#175d49}
+  .card.done .toggle .ck{display:inline}.card.done .toggle .add{display:none}
+
+  .empty{text-align:center;color:var(--ink-soft);padding:40px 12px;font-size:15px;display:none;}
+  .empty.show{display:block}
+
+  footer{border-top:1px solid var(--line);padding:26px 0 46px;margin-top:10px}
+  footer p{margin:0 0 10px;font-size:14px;color:var(--ink-soft);max-width:74ch}
+  footer p b{color:var(--ink);font-weight:600}
+  footer .reset{margin-top:8px;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:"Space Mono",monospace;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;}
+  footer .reset:hover{border-color:var(--wood);color:var(--wood)}
+  .credits{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
+  .credits b{color:var(--ink);font-weight:600}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .reveal{opacity:0;transform:translateY(8px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star8" viewBox="0 0 100 100"><path d="M50,2 L57.65,31.52 L83.94,16.06 L68.48,42.35 L98,50 L68.48,57.65 L83.94,83.94 L57.65,68.48 L50,98 L42.35,68.48 L16.06,83.94 L31.52,57.65 L2,50 L31.52,42.35 L16.06,16.06 L42.35,31.52 Z" fill="currentColor"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="10" r="2.4" fill="currentColor"/></symbol>
+  <symbol id="web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+</svg>
+
+<header class="hero">
+  <svg class="starwatermark" aria-hidden="true"><use href="#star8"/></svg>
+  <div class="wrap">
+    <p class="eyebrow">Guía viva · finde a finde</p>
+    <h1>Granada<br><em>monumental</em></h1>
+    <p class="lede">La Alhambra al completo y todo lo demás: casas nazaríes, cármenes, catacumbas, miradores y barroco. Cada ficha lleva web oficial, cómo sacar la entrada, mejor época, precio y horario. Arriba, rutas ya montadas por franjas. Busca, filtra y marca lo visitado — se guarda solo.</p>
+  </div>
+  <div class="band" aria-hidden="true"></div>
+</header>
+
+<section class="strategy">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Cómo verlas más baratas · cuándo venir</p>
+    <div class="tips">
+      <div class="tip"><h3><span class="dot">DOM</span>Los domingos, el Albaicín es gratis</h3><p>Libre y sin reserva: <b>Bañuelo, Maristán, Casa de Zafra, Casa Morisca, Dar al-Horra y Cuarto Real</b>. Casi todos <b>cierran los lunes</b>.</p></div>
+      <div class="tip"><h3><span class="dot">0€</span>Gratis siempre</h3><p>Dentro de la Alhambra: <b>Carlos V, Museo de la Alhambra, Torres Bermejas y Silla del Moro</b>. Fuera: Corral del Carbón, Palacio de los Córdova, Carmen de los Mártires, Mirador de San Nicolás y Hospital Real (entre semana).</p></div>
+      <div class="tip"><h3><span class="dot">UE</span>Museos de la Junta</h3><p>Gratis con DNI/UE: <b>Casa de los Tiros</b> y <b>Museo de Bellas Artes</b>. Y la Casa de Lorca es gratis los <b>martes</b> no festivos.</p></div>
+      <div class="tip"><h3><span class="dot">ALH</span>Alhambra sin agobios</h3><p>Los <b>Palacios Nazaríes</b> llevan hora fija: reserva con semanas en <b>tickets.alhambra-patronato.es</b>. Si están agotados, tira de jardines o de las nocturnas. DNI obligatorio.</p></div>
+      <div class="tip"><h3><span class="dot">BONO</span>Bonos combinados</h3><p><b>Dobla de Oro</b> (~30 €) solo compensa con la Alhambra. <b>Granada Cristiana</b> une Catedral + Capilla Real + Cartuja + San Jerónimo + Sacromonte con descuento.</p></div>
+      <div class="tip"><h3><span class="dot">ÉP</span>Mejor época</h3><p><b>Primavera</b> (abr–jun) y <b>otoño</b> (sep–oct): temperatura ideal y jardines a tope. Verano aprieta de calor (tira de nocturnas y patios); invierno, tranquilo y con Sierra Nevada nevada de fondo.</p></div>
+    </div>
+    <p class="caveat">Precios, horarios y webs cambian por temporada y a veces sin avisar (verano/invierno, festivos, obras, exposiciones). Tómalo como brújula y confirma en la web oficial el día que vayas. Datos revisados en julio de 2026.</p>
+  </div>
+</section>
+
+<section class="passes">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Bonos y entradas · dónde comprarlos</p>
+    <div class="pgrid">
+      <article class="pass">
+        <h3>Granada Card <span class="ptag">bono ciudad</span></h3>
+        <p>El bono oficial de la ciudad: Alhambra (acceso prioritario) + los grandes monumentos + buses + tren turístico. Su baza: <b>guarda cupo de Alhambra aunque esté agotada</b> en la web oficial.</p>
+        <p class="pmeta">72 h 60 € · 48 h 55 € · 24 h y Jardines 50 € · niños (3–11) 13 € · info en <a href="https://turismo.granada.org/es/granada-card" target="_blank" rel="noopener">turismo.granada.org</a>.</p>
+        <details>
+          <summary>Qué incluye, opciones y cómo comprar <span class="arw">▾</span></summary>
+          <p class="pll"><b>Igual en las cuatro modalidades:</b> Catedral, Capilla Real, Cartuja, San Jerónimo, Abadía del Sacromonte, Parque de las Ciencias, Casa de Zafra, Cuarto Real, Casa de los Tiros, Museo de Bellas Artes, Museo Arqueológico, 9 viajes de bus urbano y 1 en tren turístico. Todo eso lo tienes con cualquiera de ellas.</p>
+          <p class="pll"><b>Lo único que cambia es la Alhambra (y los andalusíes):</b> <b>72 h</b> (4 días) — Alhambra completa de día (Nazaríes + Alcazaba + Generalife) <b>y</b> los 5 andalusíes (Corral, Bañuelo, Casa Horno de Oro, Maristán, Dar al-Horra). <b>48 h</b> (3 días) — Alhambra completa de día, pero <b>sin</b> los andalusíes. <b>24 h</b> (2 días) — Alhambra <b>solo la nocturna</b> a los Nazaríes (sin Alcazaba ni Generalife). <b>Jardines</b> (2 días) — Alcazaba y Generalife, <b>sin</b> Nazaríes.</p>
+          <p class="pll"><b>Cómo comprar:</b> online en <a href="https://granadatur.clorian.com/" target="_blank" rel="noopener">granadatur.clorian.com</a> (o tel. 858 880 990) hasta 3 meses antes; eliges <b>día y hora de la Alhambra</b> al pagar (no se cambia). La llevas impresa o en el móvil; los billetes de bus se recogen en las máquinas de las paradas.</p>
+          <p class="pnote">Para ti, que vienes mucho y tiras de lo gratis, solo compensa el día del circuito completo (Alhambra + catedral + monasterios + buses).</p>
+        </details>
+      </article>
+      <article class="pass">
+        <h3>Dobla de Oro <span class="ptag">Alhambra + andalusí</span></h3>
+        <p>Une la Alhambra con todos los monumentos andalusíes del Albaicín y el Cuarto Real. Para el conjunto árabe al completo.</p>
+        <p class="pmeta">General ~30,48 € · nocturna ~23,06 € · en <a href="https://tickets.alhambra-patronato.es/" target="_blank" rel="noopener">tickets.alhambra-patronato.es</a>.</p>
+        <details>
+          <summary>Qué incluye y opciones <span class="arw">▾</span></summary>
+          <p class="pll"><b>Incluye:</b> Alhambra (Palacios Nazaríes, Alcazaba, Generalife) + Bañuelo, Maristán, Casa Morisca Horno de Oro, Casa del Chapiz, Casa de Zafra, Palacio de Dar al-Horra, Corral del Carbón y la Qubba del Cuarto Real de Santo Domingo.</p>
+          <p class="pll"><b>Opciones:</b> <b>General</b> (Alhambra de día) o <b>Nocturna</b> (Alhambra nocturna a los Nazaríes). Los andalusíes puedes verlos en días distintos dentro del plazo de validez.</p>
+          <p class="pnote">Solo compensa si haces la Alhambra: los monumentos andalusíes ya son gratis los domingos (esto va de monumentos, no de buses).</p>
+        </details>
+      </article>
+      <article class="pass">
+        <h3>Granada Cristiana <span class="ptag">monumentos de pago</span></h3>
+        <p>La red de la Archidiócesis. Con el <b>Ticket Combinado</b> ahorras <b>hasta un 33%</b> frente a comprarlos sueltos, y <b>vale 1 año</b>: no hace falta verlos todos el mismo día.</p>
+        <p class="pmeta">En <a href="https://ticketsgranadacristiana.com/" target="_blank" rel="noopener">ticketsgranadacristiana.com</a> o en taquilla · <b>gratis los miércoles por la tarde</b>.</p>
+        <details>
+          <summary>Qué incluye y opciones <span class="arw">▾</span></summary>
+          <p class="pll"><b>Incluye:</b> Catedral, Capilla Real, Monasterio de la Cartuja, Monasterio de San Jerónimo, Abadía del Sacromonte e Iglesia de San Nicolás + Torre Silentia. <b>Caducidad: 1 año</b> desde la compra, visitándolos a tu ritmo.</p>
+          <p class="pll"><b>Opciones:</b> entradas sueltas, el <b>Ticket Combinado</b> (5 monumentos con descuento) o combos como “Catedral + Capilla con guía”. También visitas guiadas temáticas (Sefardí, Ruta del Sacromonte, Albaicín…). Durante la expo <i>Kerygma</i> el combinado sube de precio.</p>
+          <p class="pnote">Tu mejor opción para el bloque barroco/cristiano — y como dura un año, lo compras y lo vas gastando finde a finde.</p>
+        </details>
+      </article>
+      <article class="pass">
+        <h3>Bono andalusí <span class="ptag">solo Albaicín</span></h3>
+        <p>La entrada conjunta a los monumentos andalusíes sin la Alhambra. Barato y muy completo para el Albaicín.</p>
+        <p class="pmeta">~8,48 € · en taquilla o en <a href="https://entradas.albaicin-granada.com/" target="_blank" rel="noopener">entradas.albaicin-granada.com</a> · <b>gratis los domingos</b>.</p>
+        <details>
+          <summary>Qué incluye <span class="arw">▾</span></summary>
+          <p class="pll"><b>Incluye:</b> Corral del Carbón, Bañuelo, Maristán, Casa Morisca Horno de Oro, Casa del Chapiz, Casa de Zafra, Palacio de Dar al-Horra y la Qubba del Cuarto Real de Santo Domingo.</p>
+          <p class="pnote">Innecesario los domingos: ese día todos son gratis.</p>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>¿Qué bono te compensa? (y por qué)</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Alhambra + Albaicín árabe</h3>
+        <p><b>Dobla de Oro.</b> Une la Alhambra con todos los andalusíes por ~30 €; sueltos saldrían más. <b>Pero</b> si vas en domingo, los andalusíes ya son gratis: entonces te vale la entrada suelta de la Alhambra.</p>
+      </article>
+      <article class="ibox">
+        <h3>Verlo casi todo en 2–3 días</h3>
+        <p><b>Granada Card 72 h.</b> Mete Alhambra + catedral + monasterios + andalusíes + museos + bus, y <b>guarda cupo de Alhambra aunque esté agotada</b>. No compensa si solo vas a 3–4 sitios o tiras de días gratis.</p>
+      </article>
+      <article class="ibox">
+        <h3>Solo los monumentos cristianos</h3>
+        <p>El <b>bono Granada Cristiana</b> ahorra hasta un 33% y <b>vale 1 año</b>, así que puedes repartir las visitas en varios días o findes. Si puedes venir un <b>miércoles por la tarde</b>, los ves <b>gratis</b>; si no, el bono es tu mejor opción.</p>
+      </article>
+      <article class="ibox">
+        <h3>Vienes muchos findes (tu caso)</h3>
+        <p><b>Normalmente, ningún bono.</b> Exprime los días gratis (domingo Albaicín, miércoles tarde cristianos, martes Lorca) y paga suelta la Alhambra cuando la hagas. Los bonos son para turistas que concentran muchas visitas en pocos días.</p>
+      </article>
+    </div>
+    <p class="caveat">Regla rápida: un bono compensa si vas a ver <b>6–7 sitios de pago en pocos días</b> y usas bastante el bus. Si no, sale mejor suelto + aprovechar los días gratis.</p>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Para ti · findes de viernes tarde a domingo noche</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Bonos: solo Granada Cristiana</h3>
+        <p><b>Granada Card, Dobla de Oro y Bono andalusí: no.</b> Los andalusíes ya son gratis el domingo, así que sale mejor pagar la Alhambra suelta. <b>Sí te compensa Granada Cristiana:</b> como su gratis del miércoles tarde te pilla fuera, y el bono <b>vale 1 año</b> (hasta 33% de ahorro), puedes comprarlo e ir gastándolo finde a finde en Catedral, Capilla Real, Cartuja, San Jerónimo y Sacromonte.</p>
+      </article>
+      <article class="ibox">
+        <h3>El domingo, al Albaicín (gratis)</h3>
+        <p>Bañuelo, Maristán, Casa Morisca, Dar al-Horra, Casa de Zafra y Cuarto Real: <b>gratis el domingo</b>. Aprovéchalo. Ojo: la Casa de los Tiros el domingo solo abre hasta las 15:00.</p>
+      </article>
+      <article class="ibox">
+        <h3>El viernes por la tarde es clave</h3>
+        <p>Es tu <b>única ventana</b> para los que solo abren entre semana: el <b>Hospital Real</b> (L–V) y el <b>oratorio de La Madraza</b> (gratis, pero solo L–V a las 11 h). La <b>Silla del Moro</b>, en cambio, solo abre sábado o domingo por la mañana.</p>
+      </article>
+      <article class="ibox">
+        <h3>Lo que se te escapa</h3>
+        <p>Cae entre semana, fuera de tu finde: el <b>gratis de los cristianos</b> (miércoles tarde) y el de la <b>Casa de Lorca</b> (martes). Esos, o los pagas, o los dejas para una escapada excepcional. La Alhambra, págala suelta (~22 €) y resérvala con semanas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Reservar la Alhambra · lo que hay que saber</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Antes de comprar</h3>
+        <p>Reserva <b>con semanas</b> (2–3 meses en temporada alta) solo en <a href="https://tickets.alhambra-patronato.es/" target="_blank" rel="noopener">tickets.alhambra-patronato.es</a>. Al comprar eliges <b>día y hora de los Palacios Nazaríes</b>, y esa hora <b>no se cambia ni se prorroga</b>.</p>
+        <p class="inote">¿Agotada? La <b>Granada Card</b> guarda cupo aparte; o tira de "Jardines/Generalife/Alcazaba" o de las nocturnas.</p>
+      </article>
+      <article class="ibox">
+        <h3>El día de la visita</h3>
+        <p>Lleva el <b>DNI o pasaporte original</b> —y debe ser el de quien compró la entrada (si no, autorización)— más el <b>QR</b> en el móvil o impreso. Sé puntual en el acceso a los Palacios.</p>
+        <p class="inote">Menores de 12 <b>gratis</b>, pero necesitan su entrada. Cada espacio (Nazaríes, Generalife, Alcazaba) se visita <b>una sola vez</b>. Cerrado el 25 dic y el 1 ene.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Cómo moverte · microbuses y a pie</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Microbuses (los rojos)</h3>
+        <p><b>C30</b> Alhambra directa desde Plaza Nueva. <b>C32</b> Alhambra ↔ Albaicín, la más completa. <b>C31</b> Albaicín y <b>Mirador de San Nicolás</b> (¡la C30 no sube a San Nicolás!). <b>C34</b> como la C31 pero sigue al <b>Sacromonte</b> y la Abadía.</p>
+        <p class="imeta">~1,40 € sencillo (más barato con tarjeta Credibus) · cada 10–12 min (C34 cada 20) · de 6:00 a 23:00 aprox.</p>
+        <p class="inote">El <b>metro</b> para en Recogidas, a un paso de la Casa de Lorca. La <b>LAC</b> recorre Gran Vía y Camino de Ronda. El bus cuesta lo mismo todos los días: <b>no hay bus gratis los domingos</b> (lo gratis los domingos son los monumentos del Albaicín, no el transporte).</p>
+      </article>
+      <article class="ibox">
+        <h3>A pie (aprox., desde Plaza Nueva)</h3>
+        <ul class="walk">
+          <li>Catedral / Capilla Real — 8 min</li>
+          <li>Corral del Carbón — 5 min</li>
+          <li>Alhambra (Puerta de la Justicia) — 20 min de subida</li>
+          <li>Mirador de San Nicolás — 20 min por el Albaicín</li>
+          <li>Abadía del Sacromonte — 30–35 min</li>
+          <li>Realejo (Cuarto Real / Casa de los Tiros) — 8–10 min</li>
+        </ul>
+        <p class="inote">Entre vecinos: Bañuelo → Paseo de los Tristes 5 min · Tristes → Fuente del Avellano 10 min · San Nicolás → Dar al-Horra 5 min · San Nicolás → San Cristóbal 10 min → San Miguel Alto +15 · Catedral → San Jerónimo 12 min → San Juan de Dios +3 · Carmen de los Mártires ↔ Rodríguez-Acosta 3 min.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Otras experiencias que merecen la pena</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Baños árabes (hammam)</h3>
+        <p>Baño termal y té en ambiente andalusí, junto a Plaza Nueva. Relax total; se reserva con antelación. <a href="https://hammamalandalus.com/" target="_blank" rel="noopener">hammamalandalus.com</a>.</p>
+      </article>
+      <article class="ibox">
+        <h3>Flamenco en cueva (zambra)</h3>
+        <p>El flamenco más auténtico, en las cuevas del <b>Sacromonte</b> (Los Tarantos, María la Canastera, Venta El Gallo…). Espectáculo con solera; mejor reservar.</p>
+      </article>
+      <article class="ibox">
+        <h3>Visitas guiadas temáticas</h3>
+        <p>Rutas de la Archidiócesis: Granada Sefardí, Ruta del Sacromonte, Isabel la Católica o San Juan de la Cruz en el Carmen de los Mártires. <a href="https://ticketsgranadacristiana.com/" target="_blank" rel="noopener">ticketsgranadacristiana.com</a>.</p>
+      </article>
+      <article class="ibox">
+        <h3>Acequia Real y tren turístico</h3>
+        <p>Senderismo urbano siguiendo la acequia que lleva siglos regando la Alhambra, desde el Sacromonte (hay rutas guiadas municipales). Y el <b>tren turístico</b> por Alhambra, Albaicín y centro (incluido en la Granada Card).</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Experiencias muy locales · lo que hace un granadino</p>
+    <div class="igrid">
+      <article class="ibox">
+        <h3>Tapear de verdad</h3>
+        <p>En Granada <b>cada bebida viene con su tapa gratis</b> — y no una aceituna: cazuelitas, montaditos, hasta un plato. Tírate por el <b>Realejo</b>, la <b>calle Navas</b> o la zona de <b>Pedro Antonio</b> (más joven). Regla de oro: cuanto más tradicional y menos bonito el bar, mejor la tapa.</p>
+      </article>
+      <article class="ibox">
+        <h3>Tapeo probado (de barrio)</h3>
+        <p>Dos que se salen del circuito turístico: <b>Bar Misa de Seis</b> (c/ Obispo Hurtado 24, zona Camino de Ronda/Beiro) — pequeñito, con terraza, y el dueño borda las mollejas, los torreznos y el jamón asado. Y <b>Sancho Original · Cocina de Barrio</b> (c/ Tablas 16), de 1981: siéntate en la <b>barra o las mesas altas</b> y va como bar de tapas (tapa con la bebida, sin pedir de carta); en las mesas de restaurante ya es a la carta. Eso sí, la cocina está tan buena que igual acabas pidiendo algo de carta de todas formas.</p>
+      </article>
+      <article class="ibox">
+        <h3>Pescaíto y fritura</h3>
+        <p><b>Los Diamantes</b> (c/ Navas 28, el original) es la catedral de la fritura granadina: gambas y pescaíto frito de tapa, de pie en la barra, siempre a reventar y con un ambientazo brutal. Y fuera del centro, <b>El Rincón de Rodri</b> (c/ Músico Vicente Zarzo 3, junto a Pedro Antonio): el rey del pescaíto de la zona, con tapas tan grandes que casi son comida.</p>
+      </article>
+      <article class="ibox">
+        <h3>Para variar el tapeo</h3>
+        <p>Para salirte de lo típico: <b>EntreBrasas</b> (c/ Navas, al final) va de carne a la brasa — en la barra, tapa distinta con cada caña (panceta, secreto, carrillada). <b>Potemkin</b> (Plta. del Hospicio Viejo 3, Realejo) te pone <b>sushi y gyozas de tapa gratis</b> y tiene una terraza interior secreta preciosa. Y <b>Candela</b> (c/ Panaderas 9, Realejo), bohemio, con buena música y montaditos.</p>
+      </article>
+      <article class="ibox">
+        <h3>Por probar (según reseñas)</h3>
+        <p>Candidatos que salen muy bien en reseñas y encajan con tu estilo, <b>aún sin tu visto bueno</b>: <b>Casa Julio</b> (c/ Almireceros, junto a la Catedral) — fritura auténtica, su cazón es de leyenda; <b>Om Kalsum</b> (junto a Pedro Antonio) — tapas marroquíes, joya sin turistas; <b>Los Mascarones</b> (c/ Pagés, Albaicín) — migas y caracoles, 100% local; <b>Freiduría La Flota</b> y <b>Los Diamantes de Virgen del Rosario 12</b> — el pescaíto que prefieren los granadinos; y <b>La Tana</b> (Realejo) — vino con solera. Cuando los cates, los pasamos a “probados”.</p>
+      </article>
+      <article class="ibox">
+        <h3>Dulces de clausura</h3>
+        <p>Monjas de clausura que venden su repostería (recetas moriscas de siglos) por un <b>torno</b> giratorio, sin verse. En <b>Santa Catalina de Zafra</b> (Carrera del Darro) y <b>Santa Isabel la Real</b> (Albaicín). El ritual: tocas el timbre, esperas y suena un “Ave María purísima”. Prueba los roscos, las almendradas o la bizcochada de Gloria.</p>
+      </article>
+      <article class="ibox">
+        <h3>El pionono</h3>
+        <p>El dulce granadino por excelencia: un bocado de bizcocho borracho con crema tostada arriba, de <b>Santa Fe</b> (nació en Casa Ysla). Pequeño, dulcísimo, se come de un bocado. En cualquier pastelería del centro lo tienes.</p>
+      </article>
+      <article class="ibox">
+        <h3>Las fiestas de verdad</h3>
+        <p>Para vivir la ciudad a tope: el <b>Corpus</b> (junio, la gran fiesta, con feria); el <b>Día de la Cruz</b> (3 de mayo, plazas y patios vestidos de cruces de flores); o <b>San Cecilio</b> (febrero, romería en el Sacromonte).</p>
+      </article>
+      <article class="ibox">
+        <h3>Mercado de San Agustín</h3>
+        <p>El mercado de abastos de toda la vida, a un paso de la Catedral: pescado, jamón, quesos, especias. Donde compra el granadino. Un vistazo para ver la ciudad de diario.</p>
+      </article>
+      <article class="ibox">
+        <h3>Teterías del Albaicín</h3>
+        <p>La calle Calderería Nueva es un pedazo de Marruecos: tés, dulces árabes, ambiente. <b>Con honestidad:</b> es de lo más turístico y algo caro. Ve por el ambiente y un té con menta, no esperes autenticidad de barrio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="routes">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Rutas montadas · toca una parada para ver su ficha</p>
+    <div class="rgrid" id="routes"></div>
+  </div>
+</section>
+
+<section class="dayplan">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>¿Qué día vienes? Te marco lo que conviene</p>
+    <div class="daychips" id="daychips" role="group" aria-label="Día de la semana">
+      <button data-day="-1" aria-pressed="true">Cualquiera</button>
+      <button data-day="0" aria-pressed="false">Lun</button>
+      <button data-day="1" aria-pressed="false">Mar</button>
+      <button data-day="2" aria-pressed="false">Mié</button>
+      <button data-day="3" aria-pressed="false">Jue</button>
+      <button data-day="4" aria-pressed="false">Vie</button>
+      <button data-day="5" aria-pressed="false">Sáb</button>
+      <button data-day="6" aria-pressed="false">Dom</button>
+    </div>
+    <label class="dayhide"><input type="checkbox" id="hideClosed"> Ocultar los que cierran ese día</label>
+    <p class="daysum" id="daysum" aria-live="polite"></p>
+  </div>
+</section>
+
+<nav class="controls" aria-label="Buscar y filtrar">
+  <div class="wrap">
+    <div class="row1">
+      <div class="search" id="searchbox">
+        <input type="search" id="q" placeholder="Buscar (Alhambra, Lorca, barroco…)" aria-label="Buscar monumento" autocomplete="off">
+        <button class="clr" id="clr" type="button" aria-label="Borrar búsqueda">&times;</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Estado">
+        <button data-filter="todos" aria-pressed="true">Todos</button>
+        <button data-filter="pendientes" aria-pressed="false">Pendientes</button>
+        <button data-filter="visitados" aria-pressed="false">Visitados</button>
+      </div>
+      <div class="progress" aria-hidden="true">
+        <span class="count" id="count">0 / 0</span>
+        <span class="track"><span class="fill" id="fill"></span></span>
+      </div>
+    </div>
+    <div class="row2">
+      <button class="fbtn" id="filtersToggle" type="button" aria-expanded="true"><span class="chev">▾</span> Filtros<span id="fcount"></span></button>
+      <span class="showing" id="showing" aria-live="polite"></span>
+      <button class="fbtn reset-f" id="resetFilters" type="button">Limpiar</button>
+    </div>
+    <div id="filterrows">
+    <div class="chips" id="chips" role="group" aria-label="Tipo">
+      <span class="chip-lbl">Tipo</span>
+      <button class="chip" data-cat="todo" aria-pressed="true">Todo</button>
+      <button class="chip" data-cat="alhambra" aria-pressed="false">Alhambra</button>
+      <button class="chip" data-cat="andalusi" aria-pressed="false">Andalusí</button>
+      <button class="chip" data-cat="barroco" aria-pressed="false">Renacim./barroco</button>
+      <button class="chip" data-cat="museo" aria-pressed="false">Museos</button>
+      <button class="chip" data-cat="jardines" aria-pressed="false">Jardines</button>
+      <button class="chip" data-cat="mirador" aria-pressed="false">Miradores</button>
+      <button class="chip" data-cat="plaza" aria-pressed="false">Plazas</button>
+    </div>
+    <div class="chips" id="pricechips" role="group" aria-label="Precio">
+      <span class="chip-lbl">Precio</span>
+      <button class="chip" data-price="todo" aria-pressed="true">Todos</button>
+      <button class="chip" data-price="gratis" aria-pressed="false">Gratis</button>
+      <button class="chip" data-price="pago" aria-pressed="false">De pago</button>
+      <button class="chip" data-price="noche" aria-pressed="false">Nocturnas</button>
+    </div>
+    <div class="chips" id="levelchips" role="group" aria-label="Nivel">
+      <span class="chip-lbl">Nivel</span>
+      <button class="chip" data-level="todo" aria-pressed="true">Todos</button>
+      <button class="chip" data-level="principal" aria-pressed="false">Principales</button>
+      <button class="chip" data-level="secundario" aria-pressed="false">Secundarios</button>
+    </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap" id="board"></div>
+  <div class="wrap"><p class="empty" id="empty">Nada coincide con eso. Prueba a quitar algún filtro o a limpiar la búsqueda.</p></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Nota final</p>
+    <p>Guardo lo que marcas en este dispositivo, así que puedes ir tachando finde a finde. El buscador funciona sin tildes y los filtros se combinan: por ejemplo <b>Gratis + Pendientes</b> te deja justo lo que te falta por ver sin pagar. Y con «Añadir al plan» en cada ficha, la barra de abajo te suma el coste y el tiempo del día.</p>
+    <p>Un par de honestidades: precios de la Alhambra son los oficiales de 2026 (con la comisión online incluida); el Aljibe del Rey es visita guiada gratuita solo de lunes a viernes, y el Carmen de la Victoria abre en jornadas puntuales; y la Catedral está con la exposición <i>Kerygma</i> hasta noviembre de 2026, así que recorrido y tarifa cambian.</p>
+    <button class="reset" id="reset" type="button">Reiniciar lo marcado</button>
+    <p class="credits">Guía personal de <b>Granada monumental</b>, hecha por Alfonso con la ayuda de Claude (Anthropic). Datos de fuentes oficiales (Patronato de la Alhambra, Ayuntamiento de Granada y las webs de cada sitio), revisados en 2026 — confírmalos el día que vayas. Recomendaciones de bares, propias y de reseñas. <b>En el móvil: menú del navegador → «Añadir a pantalla de inicio»</b> para instalarla como app.</p>
+  </div>
+</footer>
+
+<div class="planbar" id="planbar" hidden>
+  <div class="planbar-main">
+    <button class="planbar-toggle" id="planbarToggle" type="button" aria-expanded="false">
+      <span class="chev">▾</span><span class="planbar-sum" id="planbarSum">Mi plan</span>
+    </button>
+    <button class="planbar-clear" id="planbarClear" type="button">Vaciar</button>
+  </div>
+  <div class="planbar-list" id="planbarList" hidden></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var TIX_ALH="https://tickets.alhambra-patronato.es/", ALH="https://www.alhambra-patronato.es/",
+      TIX_CRI="https://ticketsgranadacristiana.com/", ALB_TIX="https://entradas.albaicin-granada.com/",
+      ALB="https://www.albaicin-granada.com/", TURG="https://turismo.granada.org/", JUNTA="https://www.museosdeandalucia.es/";
+
+  var DATA = [
+    /* 1 · ALHAMBRA */
+    { id:"alh_general", z:"Z1", tags:["alhambra"], name:"Alhambra · Entrada General (día)",
+      desc:"El plato fuerte: <b>Palacios Nazaríes, Alcazaba y Generalife</b>. La hora de los Nazaríes es fija e improrrogable, así que llega puntual. Es lo más solicitado de España.",
+      precio:"~22,27 € (online)", dur:"~3 h", temp:"Primavera/otoño",
+      horario:"Verano 8:30–20 · invierno 8:30–18 · Nazaríes con hora asignada",
+      cuando:"Primavera u otoño, a primera hora. En verano evita el mediodía; la entrada de tarde da mejor luz.",
+      compra:"Solo online en tickets.alhambra-patronato.es. Reserva con semanas: se agota.",
+      como:"DNI o pasaporte obligatorio. Menores gratis, pero con su entrada.", web:TIX_ALH },
+    { id:"alh_jardines", z:"Z1", tags:["alhambra","jardines"], name:"Alhambra · Jardines, Generalife y Alcazaba",
+      desc:"Todo menos los Palacios Nazaríes: <b>Generalife, Alcazaba y Partal</b>. Tu plan B perfecto cuando los Nazaríes están agotados, y aun así te llevas medio conjunto.",
+      precio:"~12,73 €", dur:"~2 h", temp:"Primavera",
+      horario:"Mismo horario que la general",
+      cuando:"Primavera, con el Generalife en flor. Mañana temprano o última hora de tarde.",
+      compra:"Online en tickets.alhambra-patronato.es; suele haber más disponibilidad que la general.",
+      como:"Ideal para ir sin la presión de la hora de Palacios.", web:TIX_ALH },
+    { id:"alh_noc_nazaries", z:"Z1", tags:["alhambra"], noche:true, name:"Alhambra · Nocturna Palacios Nazaríes",
+      desc:"Los <b>Palacios Nazaríes iluminados</b> y medio mundo durmiendo. De lo más bonito que se hace en Granada. Solo viernes y sábados.",
+      precio:"~12,73 €", dur:"~1,5 h", temp:"De noche",
+      horario:"Vie–sáb · ~20–21:30 (inv.) / 22–23:30 (ver.)",
+      cuando:"Cualquier época; en verano es un respiro del calor. Viernes o sábado.",
+      compra:"Online en tickets.alhambra-patronato.es. Sin flash dentro.",
+      como:"Puntualidad estricta en el acceso a los palacios.", web:TIX_ALH },
+    { id:"alh_noc_generalife", z:"Z1", tags:["alhambra","jardines"], noche:true, name:"Alhambra · Nocturna Jardines y Generalife",
+      desc:"Los <b>jardines y el Generalife de noche</b>, con el agua sonando y mucha menos gente. Martes a sábado.",
+      precio:"~8,48 €", dur:"~1,5 h", temp:"De noche",
+      horario:"Mar–sáb · horario nocturno",
+      cuando:"Primavera y verano, con los jardines y el agua de noche.",
+      compra:"Online en tickets.alhambra-patronato.es. No incluye los Palacios Nazaríes.",
+      como:"Menos demandada que la de Palacios: más fácil de pillar.", web:TIX_ALH },
+    { id:"alh_experiencias", z:"Z1", tags:["alhambra"], noche:true, name:"Alhambra · Experiencias (dos días)",
+      desc:"Combo: <b>nocturna a los Nazaríes</b> y, al día siguiente, Alcazaba y Generalife de día. Viernes y sábados. La forma de verlo todo con calma.",
+      precio:"~22,27 €", dur:"Dos jornadas", temp:"Fin de semana",
+      horario:"Vie–sáb (noche) + día siguiente",
+      cuando:"Fin de semana; ideal en verano por la nocturna.",
+      compra:"Online en tickets.alhambra-patronato.es.",
+      como:"Perfecto si vienes a pasar el fin de semana entero.", web:TIX_ALH },
+    { id:"carlosv", z:"Z1", tags:["alhambra"], name:"Palacio de Carlos V",
+      desc:"El <b>palacio renacentista de Pedro Machuca</b> incrustado en la Alhambra, con un patio circular único en el mundo. Entrada libre, y dentro caben dos museos.",
+      precio:"Entrada libre", dur:"20–30 min", temp:"Todo el año",
+      horario:"Con el conjunto (acceso libre)",
+      cuando:"Todo el año; de paso al entrar o salir de la Alhambra.",
+      compra:"Gratis, sin entrada. No necesitas ticket de la Alhambra para verlo.",
+      como:"Acceso libre por el recinto, aunque no visites los Nazaríes.", web:ALH },
+    { id:"museo_alh", z:"Z1", tags:["alhambra"], name:"Museo de la Alhambra",
+      desc:"Lo mejor del <b>arte hispanomusulmán</b> —el Jarrón de las Gacelas, yeserías, celosías, maderas labradas—, en el Palacio de Carlos V. Gratis.",
+      precio:"Entrada libre", dur:"30–45 min", temp:"Todo el año",
+      horario:"Mié–sáb 8:30–18:00 · dom y mar 8:30–14:30 · lun cerrado",
+      cuando:"Todo el año; perfecto para las horas de más calor.",
+      compra:"Gratis, sin entrada.",
+      como:"Una joya que casi nadie visita, y encima gratis.", web:ALH },
+    { id:"bellasartes", z:"Z1", tags:["alhambra"], name:"Museo de Bellas Artes",
+      desc:"Pintura y escultura granadina de varios siglos (Sánchez Cotán, Alonso Cano y compañía), también en el Palacio de Carlos V.",
+      precio:"Gratis UE · 1,50 € otros", dur:"~45 min", temp:"Todo el año",
+      horario:"Mar–sáb 9–18 · dom y festivos 9–15 · lun cerrado (dentro de la Alhambra)",
+      cuando:"Todo el año; refugio para el mediodía de verano.",
+      compra:"Gratis con DNI/UE en taquilla.",
+      como:"Lleva el DNI para la entrada gratuita.", web:JUNTA },
+    { id:"bermejas", z:"Z1", tags:["alhambra","mirador"], name:"Torres Bermejas",
+      desc:"Fortaleza roja en el cerro del Mauror, <b>más antigua que la propia Alhambra</b> y unida a ella por murallas. Visita libre (novedad reciente) y buenas vistas del Realejo.",
+      precio:"Visita gratuita", dur:"~30 min", temp:"Días claros",
+      horario:"Consultar (visita gratuita)",
+      cuando:"Días despejados por las vistas; evita el calor del mediodía.",
+      compra:"Gratis, sin entrada.",
+      como:"Subiendo desde el Realejo / bosque de la Alhambra.", web:ALH },
+    { id:"sillamoro", z:"Z1", tags:["alhambra","mirador"], name:"Silla del Moro",
+      desc:"El <b>Castillo de Santa Elena</b>, sobre el Generalife: la subida regala la mejor panorámica de todo el conjunto, con el Albaicín enfrente. Es gratis, pero <b>solo abre los fines de semana por la mañana</b>.",
+      precio:"Visita gratuita", dur:"~30 min de subida", temp:"Fin de semana",
+      horario:"Solo sáb y dom, mañana (~8:30–14:00; consultar temporada)",
+      cuando:"Solo abre sábados y domingos por la mañana: ve temprano. Mejor primavera/otoño por la caminata.",
+      compra:"Gratis, sin entrada, pero solo los fines de semana por la mañana.",
+      como:"Sendero desde el Generalife o por la Cuesta del Rey Chico.", web:ALH },
+
+    /* 2 · CÁRMENES Y JARDINES */
+    { id:"martires", z:"Z2", tags:["jardines"], name:"Carmen de los Mártires",
+      desc:"Siete hectáreas de <b>jardines románticos</b> en la colina del Mauror: jardín francés con fuente de Neptuno, jardín inglés con lago y cisnes, patio nazarí y un palacete. Vistas de Sierra Nevada, la Vega y la ciudad.",
+      precio:"Entrada libre", dur:"1–1,5 h", temp:"Primavera",
+      horario:"Verano findes 10–20 · invierno findes 10–18 (entre semana, partido)",
+      cuando:"Primavera (rosas y jardines a tope). Última hora de tarde para el atardecer sobre la Vega.",
+      compra:"Gratis, sin entrada.",
+      como:"Bus C30/C32, parada Carmen de los Mártires. O a pata: habrá cuesta.", web:TURG },
+    { id:"racosta", z:"Z2", tags:["jardines"], name:"Fundación Rodríguez-Acosta",
+      desc:"El <b>“carmen blanco”</b>, casa-estudio del pintor Rodríguez-Acosta (Monumento Nacional): jardines modernistas escalonados, <b>galerías y criptas subterráneas</b> y, dentro, el Museo Gómez-Moreno. La general ya merece; la completa (sábados) añade la biblioteca.",
+      precio:"~5 € general · ~11 € completa (sáb)", dur:"~1 h", temp:"Primavera",
+      horario:"Pases cada 30 min · verano 10–18 · invierno hasta 16:30",
+      cuando:"Primavera; los pases de mañana pillan mejor luz en las terrazas.",
+      compra:"En taquilla (~5 €) o web (~6,20 €). La <b>General</b> ya trae jardines, galerías subterráneas y museo (lo que merece la pena); la <b>Completa</b> (~11 €, sábados 11 h) solo añade la biblioteca.",
+      como:"Callejón Niño del Rollo, a 100 m del Carmen de los Mártires: encádenalos.", web:"http://www.fundacionrodriguezacosta.com" },
+    { id:"cvictoria", z:"Z3", tags:["jardines"], name:"Carmen de la Victoria",
+      desc:"Carmen de la Universidad con <b>jardines nazaríes escalonados</b> y una de las vistas más limpias de la Alhambra. Es residencia universitaria: se visita en jornadas puntuales o con cita.",
+      precio:"Gratis (con cita / jornadas)", dur:"~45 min", temp:"Primavera",
+      horario:"Consultar (visita puntual)",
+      cuando:"Primavera por los jardines; cuando abran al público.",
+      compra:"Con cita o en jornadas de puertas abiertas (Universidad de Granada).",
+      como:"Cuesta del Chapiz / Carrera del Darro, ladera del Albaicín.", web:TURG },
+
+    /* 3 · ALBAICÍN · DARRO */
+    { id:"banuelo", z:"Z3", tags:["andalusi"], name:"El Bañuelo",
+      desc:"Baño árabe zirí del s.XI, el <b>edificio civil más antiguo de Granada</b> y uno de los hammams mejor conservados de al-Ándalus. Salas fría, templada y caliente, con bóvedas horadadas por lucernas en forma de estrella.",
+      precio:"~2,50 € · gratis domingos", dur:"20–30 min", temp:"Todo el año",
+      horario:"Verano 9–14:30 y 17–20:30 · invierno 10–17 · lun cerrado",
+      cuando:"Todo el año; ideal un domingo (gratis) y a primera hora.",
+      compra:"En taquilla; gratis los domingos; o incluido en la Dobla de Oro.",
+      como:"Carrera del Darro 31.", web:ALH },
+    { id:"maristan", z:"Z3", tags:["andalusi"], name:"Maristán",
+      desc:"El <b>hospital nazarí</b> de Muhammad V (s.XIV), calcado del maristán de Fez: se trataban enfermedades —incluidas las mentales— y se formaban médicos. Restaurado y reabierto, con exposición sobre el proceso y los hallazgos.",
+      precio:"Gratis domingos · Dobla de Oro", dur:"20–30 min", temp:"Todo el año",
+      horario:"Aprox. 10–17 · lun cerrado",
+      cuando:"Domingo (gratis), por la mañana.",
+      compra:"En taquilla o con Dobla de Oro; gratis los domingos.",
+      como:"Justo al lado del Bañuelo; acceso por calle Bañuelo.", web:ALH },
+    { id:"zafra", z:"Z3", tags:["andalusi"], name:"Casa de Zafra",
+      desc:"Casa nazarí del s.XIV con patio y alberca, hoy <b>Centro de Interpretación del Albaicín</b>. Pequeña pero perfecta para entender cómo se vivía en el barrio.",
+      precio:"3 € · gratis domingos", dur:"~30 min", temp:"Todo el año",
+      horario:"Mar–vie 10:30–13:30 · sáb 10:30–17 · dom 10:30–13:30 · lun cerrado",
+      cuando:"Domingo (gratis) o entre semana de mañana; los findes hay algo más de gente.",
+      compra:"3 € en taquilla; gratis los domingos. También en la Granada Card.",
+      como:"Junto a la Carrera del Darro, cuesta arriba.", web:ALB_TIX },
+    { id:"morisca", z:"Z3", tags:["andalusi"], name:"Casa Morisca (Horno de Oro)",
+      desc:"Casa morisca de finales del s.XV, mezcla de nazarí y mudéjar, con un bonito patio rectangular y su alberca. De las visitas cortas más agradecidas del barrio.",
+      precio:"~2,50 € · gratis domingos", dur:"20–30 min", temp:"Todo el año",
+      horario:"Verano 9–14:30 y 17–20:30 · invierno 10–17 · lun cerrado",
+      cuando:"Domingo (gratis) o entre semana de mañana.",
+      compra:"En taquilla; gratis los domingos; o con Dobla de Oro.",
+      como:"Calle Horno de Oro, saliendo de la Carrera del Darro.", web:ALH },
+    { id:"chapiz", z:"Z3", tags:["andalusi"], name:"Casa del Chapiz",
+      desc:"Dos casas moriscas con jardín y unas vistas estupendas, hoy sede de la <b>Escuela de Estudios Árabes</b> (CSIC). El acceso a veces va con reserva.",
+      precio:"Dobla de Oro · consultar", dur:"~30 min", temp:"Consultar",
+      horario:"Consultar (institución de investigación)",
+      cuando:"Con la Dobla de Oro; consulta la apertura.",
+      compra:"Con la Dobla de Oro; conviene consultar antes.",
+      como:"Cuesta del Chapiz, camino del Sacromonte.", web:"https://www.eea.csic.es/" },
+    { id:"darhorra", z:"Z3", tags:["andalusi"], name:"Palacio de Dar al-Horra",
+      desc:"Palacio nazarí del s.XV, residencia de <b>Aixa, la madre de Boabdil</b> (“la honrada”). En lo alto del Albaicín, junto al convento de Santa Isabel la Real, con miradores de escándalo.",
+      precio:"~2,50 € · gratis domingos", dur:"30–45 min", temp:"Mañana",
+      horario:"Verano 9–14:30 y 17–20:30 · invierno 10–17 · lun cerrado",
+      cuando:"Domingo (gratis) y con luz de mañana para las vistas.",
+      compra:"En taquilla; gratis los domingos; o con Dobla de Oro.",
+      como:"Albaicín alto; combínalo con un paseo por la zona.", web:ALH },
+    { id:"cordova", z:"Z3", tags:["andalusi","jardines"], name:"Palacio de los Córdova",
+      desc:"Palacio señorial del s.XVI (portada renacentista, <b>techos mudéjares</b>) trasladado piedra a piedra en los años 60. Hoy Archivo Municipal —documentos desde 1492, las Capitulaciones, manuscritos de Zorrilla y Lorca— con jardines y vistas a la Alhambra.",
+      precio:"Entrada libre", dur:"30–45 min", temp:"Fin de semana",
+      horario:"Fines de semana 10–20 · entre semana partido",
+      cuando:"Fin de semana (abre todo el día); por la tarde para los jardines.",
+      compra:"Gratis, sin entrada.",
+      como:"Cuesta del Chapiz 2–4, al inicio del Albaicín.", web:TURG },
+    { id:"olvidados", z:"Z3", tags:["andalusi"], name:"Palacio de los Olvidados",
+      desc:"En la Casa-Palacio de Santa Inés. El <b>Museo de la Inquisición</b> (instrumentos de tortura), una exposición sobre la comunidad sefardí, otra dedicada a <b>Lorca</b>, tablao flamenco y un mirador con la Alhambra enfrente.",
+      precio:"6 € · reducida 5 €", dur:"~1 h", temp:"Atardecer",
+      horario:"Todos los días 10:30–20",
+      cuando:"Todo el año; sube al mirador al atardecer.",
+      compra:"En taquilla o en palaciodelosolvidados.es.",
+      como:"Cuesta de Santa Inés, saliendo de la Carrera del Darro.", web:"https://palaciodelosolvidados.es/" },
+    { id:"sannicolas", z:"Z3", tags:["andalusi","mirador"], name:"Mirador de San Nicolás",
+      desc:"La <b>postal de Granada</b>: la Alhambra entera con Sierra Nevada detrás, y al atardecer se llena de gente y guitarras. Gratis, siempre. La torre de la iglesia se sube con el bono Granada Cristiana.",
+      precio:"Entrada libre", dur:"15–30 min", temp:"Atardecer",
+      horario:"Siempre (plaza pública)",
+      cuando:"Al atardecer, todo el año; llega con margen para sitio.",
+      compra:"Gratis, sin entrada. La torre de San Nicolás, con ticket de Granada Cristiana.",
+      como:"Corazón del Albaicín.", web:TURG },
+    { id:"aljibe", z:"Z3", tags:["andalusi"], name:"Aljibe del Rey",
+      desc:"El <b>mayor aljibe de la Granada musulmana</b> (s.XI, 4 naves, 300 m³), que abastecía la Alcazaba Cadima. Hoy es el <b>Centro de Interpretación del Agua</b>, en un carmen con jardines: va de las acequias y el ingenioso sistema de agua andalusí. Visita guiada gratuita.",
+      precio:"Visita gratuita guiada", dur:"~1 h", temp:"Entre semana",
+      horario:"Visita guiada gratuita L–V a las 12:00 (salvo festivos y agosto)",
+      cuando:"Solo L–V a las 12:00; para tu finde es difícil, salvo que llegues un viernes por la mañana.",
+      compra:"Gratis. Individuales sin reserva; grupos con reserva. Tel. 958 200 030 · fundacionaguagranada.es.",
+      como:"Placeta del Cristo de las Azucenas, Albaicín alto. Microbús C32.", web:"https://fundacionaguagranada.es/" },
+
+    { id:"arqueologico", z:"Z3", tags:["museo"], name:"Museo Arqueológico (Casa de Castril)",
+      desc:"En la <b>Casa de Castril</b>, uno de los mejores palacios renacentistas de Granada (fachada plateresca de 1539), recorre la historia de la provincia desde la prehistoria hasta 1492. <b>Reabrió tras años de obras</b>; patio morisco y vistas de la Alhambra desde arriba.",
+      precio:"Gratis UE · 1,50 € otros", dur:"~45 min", temp:"Todo el año",
+      horario:"Mar–sáb 9–21 (verano solo hasta 15:00) · dom y festivos 9–15 · lun cerrado",
+      cuando:"Todo el año; en verano solo por la mañana. Sube a la segunda planta por las vistas.",
+      compra:"Gratis con DNI/UE en taquilla; 1,50 € otros. También en la Granada Card.",
+      como:"Carrera del Darro 41–43, junto al Bañuelo. Bus C31/C32/C34.", web:"https://www.museosdeandalucia.es/web/museoarqueologicodegranada" },
+
+    { id:"salvador", z:"Z3", tags:["andalusi"], name:"Iglesia de El Salvador",
+      desc:"Colegiata del s.XVI–XVII levantada sobre la <b>Mezquita Mayor del Albaicín</b>. Lo que la hace especial es el <b>patio de las Abluciones almohade</b> que se conserva: columnas, aljibe, arcos de herradura y la fuente donde se purificaban antes de rezar. Dentro, la Santa Cena de Bocanegra.",
+      precio:"0,75 €", dur:"~20 min", temp:"Todo el año",
+      horario:"Visitas limitadas (dom 11:30; entre semana en torno a la misa de 20:00) · consultar",
+      cuando:"Por el patio almohade, un vestigio precioso del Albaicín musulmán. Domingo a las 11:30 es tu mejor opción.",
+      compra:"~0,75 € en taquilla (cubre iglesia y patio).",
+      como:"Plaza del Salvador, en lo alto del Albaicín.", web:"" },
+
+    /* 4 · SACROMONTE */
+    { id:"sacromonte", z:"Z4", tags:["barroco"], name:"Abadía del Sacromonte y las Santas Cuevas",
+      desc:"Abadía del s.XVII en su valle. Bajo la iglesia, las <b>Santas Cuevas</b> —las catacumbas— donde en 1595 aparecieron las reliquias de San Cecilio y los libros plúmbeos. Además, colegiata barroca, el <b>único Goya de Granada</b> y el Cristo de los Gitanos.",
+      precio:"~5 € · incluida en Granada Card", dur:"~1 h", temp:"Mañana",
+      horario:"Verano 10–14 y 15:30–19 · invierno hasta 18 · dom misa 12 h",
+      cuando:"Por la mañana (domingos hay misa a las 12). Primavera/otoño por el paseo.",
+      compra:"La <b>entrada general</b> (~5 €, con audioguía) ya incluye las Santas Cuevas (las catacumbas), el claustro y los libros plúmbeos. En taquilla, en abadiasacromonte.org o con la Granada Card.",
+      como:"Bus C34 desde Plaza Nueva. La bajada a pie de vuelta es preciosa.", web:"https://abadiasacromonte.org/" },
+    { id:"cuevas", z:"Z4", tags:[], name:"Museo Cuevas del Sacromonte",
+      desc:"Museo etnográfico al aire libre en el <b>Barranco de los Negros</b>: once casas-cueva, oficios tradicionales, la zambra gitana, jardín botánico y unas vistas soberbias del Sacromonte y la Alhambra.",
+      precio:"6 € · menores de 10 gratis", dur:"~1 h", temp:"Atardecer",
+      horario:"Verano 10–20 · invierno 10–18 · a diario",
+      cuando:"Última hora de tarde por las vistas; en julio/agosto hay flamenco y cine de noche.",
+      compra:"Online en sacromontegranada.com o en taquilla.",
+      como:"Subiendo por el Camino del Sacromonte.", web:"https://sacromontegranada.com/" },
+
+    /* 5 · REALEJO · CENTRO */
+    { id:"corral", z:"Z5", tags:["andalusi"], name:"Corral del Carbón",
+      desc:"La <b>única alhóndiga (corral) nazarí que se conserva en España</b>, del s.XIV. Portada monumental con arco de herradura y sebka y un patio sobrio y precioso. Dentro, librería andalusí y sala de exposiciones.",
+      precio:"Entrada libre, siempre", dur:"15–20 min", temp:"Todo el año",
+      horario:"Aprox. 9–20",
+      cuando:"Todo el año; de paso por el centro.",
+      compra:"Gratis, sin entrada.",
+      como:"Calle Mariana Pineda, pegado a la Alcaicería y Bib-Rambla.", web:ALH },
+    { id:"cuartoreal", z:"Z5", tags:["andalusi"], name:"Cuarto Real de Santo Domingo",
+      desc:"Palacio nazarí <b>anterior a la Alhambra</b> (Muhammad II, finales del s.XIII): su qubba o salón de recepciones es el antecedente directo de los Palacios Nazaríes. Única almunia real conservada intramuros. Con jardines.",
+      precio:"2 € · reducida 1 € · gratis domingos", dur:"~45 min", temp:"Mañana",
+      horario:"Mar–sáb mañana y tarde · dom mañana · lun cerrado",
+      cuando:"Domingo (gratis) o entre semana; por la mañana.",
+      compra:"En taquilla (solo tarjeta); gratis los domingos; o con Dobla de Oro.",
+      como:"Plaza de los Campos 6, Realejo.", web:ALB_TIX },
+    { id:"tiros", z:"Z5", tags:["barroco"], name:"Casa de los Tiros",
+      desc:"Palacio-fortaleza del s.XVI de los Granada-Venegas, hoy museo de la historia de Granada. La joya es la <b>Cuadra Dorada</b>: techo de madera labrada y policromada con espadas, bustos de reyes y héroes.",
+      precio:"Gratis UE · 1,50 € otros", dur:"~45 min", temp:"Todo el año",
+      horario:"Mar–sáb 9–21 (verano solo hasta 15:00) · dom y festivos 9–15 · lun cerrado",
+      cuando:"Todo el año; refugio para el calor. Cierra lunes.",
+      compra:"Gratis con DNI/UE en taquilla.",
+      como:"Calle Pavaneras 19, Realejo. Lleva acreditación (DNI).", web:JUNTA },
+    { id:"madraza", z:"Z5", tags:["andalusi"], week:true, name:"La Madraza",
+      desc:"La <b>primera universidad pública de al-Ándalus</b> (Yusuf I, 1349). Conserva el oratorio nazarí con su cúpula; el resto es palacio barroco (fue el antiguo Ayuntamiento). Hoy de la Universidad y la Real Academia de Bellas Artes.",
+      precio:"Oratorio gratis · resto ~2 €", dur:"~30 min", temp:"Entre semana",
+      horario:"Oratorio: L–V a las 11 h con reserva (aforo 8). Palacio ~2 €: L–V; sáb reducido (consultar)",
+      cuando:"El oratorio nazarí es gratis, pero solo L–V a las 11 h con reserva previa. El resto del palacio, L–V y sábado con horario reducido.",
+      compra:"Oratorio: gratis reservando en el punto de info (c/ Oficios). Palacio: ~2 € en taquilla o web.",
+      como:"Calle Oficios 14, frente a la Capilla Real.", web:"https://lamadraza.ugr.es/" },
+    { id:"catedral", z:"Z5", tags:["barroco"], name:"Catedral de Granada",
+      desc:"Renacimiento en estado puro (Diego de Siloé): una <b>capilla mayor circular</b> deslumbrante y la fachada de Alonso Cano. Ojo: durante la exposición <i>Kerygma</i> (may–nov 2026) cambian el recorrido y las tarifas.",
+      precio:"~6 € (audioguía incl.)", dur:"~1 h", temp:"Todo el año",
+      horario:"L–S 10–18:30 · dom por la tarde",
+      cuando:"Todo el año; mañana con mejor luz en la capilla mayor.",
+      compra:"En taquilla o en ticketsgranadacristiana.com (bono combinado = descuento).",
+      como:"Gran Vía / Bib-Rambla. Entrada aparte de la Capilla Real.", web:TIX_CRI },
+    { id:"capillareal", z:"Z5", tags:["barroco"], name:"Capilla Real",
+      desc:"Gótico isabelino que guarda las <b>tumbas de los Reyes Católicos</b> y de Juana y Felipe. En la sacristía-museo, la corona y el cetro de Isabel, la espada de Fernando y tablas flamencas. No se hacen fotos dentro.",
+      precio:"5 € · estudiantes 3,5 €", dur:"~45 min", temp:"Todo el año",
+      horario:"L–S 10–18:30 · dom 11–18",
+      cuando:"Todo el año; primera hora para verla tranquila.",
+      compra:"En taquilla o en ticketsgranadacristiana.com.",
+      como:"Pegada a la Catedral, entre la Lonja y el Sagrario.", web:TIX_CRI },
+    { id:"alcaiceria", z:"Z5", tags:["andalusi"], name:"Alcaicería",
+      desc:"El laberinto del <b>antiguo zoco de la seda</b> nazarí (reconstruido tras un incendio), hoy callejuelas de tiendas junto a Bib-Rambla. Es un paseo, no una entrada, pero da el pego del zoco antiguo.",
+      precio:"Entrada libre", dur:"15 min", temp:"Todo el año",
+      horario:"Calle abierta",
+      cuando:"Cualquier momento; de paso hacia la Catedral.",
+      compra:"Gratis, sin entrada.",
+      como:"Entre la Catedral y Bib-Rambla.", web:TURG },
+
+    { id:"guerrero", z:"Z5", tags:["museo"], name:"Centro José Guerrero",
+      desc:"Museo de <b>arte contemporáneo</b> dedicado al pintor granadino José Guerrero (expresionismo abstracto): su colección permanente y muestras temporales, en cuatro plantas de un edificio histórico, con librería y vistas de la ciudad desde arriba. Gratis.",
+      precio:"Entrada libre", dur:"~45 min", temp:"Todo el año",
+      horario:"Mar–sáb 10:30–14 y 16–21 (verano 11–14 y 17–21) · dom 10:30–14 · lun cerrado",
+      cuando:"Todo el año; cierra lunes y domingo por la tarde. Buen refugio con arte y aire.",
+      compra:"Gratis, sin entrada.",
+      como:"Calle Oficios 8, entre la Catedral y la Capilla Real.", web:"https://centroguerrero.es/" },
+
+    { id:"centrolorca", z:"Z5", tags:["museo"], name:"Centro Federico García Lorca",
+      desc:"Centro cultural moderno en la Plaza de la Romanilla que <b>custodia el archivo de Lorca</b> (Fundación García Lorca): salas de <b>exposiciones temporales</b>, teatro, biblioteca y cafetería. Lo visitable son las exposiciones —cambian y son irregulares—, así que asómate a ver qué hay puesto.",
+      precio:"Entrada libre (exposiciones)", dur:"~30 min", temp:"Todo el año",
+      horario:"Mar–sáb 11–14 y 17–20 (verano tarde 18–21) · dom 11–14 · lun cerrado",
+      cuando:"Todo el año; depende de la exposición del momento. Buen plan si hay una muestra que te tire.",
+      compra:"Gratis. El archivo/biblioteca, L–V con cita.",
+      como:"Plaza de la Romanilla, junto a la Catedral.", web:"https://www.centrofedericogarcialorca.es/" },
+    { id:"corrala", z:"Z5", tags:["museo"], name:"Corrala de Santiago",
+      desc:"Una <b>corrala de vecinos</b> de los s.XVI–XVII, rareza de la arquitectura popular granadina: patio central y galerías de madera en altura. Hoy es residencia de la Universidad, pero tiene <b>sala de exposiciones</b> abierta al público cuando hay muestra.",
+      precio:"Entrada libre (con exposición)", dur:"~20 min", temp:"Todo el año",
+      horario:"Según exposición (suele ~12–14 y 18–21)",
+      cuando:"Cuando haya exposición: entras a ver el patio y la muestra.",
+      compra:"Gratis. Consulta si hay exposición abierta.",
+      como:"Realejo, calle Santiago, cerca del Campo del Príncipe.", web:"https://corraladesantiago.ugr.es/" },
+    { id:"gabia", z:"Z5", tags:["museo"], name:"Palacio de los Condes de Gabia",
+      desc:"Caserón nobiliario del s.XIX, hoy <b>sala de exposiciones de la Diputación</b> con acceso libre. Exposiciones temporales de arte y fotografía en un palacete con encanto.",
+      precio:"Entrada libre (exposiciones)", dur:"~20 min", temp:"Todo el año",
+      horario:"Según exposición (suele mar–sáb 11–14 y 18–21)",
+      cuando:"Cuando haya exposición; depende de la muestra del momento.",
+      compra:"Gratis, sin entrada.",
+      como:"Plaza de los Girones, barrio de San Matías.", web:"" },
+
+    { id:"angustias", z:"Z5", tags:["barroco"], name:"Basílica de las Angustias",
+      desc:"El templo barroco de la <b>patrona de Granada</b> (la Virgen de las Angustias), terminado en 1671. Guarda el <b>segundo camarín que se hizo en España</b>, la Piedad de los Mora en la fachada, esculturas de Duque Cornejo y un altar de mármoles y serpentina. Iglesia viva y muy querida por los granadinos.",
+      precio:"Entrada libre", dur:"~20 min", temp:"Todo el año",
+      horario:"Abierta en horario de culto · visitas L–V 11:30–13:00 (consultar)",
+      cuando:"Todo el año; en septiembre son sus días grandes (ofrenda floral el 15). Respeta los oficios.",
+      compra:"Gratis, sin entrada (es parroquia activa).",
+      como:"Carrera del Genil, a 100 m de Puerta Real.", web:"https://www.basilicadelasangustias.org/" },
+
+    /* 6 · RENACIMIENTO Y BARROCO */
+    { id:"jeronimo", z:"Z6", tags:["barroco"], name:"Monasterio de San Jerónimo",
+      desc:"El <b>primer monasterio renacentista de Granada</b> (obras desde 1504, con Diego de Siloé). En la iglesia reposa el <b>Gran Capitán</b> y su esposa la duquesa de Sessa. Dos claustros —uno de clausura— y un claustro de naranjos que es puro remanso.",
+      precio:"~5 € · guiada dom 11 h ~7 €", dur:"45 min–1 h", temp:"Todo el año",
+      horario:"L–D 10–13:30 y 16–19:30",
+      cuando:"Todo el año; por la mañana. Domingo hay visita guiada a las 11.",
+      compra:"En taquilla o en ticketsgranadacristiana.com.",
+      como:"Calle Rector López Argüeta 9, barrio de la Duquesa.", web:TIX_CRI },
+    { id:"sjuandios", z:"Z6", tags:["barroco"], name:"Basílica de San Juan de Dios",
+      desc:"Uno de los <b>interiores barrocos más bestias de España</b> (1737–1759): todo dorado, retablo mayor del “triunfo de la Caridad”, camarín con las reliquias del santo copatrón y una bóveda de 52 m. Va con audioguía.",
+      precio:"~7 € con audioguía", dur:"45 min–1 h", temp:"Todo el año",
+      horario:"L–S 10–19 · dom 10–12 y 13:30–18:50",
+      cuando:"Todo el año; consulta el calendario de aperturas (cambia por el culto).",
+      compra:"Online en basilicasanjuandedios.es o en taquilla.",
+      como:"Calle San Juan de Dios 17, cerca de la Gran Vía.", web:"https://basilicasanjuandedios.es/" },
+    { id:"cartuja", z:"Z6", tags:["barroco"], name:"Monasterio de la Cartuja",
+      desc:"La cumbre del <b>barroco granadino</b>. La sacristía (de Hurtado Izquierdo, con cajoneras de taracea que un lego talló durante <b>34 años</b>) está considerada de las más bellas del mundo; el sagrario con frescos de Palomino y cuadros de Sánchez Cotán rematan la faena.",
+      precio:"~5–6 € · menores gratis", dur:"~1 h", temp:"Todo el año",
+      horario:"Aprox. 10–13 y 15–17:30 (varía)",
+      cuando:"Todo el año; por la mañana. Está algo apartada, cuadra el bus.",
+      compra:"En taquilla o en ticketsgranadacristiana.com.",
+      como:"Paseo de Cartuja, zona norte. Bus 8 / N7 desde Gran Vía.", web:TIX_CRI },
+    { id:"hospitalreal", z:"Z6", tags:["barroco"], week:true, name:"Hospital Real",
+      desc:"Hoy <b>Rectorado de la Universidad</b>: renacentista-plateresco (Enrique Egas, Siloé, Machuca) levantado sobre un cementerio nazarí; heredó la función del Maristán. Cuatro patios (el de los Mármoles es el bueno), la Biblioteca General con incunables y la capilla con exposiciones.",
+      precio:"Entrada libre", dur:"45 min–1 h", temp:"Entre semana",
+      horario:"L–V 9–21 (verano hasta 19) · cerrado findes y vacaciones",
+      cuando:"Entre semana (no abre findes); horario amplio, mañana o tarde.",
+      compra:"Gratis, sin entrada.",
+      como:"Cuesta del Hospicio, junto a los Jardines del Triunfo.", web:"https://www.ugr.es/" },
+
+    /* 7 · FUERA DEL CENTRO */
+    { id:"lorca", z:"Z7", tags:["jardines"], name:"Casa-Museo de Lorca (Huerta de San Vicente)",
+      desc:"La <b>casa de verano de los García Lorca</b> (1926–1936), donde Federico escribió parte de su obra; se conserva hasta el piano que tocaba con Manuel de Falla. Visita guiada, dentro del mayor parque de la ciudad.",
+      precio:"3 € · estudiantes/niños 1 € · martes gratis", dur:"~30 min (guiada)", temp:"Primavera",
+      horario:"Mar–dom · verano 9–15 · invierno 10–17 · lun cerrado",
+      cuando:"Primavera por el parque y el jardín. Martes gratis (sin guía). Cierra lunes.",
+      compra:"En taquilla; gratis los martes no festivos. Info y grupos: 958 849 112.",
+      como:"Parque García Lorca, junto a c/ Arabial. Metro: Recogidas.", web:"https://www.huertadesanvicente.com/" },
+
+    /* 8 · MIRADORES Y RINCONES */
+    { id:"tristes", z:"Z8", tags:["mirador"], name:"Paseo de los Tristes",
+      desc:"El <b>paseo del Padre Manjón</b>, a la orilla del Darro, con la mejor vista de la Alhambra desde abajo, iluminada al caer la noche. Terrazas y el rumor del río; su nombre viene de que por aquí pasaban los cortejos fúnebres.",
+      precio:"Entrada libre", dur:"20–40 min", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"Al atardecer y de noche, con la Alhambra encendida. Cualquier época.",
+      compra:"Gratis, sin entrada.",
+      como:"Al final de la Carrera del Darro, saliendo de Plaza Nueva.", web:TURG },
+    { id:"avellano", z:"Z8", tags:["mirador"], name:"Fuente del Avellano",
+      desc:"Un rincón <b>escondido</b> junto al Darro, un banco frente al valle de la Alhambra y el Sacromonte, de los atardeceres más bonitos y tranquilos de Granada. Aquí se reunía la Cofradía del Avellano (Ganivet, Gómez-Moreno…).",
+      precio:"Entrada libre", dur:"20–30 min", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"Al atardecer, para huir de los miradores abarrotados.",
+      compra:"Gratis, sin entrada.",
+      como:"Cruzando el puente del Aljibillo al final del Paseo de los Tristes, por el camino del Avellano.", web:TURG },
+    { id:"sanmiguelalto", z:"Z8", tags:["mirador"], name:"Mirador de San Miguel Alto",
+      desc:"El <b>mirador más alto</b>, en la ermita de San Miguel: toda la ciudad, Sierra Nevada y la Alhambra a tus pies. Ideal subir al atardecer y ver cómo se enciende todo.",
+      precio:"Entrada libre", dur:"30–45 min (con subida)", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"Al atardecer. Mejor primavera/otoño por la caminata; lleva agua.",
+      compra:"Gratis, sin entrada.",
+      como:"Por el cerro de San Miguel desde el Sacromonte o el Albaicín alto. Hay cuesta.", web:TURG },
+    { id:"sancristobal", z:"Z8", tags:["mirador"], name:"Mirador de San Cristóbal",
+      desc:"Vistas del Albaicín con la muralla nazarí, el Palacio de Dar al-Horra y la Alhambra al fondo; tranquilo, sin músicos ni vendedores. Uno de los más cómodos (accesible).",
+      precio:"Entrada libre", dur:"15–20 min", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"Días despejados; muy bonito al atardecer.",
+      compra:"Gratis, sin entrada.",
+      como:"En la Carretera de Murcia. Bus N8/N9 (parada San Cristóbal) o por la Cuesta de Alhacaba.", web:TURG },
+    { id:"lalona", z:"Z8", tags:["mirador"], name:"Mirador de la Lona",
+      desc:"Junto a la Plaza de San Miguel Bajo, mira al <b>otro lado</b>: el centro, la Gran Vía, la Catedral y Sierra Nevada. Menos turístico y con tapas alrededor.",
+      precio:"Entrada libre", dur:"15–20 min", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"Al atardecer sobre la ciudad; también de noche.",
+      compra:"Gratis, sin entrada.",
+      como:"Al final del Carril de la Lona, cerca de Plaza de San Miguel Bajo.", web:TURG },
+    { id:"carvajales", z:"Z8", tags:["mirador"], name:"Placeta de los Carvajales",
+      desc:"Una placeta pequeña y recogida del Albaicín con una vista limpia de la Alhambra, casi siempre tranquila. El plan de mirador sin la multitud de San Nicolás.",
+      precio:"Entrada libre", dur:"10–15 min", temp:"Atardecer",
+      horario:"Siempre (al aire libre)",
+      cuando:"A cualquier hora; especial al atardecer.",
+      compra:"Gratis, sin entrada.",
+      como:"En el Albaicín, muy cerca del Mirador de San Nicolás.", web:TURG },
+    { id:"mezquita", z:"Z8", tags:["mirador"], name:"Jardín de la Mezquita Mayor",
+      desc:"Junto al Mirador de San Nicolás, la <b>Mezquita Mayor de Granada</b> (2003, la primera tras 1492) tiene un jardín con <b>las mismas vistas de la Alhambra</b> que el mirador de al lado, pero mucho más tranquilo. Un remanso.",
+      precio:"Entrada libre", dur:"15–20 min", temp:"Atardecer",
+      horario:"Jardín ~11–14 y 18–21 (la sala de oración, en horario de culto)",
+      cuando:"Al atardecer, como San Nicolás pero sin la multitud.",
+      compra:"Gratis, sin entrada (respeta el recogimiento del lugar).",
+      como:"Cuesta de las Cabras, en la plaza del cementerio de San Nicolás, Albaicín.", web:"https://mezquitadegranada.com/" },
+
+    { id:"cementerio", z:"Z8", tags:[], name:"Cementerio de San José",
+      desc:"Un secreto: el <b>cementerio histórico</b> (de 1805, de los más antiguos de España), en la Dehesa del Generalife junto a la Silla del Moro, sobre el desaparecido palacio nazarí de los Alixares. Panteones románticos, cipreses y <b>vistas</b>, casi sin turistas. Atmósfera muy especial.",
+      precio:"Entrada libre", dur:"~30–45 min", temp:"Todo el año",
+      horario:"A diario en horario de cementerio (aprox. 8–18) · consultar",
+      cuando:"De día, si te va lo atmosférico e histórico. Sincero: no es un plan para todo el mundo.",
+      compra:"Gratis, sin entrada (es cementerio municipal; visítalo con respeto).",
+      como:"Subiendo por la Dehesa del Generalife, cerca de la Silla del Moro.", web:"" },
+    { id:"murales", z:"Z8", tags:[], name:"Murales del Realejo (arte urbano)",
+      desc:"El Realejo es una <b>galería al aire libre</b> gracias a los murales de <b>El Niño de las Pinturas</b> (Raúl Ruiz) y otros. No están señalizados: la gracia es callejear y encontrártelos. Retratos enormes, versos y color por todo el antiguo barrio judío.",
+      precio:"Entrada libre", dur:"~1 h de paseo", temp:"Todo el año",
+      horario:"Siempre (en la calle)",
+      cuando:"Cualquier día, con la cámara. Plan alternativo y muy granadino, sin turistas.",
+      compra:"Gratis: es callejear por el Realejo.",
+      como:"Por el Realejo: calles Molinos, Callejón del Pretorio, Campo del Príncipe y alrededores.", web:"" },
+
+    /* 9 · PLAZAS Y VIDA DE BARRIO */
+    { id:"plaza_nueva", z:"Z9", tags:["plaza"], name:"Plaza Nueva y Santa Ana",
+      desc:"La <b>plaza más antigua</b> de Granada, con la iglesia mudéjar de Santa Ana y el arranque de la Carrera del Darro. Punto de partida de todo (y de los microbuses a la Alhambra, el Albaicín y el Sacromonte).",
+      precio:"Entrada libre", dur:"15–20 min", temp:"Todo el año",
+      horario:"Siempre (plaza pública)",
+      cuando:"A cualquier hora; el mejor punto de arranque para casi todas las rutas.",
+      compra:"Gratis, sin entrada.",
+      como:"Al final de la calle Reyes Católicos, junto a Plaza de Isabel la Católica.", web:TURG },
+    { id:"bibrambla", z:"Z9", tags:["plaza"], name:"Plaza Bib-Rambla",
+      desc:"La <b>plaza de las flores</b>: puestos, terrazas y chocolate con churros, a un paso de la Catedral y la Alcaicería. El corazón festivo del centro.",
+      precio:"Entrada libre", dur:"15–30 min", temp:"Todo el año",
+      horario:"Siempre (plaza pública)",
+      cuando:"Mañana de café o tarde de terraza; en Navidad se llena de puestos.",
+      compra:"Gratis, sin entrada.",
+      como:"Detrás de la Catedral, junto a la Alcaicería.", web:TURG },
+    { id:"isabelcatolica", z:"Z9", tags:["plaza"], name:"Plaza de Isabel la Católica",
+      desc:"El cruce de <b>Gran Vía y Reyes Católicos</b>, con el monumento de Isabel y Colón. Nudo central por el que pasa medio mundo.",
+      precio:"Entrada libre", dur:"10–15 min", temp:"Todo el año",
+      horario:"Siempre (plaza pública)",
+      cuando:"De paso; buen punto de referencia para orientarte.",
+      compra:"Gratis, sin entrada.",
+      como:"Entre Plaza Nueva y Puerta Real.", web:TURG },
+    { id:"campoprincipe", z:"Z9", tags:["plaza"], name:"Campo del Príncipe",
+      desc:"La gran plaza del <b>Realejo</b>, presidida por el Cristo de los Favores y rodeada de bares. De las mejores zonas de <b>tapas</b> y ambientazo por la noche.",
+      precio:"Entrada libre", dur:"20–40 min", temp:"Noche",
+      horario:"Siempre (plaza pública)",
+      cuando:"Al atardecer y de noche, para tapear. Cualquier época.",
+      compra:"Gratis, sin entrada.",
+      como:"En el Realejo, subiendo desde Puerta Real o el Cuarto Real.", web:TURG },
+    { id:"plazalarga", z:"Z9", tags:["plaza"], name:"Plaza Larga (Albaicín)",
+      desc:"El <b>latido del Albaicín</b>: mercadillo por la mañana, bares de barrio y el Arco de las Pesas, una puerta nazarí de la muralla. Vida cien por cien granadina.",
+      precio:"Entrada libre", dur:"20–30 min", temp:"Todo el año",
+      horario:"Siempre (plaza pública)",
+      cuando:"Por la mañana con el mercadillo, o para tapear sin turisteo.",
+      compra:"Gratis, sin entrada.",
+      como:"En pleno Albaicín, cerca del Mirador de San Nicolás.", web:TURG },
+    { id:"sanmiguelbajo", z:"Z9", tags:["plaza"], name:"Plaza de San Miguel Bajo",
+      desc:"Placita recogida del Albaicín alto con su <b>aljibe</b>, iglesia y terrazas de tapas, a un paso del Mirador de la Lona. De las más auténticas para sentarse un rato.",
+      precio:"Entrada libre", dur:"20–30 min", temp:"Noche",
+      horario:"Siempre (plaza pública)",
+      cuando:"Al atardecer, para tapear con vistas cerca.",
+      compra:"Gratis, sin entrada.",
+      como:"Albaicín alto, junto al Mirador de la Lona.", web:TURG }
+  ];
+
+  var ZONES = {
+    Z1:{ t:"La Alhambra y el Generalife", s:"Los tipos de entrada, las nocturnas y lo que es gratis dentro (Carlos V, museos, Torres Bermejas, Silla del Moro)." },
+    Z2:{ t:"Colina de la Alhambra · cármenes y jardines", s:"Jardines y vistas, todos en la misma ladera; se encadenan bien." },
+    Z3:{ t:"Albaicín · Carrera del Darro", s:"Casas nazaríes y andalusíes. Casi todo gratis los domingos — tu ruta de finde." },
+    Z4:{ t:"Sacromonte", s:"La abadía, las catacumbas y el mundo de las cuevas, en su propio valle." },
+    Z5:{ t:"Realejo · Centro", s:"A un paseo de Puerta Real y Plaza Nueva; se hilan en un rato." },
+    Z6:{ t:"Renacimiento y barroco", s:"Lo que dejó la Granada cristiana: piedra, oro y madera de primera." },
+    Z7:{ t:"Fuera del centro", s:"Merece el desvío, sobre todo si te tira Lorca." },
+    Z8:{ t:"Miradores y rincones", s:"Gratis, al aire libre y sin entrada. Para el atardecer, sobre todo." },
+    Z9:{ t:"Plazas y vida de barrio", s:"Plazas con encanto para tapear, tomar algo y ver Granada de verdad. Gratis." }
+  };
+  var ZORDER = ["Z1","Z2","Z3","Z4","Z5","Z6","Z7","Z8","Z9"];
+
+  var PASS = {
+    doblaoro:["alh_general","alh_noc_nazaries","banuelo","maristan","morisca","chapiz","zafra","darhorra","corral","cuartoreal"],
+    andalusi:["banuelo","maristan","morisca","chapiz","zafra","darhorra","corral","cuartoreal"],
+    cristiana:["catedral","capillareal","cartuja","jeronimo","sacromonte","sannicolas"],
+    gcard:["alh_general","alh_jardines","alh_noc_nazaries","catedral","capillareal","cartuja","jeronimo","sacromonte","zafra","cuartoreal","tiros","bellasartes","arqueologico","banuelo","morisca","maristan","darhorra","corral"],
+    gcard72:["banuelo","morisca","maristan","darhorra","corral"]
+  };
+  var DAYNAMES=["lunes","martes","miércoles","jueves","viernes","sábado","domingo"];
+  var CLOSED_MON=["banuelo","maristan","morisca","darhorra","chapiz","zafra","cuartoreal","tiros","bellasartes","museo_alh","lorca","guerrero","arqueologico","centrolorca"];
+  var PRINCIPAL=["alh_general","alh_noc_nazaries","catedral","capillareal","banuelo","darhorra","cuartoreal","sannicolas","martires","racosta","cartuja","jeronimo","sjuandios","sacromonte","corral","madraza","tiros","maristan","tristes"];
+  var CLOSED_WEEKEND=["hospitalreal","aljibe"];
+  var CLOSED_WEEKDAYS=["sillamoro"];
+  var MUSEOS=["museo_alh","bellasartes","tiros","olvidados","cuevas","lorca","racosta","madraza","guerrero","arqueologico","centrolorca","corrala","gabia"];
+  var PRINCIPAL=["alh_general","alh_noc_nazaries","catedral","capillareal","banuelo","maristan","darhorra","cuartoreal","sannicolas","martires","racosta","cartuja","jeronimo","sjuandios","sacromonte","corral","madraza","tristes"];
+  var WEBS={
+    catedral:"https://catedraldegranada.com/",
+    capillareal:"https://capillarealgranada.com/",
+    cartuja:"https://cartujadegranada.com/",
+    jeronimo:"https://realmonasteriosanjeronimogranada.com/",
+    sannicolas:"https://iglesiasannicolasgranada.com/",
+    racosta:"https://www.fundacionrodriguezacosta.com/visita-y-servicios/horarios-precios-y-tipos-de-visita/",
+    tiros:"https://www.museosdeandalucia.es/web/museocasadelostirosdegranada",
+    bellasartes:"https://www.museosdeandalucia.es/web/museodebellasartesdegranada"
+  };
+  var GENERIC=["https://turismo.granada.org/","https://www.ugr.es/","https://www.albaicin-granada.com/"];
+  function webFor(m){ if(WEBS[m.id]) return WEBS[m.id]; if(!m.web || GENERIC.indexOf(m.web)>=0) return ""; return m.web; }
+  var TIPS={
+    sannicolas:"Suele estar a rebosar al atardecer. Justo al lado, el jardín de la <b>Mezquita Mayor</b> tiene las mismas vistas, es precioso y está mucho más tranquilo.",
+    mezquita:"El jardín-mirador es de acceso libre; la sala de oración es para el culto, visítala con respeto y en silencio.",
+    carvajales:"El favorito de muchos granadinos: fuente árabe, poca gente y el Café 4 Gatos al lado para tomar algo con la Alhambra asomando.",
+    alh_general:"Los turnos de Nazaríes de primera hora (8:30) y los de última tarde son los más despejados. Reserva en cuanto se abran las fechas.",
+    alh_noc_nazaries:"Si la entrada de día está agotada, tira de la nocturna: suele tener más disponibilidad y es una gozada.",
+    alh_jardines:"Tu plan B perfecto cuando los Nazaríes vuelan: más fácil de reservar y te llevas el Generalife y la Alcazaba.",
+    sacromonte:"Sube en el bus C34 y baja andando por el Camino del Sacromonte hasta la Carrera del Darro: uno de los mejores paseos de la ciudad.",
+    martires:"Cuidado con los pavos reales, que campan sueltos. Ve a última hora para el atardecer sobre la Vega con menos gente.",
+    tristes:"De noche, con la Alhambra iluminada, es cuando gana. Siéntate en una terraza y míralo desde abajo.",
+    avellano:"Escondido y casi vacío: lleva algo de picar y quédate al atardecer, es puro sosiego.",
+    sanmiguelalto:"La subida cansa, pero el atardecer desde aquí no lo supera nadie. Lleva agua y algo de abrigo, que arriba corre el aire.",
+    cuartoreal:"En taquilla solo se paga con tarjeta: no lleves solo efectivo.",
+    capillareal:"No se pueden hacer fotos dentro. Ve a primera hora para verla sin grupos.",
+    catedral:"La luz de media mañana en la Capilla Mayor circular es espectacular. Entra por la Gran Vía.",
+    hospitalreal:"Como solo abre entre semana, es tu plan de viernes al llegar. No te pierdas el Patio de los Mármoles.",
+    lorca:"Gratis los martes no festivos (sin guía). Aprovecha para pasear por el parque, el más grande de la ciudad.",
+    cartuja:"Ve por la mañana, que cierra a mediodía, y cuadra el bus 8 o N7: está algo a desmano.",
+    bermejas:"Novedad: ya se puede visitar gratis. Súbela desde el Realejo, camino del bosque de la Alhambra.",
+    corral:"Asómate al patio aunque sea un momento: es gratis y el silencio dentro, en pleno centro, sorprende.",
+    sjuandios:"Es de los interiores más recargados de España; la audioguía aquí merece de verdad la pena.",
+    olvidados:"Sube hasta el mirador de arriba del todo: vistas de la Alhambra casi sin gente.",
+    madraza:"Aquí tiene su sede la Real Academia de Bellas Artes; en la visita ves el oratorio nazarí (con su cúpula) y el salón barroco.",
+    arqueologico:"Sube a la segunda planta y asómate al patio: una de las vistas de la Alhambra menos conocidas. Reabrió hace poco tras años cerrado.",
+    guerrero:"Sube hasta la última planta, que hay una terraza con vistas de la ciudad. Y encima es gratis.",
+    aljibe:"Muy temático: va de la cultura del agua andalusí (acequias, aljibes). Un gustazo si te tira la ingeniería histórica; para la mayoría, prescindible. Y solo L–V a las 12:00.",
+    cvictoria:"Rara vez abre (es residencia de la UGR): solo en jornadas de puertas abiertas o gestionándolo antes. Los jardines valen mucho si pillas fecha.",
+    cuevas:"Etnográfico y algo turístico, pero las casas-cueva y las vistas merecen. Si ya viste flamenco en cueva, puede saberte a poco.",
+    centrolorca:"El edificio y el archivo son un puntazo para fans de Lorca; si no hay una exposición que te tire, es un vistazo rápido.",
+    corrala:"Interesa por la arquitectura (una corrala rara), pero solo se entra si hay exposición. Comprueba antes de subir.",
+    gabia:"Palacete con encanto, pero es sala de exposiciones: solo merece si hay una muestra puesta.",
+    chapiz:"Es sede de investigación del CSIC, con acceso irregular. Ve con la Dobla de Oro y consulta antes; si no, quédate con la fachada y las vistas.",
+    alcaiceria:"Ojo: es una reconstrucción (la original ardió en 1843) y hoy son tiendas de recuerdos. Un paseo de 5 minutos, no el zoco histórico que promete el nombre.",
+    cementerio:"Suena raro, pero es de los rincones con más paz y menos turistas, y las vistas desde arriba merecen. Ve de día y con respeto.",
+    murales:"No hay mapa oficial y las obras van cambiando (son efímeras): piérdete por el Realejo —Molinos, Santiago, Campo del Príncipe, Cuesta del Realejo, Placeta de Quiñones— mirando a los muros laterales."
+  };
+
+  var ROUTES = [
+    { t:"Mañana andalusí por el Albaicín", meta:"Mañana · ~3 h", price:"Gratis en domingo · ~8 € entre semana", bono:"Gratis el domingo. Entre semana: Dobla de Oro o Bono andalusí.",
+      stops:[["banuelo","El Bañuelo"],["maristan","Maristán"],["morisca","Casa Morisca"],["zafra","Casa de Zafra"],["cordova","Palacio de los Córdova"],["darhorra","Dar al-Horra"]],
+      note:"En domingo casi todo es gratis. Empieza por la Carrera del Darro y ve subiendo." },
+    { t:"Mañana imperial por el centro", meta:"Mañana · ~3 h", price:"~13 € · menos con bono Granada Cristiana", bono:"Granada Cristiana (Catedral y Capilla Real; vale 1 año) o Granada Card.",
+      stops:[["capillareal","Capilla Real"],["catedral","Catedral"],["madraza","La Madraza"],["corral","Corral del Carbón"],["alcaiceria","Alcaicería"]],
+      note:"La Madraza solo abre entre semana; en finde, sáltatela." },
+    { t:"Tarde de cármenes y vistas", meta:"Tarde → atardecer · ~4 h", price:"~5 € (solo Rodríguez-Acosta; el resto gratis)", bono:"Ninguno útil (casi todo gratis; la Rodríguez-Acosta va aparte).",
+      stops:[["martires","Carmen de los Mártires"],["racosta","Rodríguez-Acosta"],["bermejas","Torres Bermejas"],["sillamoro","Silla del Moro"]],
+      note:"Todo en la colina de la Alhambra. Ojo: la Silla del Moro solo abre sábados y domingos por la mañana; si vas por la tarde, quédate con las vistas del Carmen y las Torres Bermejas." },
+    { t:"Atardecer por el Albaicín y Sacromonte", meta:"Tarde-noche · ~4 h", price:"~11 € (Olvidados 6 + Cuevas 5)", bono:"Ninguno conjunto (Olvidados y Cuevas se pagan sueltos).",
+      stops:[["olvidados","Palacio de los Olvidados"],["sannicolas","Mirador de San Nicolás"],["cuevas","Museo Cuevas del Sacromonte"]],
+      note:"Cae el sol en San Nicolás y acaba con una zambra (flamenco) en una cueva del Sacromonte." },
+    { t:"Una noche en la Alhambra", meta:"Noche · ~1,5 h", price:"8,48–12,73 € según la nocturna", bono:"Dobla de Oro nocturna o Granada Card 24 h incluyen la nocturna.",
+      stops:[["alh_noc_nazaries","Nocturna Palacios Nazaríes"],["alh_noc_generalife","Nocturna Jardines y Generalife"]],
+      note:"Nazaríes solo viernes y sábados; jardines de martes a sábado. Cena antes por el Realejo." },
+    { t:"Un día completo en la Alhambra", meta:"Día entero", price:"~22 € (Carlos V y museos, gratis)", bono:"Dobla de Oro o Granada Card (lo demás ya es gratis).",
+      stops:[["alh_general","Entrada General"],["carlosv","Palacio de Carlos V"],["museo_alh","Museo de la Alhambra"],["sillamoro","Silla del Moro"]],
+      note:"Reserva la General con semanas; Carlos V y el museo son gratis. Si es finde por la mañana, sube antes a la Silla del Moro." },
+    { t:"Domingo gratis", meta:"Día · 0 €", price:"0 € (Casa de los Tiros, con DNI)", bono:"No hace falta: todo gratis el domingo.",
+      stops:[["banuelo","El Bañuelo"],["maristan","Maristán"],["zafra","Casa de Zafra"],["darhorra","Dar al-Horra"],["corral","Corral del Carbón"],["cuartoreal","Cuarto Real"],["tiros","Casa de los Tiros"],["sannicolas","San Nicolás"]],
+      note:"Todo gratis en domingo. Ojo: cierran los lunes." },
+    { t:"Barroco granadino", meta:"Medio día · entre semana", price:"~17 € · menos con bono Granada Cristiana", bono:"Granada Cristiana cubre Cartuja y San Jerónimo (vale 1 año); San Juan de Dios, aparte.",
+      stops:[["cartuja","La Cartuja"],["jeronimo","San Jerónimo"],["sjuandios","San Juan de Dios"],["hospitalreal","Hospital Real"]],
+      note:"Con el bono Granada Cristiana ahorras. El Hospital Real solo abre L–V." },
+    { t:"Miradores al atardecer", meta:"Tarde-noche · ~2,5 h", price:"0 €", bono:"No aplica: todo gratis.",
+      stops:[["sancristobal","San Cristóbal"],["lalona","La Lona"],["sannicolas","San Nicolás"],["carvajales","Carvajales"],["sanmiguelalto","San Miguel Alto"]],
+      note:"Encadena vistas por el Albaicín alto y remata en San Miguel Alto cuando se enciende la ciudad." },
+    { t:"Paseo romántico del Darro", meta:"Tarde · ~2 h", price:"0 € (o ~2,50 € con el Bañuelo)", bono:"No hace falta: el Bañuelo es gratis el domingo.",
+      stops:[["tristes","Paseo de los Tristes"],["avellano","Fuente del Avellano"],["banuelo","El Bañuelo"],["sannicolas","San Nicolás"]],
+      note:"El río, la Alhambra desde abajo y el rincón de Ganivet. Puro sosiego." },
+    { t:"Granada en un día (lo esencial)", meta:"Día entero", price:"~33 € (Alhambra + Catedral + Capilla)", bono:"Granada Card cubre casi todo; o Alhambra suelta + Granada Cristiana.",
+      stops:[["alh_general","Alhambra General"],["catedral","Catedral"],["capillareal","Capilla Real"],["sannicolas","Mirador de San Nicolás"]],
+      note:"Alhambra por la mañana (hora fija), centro al mediodía y atardecer en San Nicolás. Para primerizos." }
+  ];
+
+  var STORAGE_KEY="granada:visitados", DEFAULT_VISITED=["banuelo","maristan","olvidados","cartuja"];
+  var visited=new Set(), plan=new Set(), fState="todos", fCat="todo", fPrice="todo", fLevel="todo", fQuery="", fDay=-1;
+  var hasStorage=(typeof window!=="undefined" && window.storage && typeof window.storage.get==="function");
+
+  function norm(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
+  function icon(id){ return '<svg aria-hidden="true"><use href="#'+id+'"/></svg>'; }
+  function isFree(m){ return m.ptagFree; }
+  function mapsUrl(m){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(m.name.split("·")[0].trim()+" Granada"); }
+
+  /* derive a free flag + price badge type from the precio string */
+  DATA.forEach(function(m){
+    var p = m.precio.toLowerCase();
+    if(p.indexOf("con cita")>=0){ m.pt="cita"; m.ptagFree=true; }
+    else if(p.indexOf("martes gratis")>=0){ m.pt="martes"; m.ptagFree=true; }
+    else if(p.indexOf("gratis dom")>=0){ m.pt="sun"; m.ptagFree=true; }
+    else if(p.indexOf("gratis ue")>=0){ m.pt="eu"; m.ptagFree=true; }
+    else if(p.indexOf("entrada libre")>=0 || p.indexOf("visita gratuita")>=0 || p.indexOf("sin entrada")>=0){ m.pt="free"; m.ptagFree=true; }
+    else { m.pt="none"; m.ptagFree=false; }
+    // coste orientativo (tarifa adulto; español/UE = gratis)
+    if(m.pt==="free"||m.pt==="eu"||m.pt==="cita"){ m.eur=0; }
+    else { var em=m.precio.match(/(\d+[.,]?\d*)\s*€/); m.eur=em?parseFloat(em[1].replace(",",".")):0; }
+    // duración en minutos (extremo superior del rango)
+    var dl=m.dur.toLowerCase(), mn=0, hm=dl.match(/(\d+[.,]?\d*)\s*h/g);
+    if(hm){ var mx=0; hm.forEach(function(x){ var v=parseFloat(x.replace(",",".").replace(/[^0-9.]/g,"")); if(v>mx) mx=v; }); mn=Math.round(mx*60); }
+    else { var mm=dl.match(/(\d+)\s*min/g); if(mm){ var mx2=0; mm.forEach(function(x){ var v=parseInt(x,10); if(v>mx2) mx2=v; }); mn=mx2; } }
+    m.min=mn;
+  });
+
+  var board=document.getElementById("board");
+
+  function badgesFor(m){
+    var out=(PRINCIPAL.indexOf(m.id)>=0)?'<span class="badge b-star">★ Imprescindible</span>':'<span class="badge b-sec">Secundario</span>';
+    if(m.pt==="free")   out+='<span class="badge b-free">Entrada libre</span>';
+    if(m.pt==="cita")   out+='<span class="badge b-free">Gratis con cita</span>';
+    if(m.pt==="martes") out+='<span class="badge b-sun">Gratis los martes</span>';
+    if(m.pt==="sun")    out+='<span class="badge b-sun">Gratis los domingos</span>';
+    if(m.pt==="eu")     out+='<span class="badge b-eu">Gratis UE</span>';
+    if(m.noche)         out+='<span class="badge b-night">Nocturna</span>';
+    if(m.week)          out+='<span class="badge b-week">Solo entre semana</span>';
+    out+='<span class="badge b-season">'+m.temp+'</span>';
+    return out;
+  }
+  function cardHTML(m){
+    var bonos=passesFor(m), bonosRow=bonos?('<dt>Bonos</dt><dd><span class="hint">'+bonos+'</span></dd>'):'';
+    var w=webFor(m), webLink=w?('<a href="'+w+'" target="_blank" rel="noopener">'+icon("web")+'Web oficial</a>'):'';
+    var tip=TIPS[m.id]?('<p class="itip"><span class="itip-tag">Tip</span>'+TIPS[m.id]+'</p>'):'';
+    return ''+
+    '<article class="card reveal" data-id="'+m.id+'">'+
+      '<div class="card-top"><h3>'+m.name+'</h3><span class="stamp">'+icon("star8")+'Visitado</span></div>'+
+      '<p class="desc">'+m.desc+'</p>'+
+      '<div class="badges"><span class="daypill" hidden></span>'+badgesFor(m)+'</div>'+
+      '<p class="facts"><span class="price">'+m.precio+'</span><span class="sepd">·</span><span class="dur">'+m.dur+'</span></p>'+
+      tip+
+      '<details>'+
+        '<summary>Horario, entradas y cómo llegar <span class="arw">▾</span></summary>'+
+        '<dl class="meta">'+
+          '<dt>Horario</dt><dd><span class="hint">'+m.horario+'</span></dd>'+
+          '<dt>Cuándo ir</dt><dd><span class="hint">'+m.cuando+'</span></dd>'+
+          '<dt>Entradas</dt><dd><span class="hint">'+m.compra+'</span></dd>'+
+          bonosRow+
+          '<dt>Cómo llegar</dt><dd><span class="hint">'+m.como+'</span></dd>'+
+        '</dl>'+
+        '<div class="links">'+
+          '<a href="'+mapsUrl(m)+'" target="_blank" rel="noopener">'+icon("pin")+'Ver en mapa</a>'+
+          webLink+
+        '</div>'+
+      '</details>'+
+      '<button class="planbtn" type="button" data-plan="'+m.id+'" aria-pressed="false">'+
+        '<span class="padd">'+icon("plus")+'Añadir al plan</span>'+
+        '<span class="pon">'+icon("check")+'En el plan</span>'+
+      '</button>'+
+      '<button class="toggle" type="button" data-toggle="'+m.id+'">'+
+        '<span class="add">'+icon("plus")+'Marcar visitado</span>'+
+        '<span class="ck">'+icon("check")+'Visitado</span>'+
+      '</button>'+
+    '</article>';
+  }
+
+  function buildRoutes(){
+    var host=document.getElementById("routes");
+    host.innerHTML = ROUTES.map(function(r){
+      var stops = r.stops.map(function(s,i){
+        return (i? '<span class="sep">›</span>':'')+'<button class="stop" data-jump="'+s[0]+'">'+s[1]+'</button>';
+      }).join("");
+      return '<article class="route"><h3>'+r.t+'</h3><p class="route-meta">'+r.meta+'</p>'+
+             '<p class="route-price">'+r.price+'</p>'+
+             '<p class="route-bono"><b>Bono:</b> '+r.bono+'</p>'+
+             '<div class="stops">'+stops+'</div><p class="route-note">'+r.note+'</p></article>';
+    }).join("");
+    host.querySelectorAll("[data-jump]").forEach(function(b){
+      b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-jump")); });
+    });
+  }
+
+  function build(){
+    var html="";
+    ZORDER.forEach(function(z){
+      var items=DATA.filter(function(m){return m.z===z;});
+      html+='<section class="zone" data-zone="'+z+'"><div class="zone-head">'+icon("star8")+'<h2>'+ZONES[z].t+'</h2></div>'+
+            '<p class="zone-sub">'+ZONES[z].s+' <span class="zcount" data-zcount="'+z+'"></span></p>'+
+            '<div class="grid">'+items.map(cardHTML).join("")+'</div></section>';
+    });
+    board.innerHTML=html;
+    board.querySelectorAll("[data-toggle]").forEach(function(btn){
+      btn.addEventListener("click", function(){ toggle(btn.getAttribute("data-toggle")); });
+    });
+    board.querySelectorAll("[data-plan]").forEach(function(btn){
+      btn.addEventListener("click", function(){ togglePlan(btn.getAttribute("data-plan")); });
+    });
+    markPlanAll();
+    syncAll();
+    requestAnimationFrame(function(){
+      board.querySelectorAll(".reveal").forEach(function(el,i){ setTimeout(function(){ el.classList.add("in"); }, Math.min(i*14,300)); });
+    });
+  }
+
+  function syncCard(id){
+    var card=board.querySelector('.card[data-id="'+id+'"]'); if(!card) return;
+    var on=visited.has(id); card.classList.toggle("done",on);
+    card.querySelector(".toggle").setAttribute("aria-pressed",on?"true":"false");
+  }
+  function syncAll(){ DATA.forEach(function(m){ syncCard(m.id); }); updateProgress(); updateZoneCounts(); markRouteStops(); applyFilter(); }
+  function toggle(id){ if(visited.has(id)) visited.delete(id); else visited.add(id); saveVisited(); syncCard(id); updateProgress(); updateZoneCounts(); markRouteStops(); applyFilter(); }
+
+  function updateProgress(){
+    var total=DATA.length,done=0; DATA.forEach(function(m){ if(visited.has(m.id)) done++; });
+    document.getElementById("count").textContent=done+" / "+total;
+    document.getElementById("fill").style.width=(total?(done/total*100):0)+"%";
+  }
+  function updateZoneCounts(){
+    ZORDER.forEach(function(z){
+      var items=DATA.filter(function(m){return m.z===z;}), done=items.filter(function(m){return visited.has(m.id);}).length;
+      var el=board.querySelector('[data-zcount="'+z+'"]'); if(el) el.textContent=done+"/"+items.length;
+    });
+  }
+  function matchCat(m){
+    if(fCat==="todo") return true;
+    if(fCat==="museo") return MUSEOS.indexOf(m.id)>=0;
+    return m.tags && m.tags.indexOf(fCat)>=0;
+  }
+  function matchPrice(m){
+    if(fPrice==="todo") return true;
+    if(fPrice==="gratis") return isFree(m);
+    if(fPrice==="pago") return !isFree(m);
+    if(fPrice==="noche") return !!m.noche;
+    return true;
+  }
+  function matchLevel(m){
+    if(fLevel==="todo") return true;
+    var p=PRINCIPAL.indexOf(m.id)>=0;
+    return fLevel==="principal"? p : !p;
+  }
+  function matchState(m){ var on=visited.has(m.id); return fState==="todos"||(fState==="visitados"&&on)||(fState==="pendientes"&&!on); }
+  function matchQuery(m){ if(!fQuery) return true; return norm(m.name+" "+m.desc).indexOf(fQuery)>=0; }
+  function applyFilter(){
+    var shown=0, hc=document.getElementById("hideClosed");
+    DATA.forEach(function(m){
+      var card=board.querySelector('.card[data-id="'+m.id+'"]'); if(!card) return;
+      var closedHide=(fDay>=0 && hc && hc.checked && card.getAttribute("data-closed")==="1");
+      var show=matchState(m)&&matchCat(m)&&matchPrice(m)&&matchLevel(m)&&matchQuery(m)&&!closedHide;
+      card.classList.toggle("hide",!show); if(show) shown++;
+    });
+    board.querySelectorAll(".zone").forEach(function(zone){ zone.style.display=zone.querySelectorAll(".card:not(.hide)").length?"":"none"; });
+    document.getElementById("empty").classList.toggle("show",shown===0);
+    document.getElementById("showing").textContent="Mostrando "+shown+" de "+DATA.length+" sitios";
+    var _n=activeCount(), _fc=document.getElementById("fcount"), _rf=document.getElementById("resetFilters");
+    if(_fc) _fc.textContent=_n?(" ("+_n+")"):"";
+    if(_rf) _rf.style.display=_n?"":"none";
+  }
+
+  function setState(v){ fState=v; document.querySelectorAll(".segmented button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-filter")===v?"true":"false"); }); }
+  function setCat(v){ fCat=v; document.querySelectorAll("#chips .chip").forEach(function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-cat")===v?"true":"false"); }); }
+  function setPrice(v){ fPrice=v; document.querySelectorAll("#pricechips .chip").forEach(function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-price")===v?"true":"false"); }); }
+  function setLevel(v){ fLevel=v; document.querySelectorAll("#levelchips .chip").forEach(function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-level")===v?"true":"false"); }); }
+  function activeCount(){ var n=0; if(fState!=="todos")n++; if(fCat!=="todo")n++; if(fPrice!=="todo")n++; if(fLevel!=="todo")n++; if(fQuery)n++; if(fDay>=0)n++; var hc=document.getElementById("hideClosed"); if(hc&&hc.checked)n++; return n; }
+  function resetFilters(){
+    setState("todos"); setCat("todo"); setPrice("todo"); setLevel("todo"); clearSearch();
+    fDay=-1;
+    document.querySelectorAll("#daychips button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-day")==="-1"?"true":"false"); });
+    var hc=document.getElementById("hideClosed"); if(hc) hc.checked=false;
+    updateDayStatus();
+  }
+  function clearSearch(){ fQuery=""; var i=document.getElementById("q"); i.value=""; document.getElementById("searchbox").classList.remove("has"); }
+
+  function passesFor(m){
+    var o=[];
+    if(PASS.doblaoro.indexOf(m.id)>=0) o.push("Dobla de Oro");
+    if(PASS.andalusi.indexOf(m.id)>=0) o.push("Bono andalusí");
+    if(PASS.cristiana.indexOf(m.id)>=0) o.push("Granada Cristiana (gratis mié. tarde)");
+    if(PASS.gcard.indexOf(m.id)>=0) o.push("Granada Card"+(PASS.gcard72.indexOf(m.id)>=0?" (72 h)":""));
+    return o.join(" · ");
+  }
+  function dayStatus(m,d){
+    if((d===0 && CLOSED_MON.indexOf(m.id)>=0) || ((d===5||d===6) && CLOSED_WEEKEND.indexOf(m.id)>=0) || (d<=4 && CLOSED_WEEKDAYS.indexOf(m.id)>=0)) return {k:"closed",t:"Cerrado ese día"};
+    if(m.pt==="free"||m.pt==="eu") return {k:"free",t:"Gratis"};
+    if(m.pt==="cita") return {k:"cita",t:"Solo con cita"};
+    if(d===6 && m.pt==="sun") return {k:"free",t:"¡Gratis este día!"};
+    if(d===2 && PASS.cristiana.indexOf(m.id)>=0) return {k:"free",t:"Gratis (por la tarde)"};
+    if(d===1 && m.pt==="martes") return {k:"free",t:"¡Gratis este día!"};
+    return {k:"open",t:"Abierto · de pago"};
+  }
+  function updateDayStatus(){
+    var free=0,open=0,closed=0,cita=0;
+    DATA.forEach(function(m){
+      var card=board.querySelector('.card[data-id="'+m.id+'"]'); if(!card) return;
+      var pill=card.querySelector(".daypill");
+      if(fDay<0){ if(pill) pill.hidden=true; card.classList.remove("closedtoday"); card.removeAttribute("data-closed"); return; }
+      var s=dayStatus(m,fDay);
+      if(pill){ pill.hidden=false; pill.textContent=s.t; pill.className="daypill dp-"+s.k; }
+      card.classList.toggle("closedtoday", s.k==="closed");
+      if(s.k==="closed"){ card.setAttribute("data-closed","1"); closed++; }
+      else { card.removeAttribute("data-closed"); if(s.k==="free") free++; else if(s.k==="cita") cita++; else open++; }
+    });
+    var sum=document.getElementById("daysum");
+    if(fDay<0){ sum.textContent=""; }
+    else { sum.innerHTML="El "+DAYNAMES[fDay]+": <b>"+free+"</b> gratis · <b>"+open+"</b> de pago abiertos · <b>"+closed+"</b> cerrados"+(cita?(" · "+cita+" con cita"):"")+"."; }
+    applyFilter();
+  }
+  function eurStr(v){ return (Number.isInteger(v)? String(v) : v.toFixed(2)).replace(".",","); }
+  function fmtTime(mins){ if(mins<=0) return "—"; if(mins<60) return mins+" min"; var h=Math.floor(mins/60), r=mins%60; return h+" h"+(r? " "+r+" min":""); }
+  function markPlanBtn(id){ var c=board.querySelector('.card[data-id="'+id+'"]'); if(!c) return; var on=plan.has(id); c.classList.toggle("inplan",on); var b=c.querySelector(".planbtn"); if(b) b.setAttribute("aria-pressed",on?"true":"false"); }
+  function markPlanAll(){ DATA.forEach(function(m){ markPlanBtn(m.id); }); }
+  function togglePlan(id){ if(plan.has(id)) plan.delete(id); else plan.add(id); savePlan(); markPlanBtn(id); updatePlanBar(); }
+  function updatePlanBar(){
+    var items=DATA.filter(function(m){ return plan.has(m.id); });
+    var bar=document.getElementById("planbar"), listEl=document.getElementById("planbarList");
+    if(items.length===0){ bar.hidden=true; bar.setAttribute("data-open","false"); listEl.hidden=true; document.getElementById("planbarToggle").setAttribute("aria-expanded","false"); document.body.classList.remove("hasplan"); return; }
+    bar.hidden=false; document.body.classList.add("hasplan");
+    var eur=0, mn=0; items.forEach(function(m){ eur+=m.eur; mn+=m.min; });
+    document.getElementById("planbarSum").innerHTML="Mi plan · <b>"+items.length+"</b> sitios · ~"+Math.round(eur)+" € · "+fmtTime(mn);
+    listEl.innerHTML='<p class="planbar-hint">Coste orientativo (tarifa adulto; los domingos muchos son gratis). Tiempo solo de visita, sin desplazamientos.</p>'+
+      items.map(function(m){ return '<div class="planrow"><span class="pn">'+m.name+'</span><span class="pc">'+(m.eur? "~"+eurStr(m.eur)+" €":"gratis")+" · "+fmtTime(m.min)+'</span><button class="prm" type="button" data-remove="'+m.id+'" aria-label="Quitar del plan">✕</button></div>'; }).join("");
+    listEl.querySelectorAll("[data-remove]").forEach(function(b){ b.addEventListener("click", function(){ togglePlan(b.getAttribute("data-remove")); }); });
+  }
+  function markRouteStops(){ document.querySelectorAll(".stop[data-jump]").forEach(function(b){ b.classList.toggle("done", visited.has(b.getAttribute("data-jump"))); }); }
+  function jumpTo(id){
+    setState("todos"); setCat("todo"); setPrice("todo"); setLevel("todo"); clearSearch(); applyFilter();
+    var card=board.querySelector('.card[data-id="'+id+'"]'); if(!card) return;
+    var det=card.querySelector("details"); if(det) det.open=true;
+    card.scrollIntoView({behavior:"smooth",block:"center"});
+    card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash");
+    setTimeout(function(){ card.classList.remove("flash"); }, 1500);
+  }
+
+  async function loadVisited(){
+    if(hasStorage){
+      try{ var res=await window.storage.get(STORAGE_KEY); if(res&&res.value){ JSON.parse(res.value).forEach(function(id){ visited.add(id); }); return; } }catch(e){}
+    }
+    DEFAULT_VISITED.forEach(function(id){ visited.add(id); }); saveVisited();
+  }
+  async function saveVisited(){ if(!hasStorage) return; try{ await window.storage.set(STORAGE_KEY, JSON.stringify(Array.from(visited))); }catch(e){} }
+  async function loadPlan(){ if(hasStorage){ try{ var r=await window.storage.get("granada:plan"); if(r&&r.value){ JSON.parse(r.value).forEach(function(id){ plan.add(id); }); } }catch(e){} } }
+  async function savePlan(){ if(!hasStorage) return; try{ await window.storage.set("granada:plan", JSON.stringify(Array.from(plan))); }catch(e){} }
+
+  /* wire controls */
+  document.querySelectorAll(".segmented button").forEach(function(btn){ btn.addEventListener("click", function(){ setState(btn.getAttribute("data-filter")); applyFilter(); }); });
+  document.querySelectorAll("#chips .chip").forEach(function(chip){ chip.addEventListener("click", function(){ setCat(chip.getAttribute("data-cat")); applyFilter(); }); });
+  document.querySelectorAll("#pricechips .chip").forEach(function(chip){ chip.addEventListener("click", function(){ setPrice(chip.getAttribute("data-price")); applyFilter(); }); });
+  document.querySelectorAll("#levelchips .chip").forEach(function(chip){ chip.addEventListener("click", function(){ setLevel(chip.getAttribute("data-level")); applyFilter(); }); });
+  var qInput=document.getElementById("q"), searchBox=document.getElementById("searchbox");
+  qInput.addEventListener("input", function(){ fQuery=norm(qInput.value.trim()); searchBox.classList.toggle("has", qInput.value.length>0); applyFilter(); });
+  document.getElementById("clr").addEventListener("click", function(){ clearSearch(); qInput.focus(); applyFilter(); });
+  document.getElementById("reset").addEventListener("click", function(){ visited=new Set(); saveVisited(); syncAll(); });
+
+  document.querySelectorAll("#daychips button").forEach(function(b){
+    b.addEventListener("click", function(){
+      fDay=parseInt(b.getAttribute("data-day"),10);
+      document.querySelectorAll("#daychips button").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
+      updateDayStatus();
+    });
+  });
+  document.getElementById("hideClosed").addEventListener("change", applyFilter);
+  (function(){
+    var ft=document.getElementById("filtersToggle"), fr=document.getElementById("filterrows");
+    function setOpen(open){ fr.classList.toggle("collapsed",!open); ft.setAttribute("aria-expanded",open?"true":"false"); }
+    ft.addEventListener("click", function(){ setOpen(fr.classList.contains("collapsed")); });
+    setOpen(window.innerWidth>=640);
+  })();
+  document.getElementById("resetFilters").addEventListener("click", resetFilters);
+
+  document.getElementById("planbarToggle").addEventListener("click", function(){
+    var bar=document.getElementById("planbar"), open=bar.getAttribute("data-open")==="true";
+    bar.setAttribute("data-open", open?"false":"true");
+    document.getElementById("planbarList").hidden=open;
+    this.setAttribute("aria-expanded", open?"false":"true");
+  });
+  document.getElementById("planbarClear").addEventListener("click", function(){ plan=new Set(); savePlan(); markPlanAll(); updatePlanBar(); });
+
+  buildRoutes();
+  (async function(){ await loadVisited(); await loadPlan(); build(); updatePlanBar(); })();
+})();
+</script>
+<script>
+(function(){
+  var i192="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAwu0lEQVR42u19e5RcR3nn91XVrfvo52j0tGXZsiVb2PgljAGbEGIwCxgMMeDNg5Bll/A6DglkDQs5LCTkwEL2wC7xYjvLCdmQsDxiMKxNEpxAwivggOQ32JIty8iWZWk03T19X3Wr6ts/amY0lkaa7p6enm556vjYkk9Pz71Vv/q+3/fGtRf9NqysldXrYitbsLJWALSyVgC0slYAtLJWALSyVtYKgFbWCoBW1gqAVtYKgFbWylpoiZUtcIuIZv94wg/i9H8QVzbtmQigGaDQDAwQkQGAEAIRiIBzzpiYD0ZorTbGuI8ZowGAyBLR7Lc9A4ElnjGgIQBAZJwLxrgQHiITQrj/AwCMcQAEIEScFTPzfRO5j1lrAMAYTWS1dv8urDXWGiI7i84VAI06aJAxLoTg3PM86dDDGJ97tEQWAK017vMOBPMTRsYZ4zNfKwCIcw8AfH/6N7qfNUYXhTKmMEbPfu3JCiZxUuIGkQnheZ4vhPQ8yRh3esrBxR2ztXpWciCCMU5y4IxWmo/+TOs7QmSccyKYlWSMOWgyzoXn+UFQcr+oKJTWqihyJ6tOPiSJkww3nudL6Xte4ITNHMFQaK20LozR7iyP4S7uD3RiHuPUE5F2HKgosrlcinPBuRDCE0IyxhkTQeABlGbEUqZUrrU6mZAkRh86FgBnceNEAgBYa4si11oVRaa1fjo1mSUoPR/h7OnPVYWmKIyDFCJzqtPzAiEk557n+Z7nh6HVunBIKorcgX4FQMsjcoiIc+H7ke+HQviMOdyYokiVyhwLcaBxWFn6o8IZMQYAYK3O8yLPU0TmGJiUgRDSISkIrNZ5nqdKZcZoJ8FWADQ4bSWE9P1QykgIAYDW2qLI8jwtilzrYpa3Luv9PoIJrZXWeZq2HTPz/ZBzKWUoZaC1VirJ81RrNYp6TYwadEBKX8rI90NHcZxGyPNE62IOtxiuY5h9JK0LrVWWxUJ4vh85nStELQjKeZ4qlSiVj5YzSYwWdIKgLGWAyIioKPI8T/I8tVYPgbzpDklFoYoiZ0z4fuj7kRAyDMtBECmVZVl7hGAkRgE85PbX9yNERmQdbpRKiSwiG0Ue6pBEZNN0KstiKUPfD6UMfD+SMsjzJE3bWqshlKajBCAiy7kIw6pTWA46MxeURhQ6xyCJAUCex3mezIrYIChLGeZ5mqYtY/Qwv6YYWrGDiGFYCcMy54IIiiJPkpZS2VxFcNIsBxGlcqVyKYMoqgohw7AkpZ+m7SyL3YasAKhTweN5fhTVPM93xDNN23meDO0m9tcNoFRWFLnvR2FY5twrlepShknSLIp8CEURL62/aNgETxRVyuUxzj0im2Vxuz1ZFPnoekp6g5HWuVIpALpAnu+HiKi1GrZbJIZW8BRFPnPt8CTgOj0oNSIbx5NKJW5PoqjmecGwiaIhkUBEBGFYKZfHhPCsNUnSjOOmMQaRnWR0p0thhMYYpVIiI4T0PE/K0HkB5nq9n9ESiIgYY+Vy3fcjAFIqj+NGUSjG2ErW36xGS5J2UahSqe55slSqCyHjuGGtXfYtWmYJ5NRWtTouZQBAadputyetNS6wtbLmwshao1SKiJ4nXWTNpRwtL4aWE0DW2jAsVyqrOBfGmHZ7Mk2nnjlkuVcbLTVGC+ELIaQMnUd+GXdMLJ/soXK5HgRlxlCpvN2eNKYYNrLszoVouMi1C/yVy2NS+qVSnXMRx83lwhBbFugAQLk8FkUVxjBN41br0BD6WxFBG1AFDZtARGTG6FbrUJrGjE17PeBphSUnL4AcZa5WVwdByVobx812exKGL3CICJmiTWvFc7YGaU5s6DCEANBuT8Zx01obBKVqdTVjbPAYYoNHT6Uy7nk+AMVxM45bw8l4GEKS0/O2Bde+qJzkNJx+KESM41YcNwHI8/xKZXzwGGKDR4+UvrWm1ZrIsnhorS1EAKDzz/Au3iKjAI9TpjEEQGcsy+JWa8JaI+UyYIgNHj3GmFZrwlmkQ2vyGAPlkD9rkzx9jXfaapFrGtqHRUSl0lZrwphlwBBbFvRonQ9zdAIRck2nruanr/VKIT77DJkXQ0eDjqLVWufLgqEBnKJjzSODHkeA8oLOP12uqjAiuGSrby0MuXPqKAxVq+OMsYXq/EcDQFitjnueb4weCfQ4CWQtbN8aeAJzTRdv8Us+MwaG/rFnMaSdf38AwbKlPUsiKpXqnucTUbs9ORLoAYBCQ73ELjs3UMqqgrac4p26hg8zDToKQ+32JBF5nl8q1ZdakS3hcVprS6WaK/JttxtKjQZ6GILSdMZ6sXm9yDUYC+NVdt7pw06D5mJIqbzdbhDZICiVSjVr7egBiIjCsByGZQBIkqk0bY9KhIsxyAu6YLNfi5ixQEQc8ZKtwfDToLl2WZq2k2QKANwpLJ0cYkuEHs+TpVINEbOsnSRTIxRdd1t9ydbA/ZkhKkMXnSVHggbN9Q8lyVSWtRGxVKp5nlwiDLElevpyeQyRFUW+jHG+3pY2UIvY+ZtlXhBjgAj5SNGguXIojqfTF8vlsSW6w2wpxE+pVONcWmumpiZpqGLZnemvzevFGeuF0sQQEKHQI0aD5p7F1NSktYZzWSrVluIsWN+fOAzLvl8CsHHcMKYYLfHjPECXnxfWS6zQR5TayNGgWSFkTBHHDQDr+6WlIEOsv+gRQkZRFQBcIc7IJcMTAWe4fcvTPIcMYRRp0KxR5upcAcCVm/UXQ6y/eC+Xa4xxrfMkaY0ceo6nrUaXBs1iKElaWueM8XK51l+dwPp3d20Ylj3Pt1a3243Fwxxx0PrieEBZXhrUl30gona7Ya32PD8MyzO9toYGQEQkhB+GFQBIktZMV4BF7ZoqqNAk+OCOy6mqeQMXy0WDBMdC0+KzIl1RYpK0ACAMK0L4/VJkrE+3xCkvVhR5li2W+jj0nL1Rrh0TByY1QxiMF8mh5CgCdDQNCgZEgxgDhnBgUq8dE2dvlP3AEMuypChyxlgfFRnrx77bIIg8z7fWttvNvkCbADJlb3jn6re8vJrkFKck+NJefURQGtbW+QWbZXaMnprVbqeM81wv+ZMIDnFKSU5veXn1hneuzpSl/twQareb1lrP84Mg6osiY/24K8IpryyLte5DiQkRRD7ev1d97Yftm/5g7effu277Vn+iZbUhzpdQf2XKnr/ZO32tyI+57o4Gra7x528LMmX5kklEzkEbmmjZ7Vv9z7933U1/sPZrP2zfv1dFPi7+YiKi1nmWxU6RMSaWH0BENooqnAtjijSd6pflpQ2sqvAv/nN8x53JVZdGX/rAuo/9x/FaxBtTFgCW4vxcDcb2LYEncN7gIxEgwHPPmQ5x9B86DACgMWVrEf/Yfxz/0gfWXXVpdMedyRf/OV5V4dr06zVZmk4ZU3AuoqiyeCHEFikShZC+HwFAkkzZvmYOcwZpbj95S2OybYyFt76y+g8f2/DWV1aNpVZiBYf+WkPWgi9w+xZfm/k1lHNSn3+GrEVMmz4LP8GhlVhjac5rwmTbfPKWRpr3WeBZa1yc1bXWWyTlWGxlaqlU8zy/KFTfY15EEAX4wGPFGeu9S88JDjVNNeKveG502bnhvoP6gccKBPAl9oUdOA21psZ/97U1KYBoHgwhgiWoldk//DQ50DBSYF/EkOCQ5tRK6JcvCP/nO9b8hysrnGEztuMV/qXvtm+8rbWqwoztr6xFY7TnBUIIRFQqW8zBscWIHyl934+IKElaSxFnMRaigH3qlsYTE7oUMFXQRMtu3yK/8F/W/dk7V29e7x1s9kejMYS8sNs2eevqXB2fI7s46wWbfRdn7YvOOti0m9d7f/bO1V/4L+u2b5ETLasKKgXsiQn9qVsaUdBn9MyenTsy34+kXJRJv6htCIIyIlMqWySKTyCEQgmPHNB/ecdUKUBL0+ZJquiNL6nc+uH117++DgCN2Dqjd1ESyMDFZwWBhyfIvjoq02MxeGUMGrEFgOtfX7/1w+vf+JJKqqaNTUtQCvAv75h65IAO5ZLwLSd4lMoQWRCUl0GFOfETRVUAiuOGMWaJgqYEEAjcsTv/lQujU8a5KsClWMSZ9T28cnv0kouiqZTufkRZgkD2qFZcCOzd19RPGedKHx+LCIjAGd76w9j05FF0JnqSU6bgmheW/8fbV7/hRWVroZ1aztDlYpdCvH9vcf1nJwIPlzSTgcj6fsi50Fr13OWjZwlEUkYz4mcJu0MQAefQzuzHvzzJ5rTWFByNhYmWPXujd+N1a/7q+rXnbPScqS9414eaa9q4hj9rk5edMFIxm+06m+zRLd1xJvo5G72/un7tjdetOXujN9GyxsIRhzsCQ/j4lyfbmeV8Cfs6IKJSuRNCUkY912/0BiBnfAUApFSy1LUjxkI1ZP+4M/3HnWk1PMIJZm9zK7Eve0709T/a8Ie/PlaL+ETLduW8dikc550ux8qsWMhJ2BsNchp2omVrEf/DXx/7+h9teNlzolZik/xpDtLjvenSySB3fL4fCCF7O0fWk1Qg3w8ZE0WR53k2iKj73HvJ5uETzdgCwfWvr9/2kQ2/9dIjfKITyegUxyVbA8EWdtZ1S4Nm3cqpot96aeW2j2y4/vV1IGjOx9s4m0fWLuGmIsvzbLZhfm9UuhcOxBgvl+uMsTRtD6a7EREEEvc8qcshe8lFYTs9+va7k2hnVCuxq19Qes5W/5En9UP7CsFBeguY+kTAOf7ua2rrVnG9YJiiGxokOKiCGm26dFvwybetfseralJgK6F5Kb82MF5lN3yj+ZXvxvXyAMTPNA1CZFIGjPE8z3oQQl0DyDGvICgZo+O4CYNaBOBxvGePuuKicG2dF/O5+xgDYyHJ6JyN8rWXlTav9+7Zo/YfNoFEzuYXGIiQazh1Nb/u6pqbpntiTHToDXK/brJtTx0Xf/ymVf/1N8a2nCIn25ZofqeDJQh9fOjx4r2fnWCIA2ue6Zp4OiptTNFDGkUP2gd9PwJApdyUk0EBiEB6cKBhbrytFcrjGttOZTQTawne9NLK7R/Z8LarqpaglVg+373nDDJln78tWF3jRWdR0hPTIIbAGbQSawnedlX19o9seNNLK5agmdgTqFRrIZR4422tAw0jvYH2RLNWu4bU7liXlgO5eh3P84lsnqcDbjOrDawqs7/9Xvs7d6f10omEvLvlEy1bK/GPvXn8//3Rhiu3R83YporE0wbuTh/Vc88JsGPXzvFoECIIjqmiZmyv3B79vz/a8LE3j9dKfKK1gLfTWKiX2HfuTv/2e+1V5T7HSTqRCHmeum6nPVT/dCuByE1bcvNHB58wjwjGwie+0kiV5WwBjS04FJom29Nm803vWrN5vXewaaw9cpzTRTxnyM6tqumg2OanBcU4A2vhYNNsXu/d9K5pt8Jk2xZ6AbcCuaifsp/4SsMsR9I+IropZo4MdUuDWJe/jHleAAAOszDwZSxUQ/zRz7K//na7Gi2c24XojodaCb3uheVbP7T+A782FkicbFvOQHDIi679OnO9QXlBggNnMNm2gcQP/NrYrR9a/7oXllsJpYo4WxgQxkA1Yn/97faPfpZVQzTLsKkwo0/A84JubeouSLTTXy4HYImCXx2yac7wnj3qtZeVyiF2cmsRp1vWSQ+vvDh86cVRI7Z3P6IAoDD00ouj176glHTTCNEpnZ0Pq3v25ACQ5HDN5eVPv3PNNZeXtIUk7wg6TgP6HhxsmXd95pC1sFxVCIjoXDOc86LIuoordPXIT9NfsEyLCAIJT0zoG77eLAXMdAzjWS1zxjrhtMzZG2Uc2+ds9bHL2JbLDXrOVj+O7dkbpdOPZ6wTR+nHhYFIUArYDV9vPjGhA7mc/YR71mJdSCBEjKIa5yJN233JPFwMhnwP735EveBZwRlrhSo6pQ6IwBgWBjJF522Sb/il0tox8dyz/bEK113xDwTGgDPYtkl+/D+Nb9som4nVFng30xmshXKAdz6Uf/CvJkOJy13BS4xxKUPHqZcEQJxPp66m6dSyT2ngHNqpffKwecOLynnRXSjeabRUESJcfm5YiZjq/htchutl54a57pTuHOv7CST+5z+f2PV4EQb9SWxapIHihooqlXVOcFnHl956nmSMa10si/11LPesldi/3Jvd+sNkrCfTlzOwBI3YHi8FccHt1gYasbXUS0KSNjBWZrf+MPmXe7NaafkLXmdssYIx7nmy/wACQCHc/EC1LPbX8QzgT97SONQy0utFBSBAD5LjKBOvh58mAunhoZb55C2NBZ0Rg7TFtFYAIITfuYevUwDNAJOKIhuSAV7WQinA+x9TN3+zVVkmA7hnZ0QlxJu/2br/MVUK0A7Lk2NRZM7WZoz3E0BEJIRgjBMZrfXwNNxwiuCzf9e6d48qh8NzEgtx5xDv3aM++3etsWXwO59Yi2kiwxgXQnTopulQAhHnApEZY+yQNW0XHKZSe8M3mpzhSHQicn6sG77RnEqt4MMGbuOmRHIuOjTmOwQQCiGHigDNFUK1iH31B/EdO5JaiQ25IjMWaiV2x47kqz+I+14e1FcaJDskKh0BCBE59wDAmGIYjwWBM/j4lyfb6dKmgS7efeW8Dx//8iQf1lGw7og59zokKh0BiDHOOSeyxughfG/HKu5+RH3271v1aHiFkLFQj9hn/7519yNDy9jQGE1kOecd8mjWwb0hzjkit9ZqbYazZZ2xUArY5741teeAHgKv7vziJ5S454D+3LemSsGQohwRtTbWWkQnMqgvEsgxaLDWEA1phzcXIHv8kP7UVxtRMIwmvbEQBfiprzYeP7TMYa+FdtJYaxChQx7dqQqbEW7Da+g4k/7L321/+650kWzaEmgDxoIlsATGgjawmFCD487fviv98nfbQ2W6z6twHFHpmwoDQNcHxFoNMNSWMmNABDfd3rTUY+mxA00ocXWV1Uus5GPJx3qJra6yUKIDU28PZoluur1JBEPfcp1cpjJjohO+u3CHGER0PartUI7tcy0EEYAA0pyI6Lbvx5+7eOp3XlFttLvra2EsVCNmLD3wWPGjn6UPPFY8MaEB4JRxce4m7/nPCs/d5HGGLr26O+5cZv/771q3fT+uVFmagy/RPTDRMOoyd9CMdZRa0AmAGOdiVrINh9kOyMAl8ShNeUHagCfg9LXeBWfKi8/yLz7LTzLb+V13p7iqwr59V3rjbc07H8xbyZHqRGvBElQjduk5/jteVbviorDRtgCdBtEYgySzF5/lf+Idq3c+nN/ziNr7VFFoEBx8D6VARCAAskMi3qe5inMdL+j2EzAiC+f0Ky0M5CkpTdLDdXW+7TT5nK3+xWfJ8zfLdXXhcpZTRdgxehgD38OPf7nxqa82tKFyyMarnGYYHzrzxNB37k6/d1/27mvqv/+rtbygDhtuIoC2cOGZ8tJzfGvhQEPfu0ftfFj9dFf+81+oAw2jCpICfYken34eIhiV/v649qLfPjGlktKvVtcQmUbj4OC1GJsLGkVKE2cwXuVnbvCed07wwmcHZ2/01te59FAbyJRVelqvdZ7fQwShjx/43OGbb2+uHeMIxyU6LnL+1KR521W1j755VZp30fjSzmgrKSCQzNUcPtkwD+0rvn9f9uMHs0f2FxMtYywcBabB5wkxxuv1NYi81Tq4YOMD0fEu0+DmuM6AxlhIFeUFIcDqGj//DHnRWf4lW/3zTpcbV4soQG0gLyjOqZ2SK3/uNjXH1YN+/MuNm29vbhjnWoM9IZtBgA3j/Obbm2vr/H3X1idancazZquVtYFWYoEAGYxX+IsvEC+9OEwy2ndI379X/WRXftfD+e4nikNNQwC+h76H7qUGBiZ31h3ejWFRYTMyAy2RAw0A1ErsnNO8Czb7l57tP29bcMq4cMkPWUGqoGyKcPYHe4pKzlrXn/pqY22da72w4iAArWFtnX/qq43nnu2/6PywW06NCLOtOFwPaAJgCBvXiC2neL96eSnO6IkJ/eOfZ3c+lN+zJ997QE+2LQD4HgYSGSIA2aFh36ITgYaI1tq+S6BZA8oSqIKygqyFyMdzNnoXnulfstW/4Ez/jHWiGjEASBWpgg5PWQB0ImrxLcgRwVi66famtsQYduiecYls2tJNtzcvPy9AXOwOuKUKyhQBEEM8dbX4zSsqv3lFpZXYRw/oex7Jf7Irv/uRfNfjRZJbxiDwUHrIcElMOSKy1nLekStoQQCR+xZrDVEf8qCnQYNA9ogBFQW4cY0473R5yVb/orP8czfJWokBQF5QXpC7fzOg6ZsZaAkiHx/Yq37887wcdOfc0wbKAfvxz/MH9qpzT5ddlQQtJJlwDpiAMzhno3fBZvnGl1SasX3gMXXXw/lPduX371X7DukkoyOmHJth37R4ANkZS54D0IlN70GosGlFw6YljQON9HB9nZ+90Xvhs4PnnROcucEbr3LOQGnK8mnQYE+0pmNvBwQe/ujneSux49WuvcOCw0TL/ujn+fYtfjslxvssm2fla6ooyQkABINLzvYvOzcwFiZa5pH9xY8fzL5/X/bQvuLJhlHFDJg8ZAjWDsiUGwSACkOZIqXJ93DDKrHtNLl9i/+crXLbaXJdnUsPlaZcUTO2Dm2uYmYArMtYeuAx1bNrmDF44DFl7NLO75ll3wQQp9QGAoBQ4vat/vOfFbzjKjrQMD//hfrpLrVjd/7zX6j9h3VekBQYSBzApJElBxARjFf5uZvkBWf6F58lzztdjld54KGxNG1AZeQcg3ywPn5E0Bb2T2iGvYh9ImAI+ye0HmBB+yzWDU2DCRHGyuzFF4QvuSjKCppomfv3qp0Pq3seyR94TDXadqmfbRASqByws0/1nneOv+00OV5lHkdtSRVUGCAiBBxgQ5yTZE2TJQIiKgwCkPQg8HBtnXPmS4FZbh97SjuP+WgDCBEePVB8+uvq019vjlf52ad6F2+Z68thzpejNJE9QrEH4u0AwWDDuLDUY12YJdgwLoRrXTWoZ3b/IAMp0PdQcJjrQ9q5O3/o8WKiZQAg8tETo6/CAEB6GEgEAKXpp7vyf/1ZdgJv8sDA5Fr7nrtJ9pwZaC2cu0lyhkvqYp0XNCf2Yq+qMJjj+x55ABGBa4HAEUoBlhGdcbFjV/6jn2U33n4knrV9yxFmvdRgYgyygp6/za/2lNyuDVQj9vxtftaPrvUdgsbx5R2754mjOceH+6lB5tMtCCCcdQkgskXmAzmvF8yCKcQyIBEcnjLfuTu5Y0cyNzi61GByDV/OPV0+b5v/7bvTeqkLGAkOjdhecWHYLydQt6BxFnvJx3KALpLfR9Agslnn34K6WXQgqA0RueyQPspq99pueQKlh8672AWY6Ehex2K02Nuvqn333sza6aSiTgistSAYvv2q2rT+wkVtAgEgdgOaEB3ULC1Jhp/LACOiTmLnQxELm+s/7QpMzoFUmGlW2601xxk0Y3vFReG7r6l/5G8Ou2AqLYQeIWD/hPngb6664qKw82DqUWLYva/HwQ9RCuwONMOU2Cc6RyXiIKodOgHT8VzY02AiwI5nrwgOjbb9/V+tPdUwLp2DLZTOsX/CvO2q2u//aq3R7gI9loAsAILHwfdRCjeqwdy/V83rUF5G0Liz7vTDJ84HchqxXl/DmOgkO2RJ3QHzB9FWHwmibTnFG69ywSDrKaHsf3ytOZtQJjgem1DWTq3g2G1CmZM6ocTAQ21homV2P1EMIKTV6wWezgCzVjcaBxfMSBwZAM0DpqPC+AFuXC2efbq8eIt/6TnBuZs8baFzDAFAvbwkKa0EIBg88Fhx54PZzt35fTOgWeqg+mAAJDr4RmuM5tzjXAAMRW+XuXs942RCS/SLg/rRJ4v/e8fUp353zSVn+50n1TsoHJ6yLzo/vPy84MRJ9YenuksAshaiiO18OH/vjYcqVcY5+h4GFTab1mOGK33VZUNPl6j2gQO57BCYDu4P3Zo5AHK+13YKr3ph6c0vq3Sb5+UoTiuxiPCs07ztZ0ljQRsCAMHR9QpOciKi3r72zS+r/NPO5Lv3ZpGP2oAZ4gq7GRveEtGCCqcTEt1dodAyLkdK3n5VjSFaSz1EZ92PpIrijGa9TS6bd3pCCvb4YAzx7VfVvndfNvRNjI4qA1zghVln729mJdvQvrfgMNm2176ofMVFYTNe1KRjN0bZzdZwCUmLHBI96y+49kXlyfbQtQU6ygRzRc0dFlB0VJlqjCZyzmg+rK8NmYJTV4t3X1NPMuLDV/3JGSQZvfua+qmrRaZgaG8iImeME0GHZYCsE0gaY4gMY0wIPpzl8ZxBnNk3v6yyeZ1w/XuHEOKpos3rxJtfVokzy4eywJmIhOCMMSLTYb/6TlVYt53PBkv6oJ3ShWfKt7y82kiG9GwcyhuJfcvLqxeeKY+dmTdMJlgXvQw7bbI527hqKC8OGAvvu3asHDJjhlk7gDFQDtn7rh0zdkgbVcy2outzk83Z1nmIw3Vx3Hi5ay4vuYlgfLh7Xzg2feX26JrLS24E3ZBBnM02w+xzk81uO58NbGkDlZBdd3XNWBqJvFgEMJauu7pWCYeuUVAPvQw7bbKptbbWIHbRQXhgpvtbXlE9f/PQsor5Gdv5m+VbXlEdKpPedQNH5NZ20Q280y231hSFQkTPC4ZEezMGcUbnbZJve2V1KiU+CuiZVWRTKb3tldXzNsk4Gx7ck+cFiFgUqvMuGp0/O2mdDxUNcm003vO6+uoqV0UvpjsBGNt7CNMlj/bw04igClpd5e95Xd3YYfHuzyFAeecygnX+7Q6YQnhCeMuuxTiHZmx/+fzgtZdFvSkCY4Eh1EtM8B7rwgSHeokx7CWd1Cnf114W/fL5QTO2fLkVGRG5k51RNazvEgiM0cboGZzSMsseA6HP3vO6uu3+BrtWh7WIMYQbb2vufqII/e7Gdbkx77ufKG68rckQahFzzRW7fQtr4T2vq4c+M2bZ5RA53eJOuQsi0Q1IbVFkACBlsLxRVc6hldg3XlF+wbOCqW44BBFoQ6HEWol9a0dy9YefvP7mQ/fsUb7oru23teALvGePuv7mQ1d/+Mlv7UhqJRZK1KYL0cwYTGX0gmcFb7yi3EqWXQihlAEAFEXW1TSLrtgMull2Qkghls2j6MJep4yL615TizPLu5mUyxisqfFHD+i3f/rgm/70qYf2qVKJ/XRXTtCd+9F1NfzprrxUYg/tU2/606fe/umDjx7Qa2qcsS40GkeIM3vda2qnjC9zgEwITwhJZJXqLuWLdbNrc4fa+cs1dWV606+unbKq0013OmuszDJFH/tS4zUf3n/L99vVCAOJnOE9e/JufXrOe3nPnpwzDCRWI7zl++3XfHj/x77UyBSNlTvVaNOXYZW47uruLkO/CZD1PL+3cZRdzEx1v4lz4Yy9rkaz9tcAvvSc4E9+e1WmaMGaHpeRHvkY+vi1H8S/d9PEV38QC46lAN0Zc4bN2L78ktK6MV6YTuEYeLj7CX3z7S3OpvPeIx+Vhjt2pt++K62X2IVnSs5Q6enWNifCEANV0EVnyn/9Wf7oAR0sx5wGRCyVapyLPI+VyroCULcG+dO02OBtMSLgDN77hnoo2YIGsDbgCRwrswf3FU7L7HmyOErLOFly76PK9zqlQdaC7+G9e9RcuTWrH/c8WTj9+OC+YqzMPLFA4zPnjAgle+8b6pwtQ1r0jP3Vi/7qGkDOy1QUOSLz/XDAtpjgcLhtX/9L5V+5MGycMOzl8DFeZc3YvP9zE6/+0P47jsNz3WX7twezzmmQ+9hPdmXw9B+Zy9Dv2JG8+kP73/+5iWZsxqsM4ETEiDNoxPZXLgxf/0vlw8vgmybfDxFZUeTOV9ydTuhKhbnfh4i+HzLG8zwbGIYQQWuol9l/f+t4OWTmOCU1zrlXLzFt6Ev/0v7dzxz6p51pKDGUOK/TjwAQsZXY115W8iV2UqnDGWQFffrWRqNtxTFjEmlmMA8A/OD+7Jt3JpHPzt0kKyFLcjpuUTYCAGw5xbvtx0muBjoOgTFeKtUYY0nS0rprALHuD5IplRujORe+Hw6MSnMGU6l96yurzz5dJtn85ehOZ62qsu/el1770QPv+syhg80FBAAR+AKemDC7nyj8DkY/WwIp8NEn9aNPaimO6z2aFYEHm+Zdnzl07UcPfPe+dFX1uBqNISQZPft0+dZXVqfSweUUEFnfDzkXxmil8h5iDL08qbU6zxMAdKJvILfkSMrYvH5nd2Crq+xg0/zejYd+478d2LErX11bmII4r1Kc2bseVpIv7E6clwCdmIStrrEdu/Lf+G8Hfu/GQwebZvVxAD0dGB5sutkMFcE8T1zpxCAA5Ewwa7Xn+b4fDEIIEViC9107Vj5mVJslsBZqJQYIf/q3jVd9cP/n/3EqlFgKUZuOOKmruPjJrkx30O3weATohK5LKIUYSvz8P0696oP7//RvG4BQKzF7jKlvLJQD9r5rx5aoa8J84ifwPN9anedpbxUTPXAgAEBrNeee5/kA0PPv7lx5tVJ75fboD15Xn5qTMO/oTinAULJv7Uiu+18Hv/K9mIAqEeshRJoXdM3lZWeLneBtTkyATgAjAiiHGOf2n3am37k73bBKnLtJcg7OleV+I0PICtp2mnfPHvXAL9QARi9GUU0ImWVJlrV7UyY9C0pUKiGyUgZS+ktnz0+ngR5zL7VxQzPYQ/uKd9wwbTaPV5ng2G2WFhH4AvcdND97rAi8E2mxDgnQCTSa4DhenXYrvOOGgw/tK8arjLPpCsajZa1Z0gZtJKUvZUBklUp6jk2xXs8VlcqVyhBZEJSXVPw0Evs7rzjCDJzkH6/yrKA/+cLkqz+0/5bvtysRhrJTnTU/DcrtDx/IpDjRpe+KAJ1Ao4USKxHe8v32qz+0/0++MJkVNF7lThfPsr3fecWSFwgEQRmRKZUtpuVBbyrsaA6vdWGM7rsiQ4S8gNPG+SfeMs4ZWgvGQjlCwfCL/9z+z38+ceu/xqHEyEe7uGFbiKANhT6++vmlE7TtdU02/uJbrXv2qMjHnkefOFM/8pEI/umu9Nt3pb6HF57p+xIzBQzBEmw7zfv7f0saCS2FW4iIpAyiqApAcdzosIKnzwBy9fecC8+TnIs8T5bCc9iK7R//9qrLzwsbsQ19Viuxf3tIvefmQ5+5rdVObb3M+tVKEhGTjK6+rFQJ8XhOpt4I0AmkEQBUQjzYMN/4UbJjd37mBnn2qZ4liDO7fkyUQvaNf41LAfZ9SA8iViqr3KmlaXsxN39REggArDW+HwkhjNE9uKFOrLyasX3xBeEf/vpYnNOqCj/UMh/74uQH/8/EI/uLsQrjrJ/TmV2nqRedH245RWbFPH6muSEwxvo5ssMTWArwoceLr/2gfbBhLjhTrhsTzdg++wy582H14L4i9PvJpolsEERhWLbWttsNaxc1AoUtEshaKyd7oqjS34INY6dTxsbKnDP482+2/t379//5N1ucoeur2t97yRjkmnbszo+XoDhNgB5VfS/HcUOiqxHjDOe8JoyV+XS6me3vm/IoqgBAnieLv/Ns0cKQJcmUayAUhpV++YQEh8NT5tdeXLry0uj2O5N//9ED7/+LiWZi6pUF4kqLUSiCw47dWaHnd+K5HKB/e7BTD1APFwYA6hXWTMz7/2Li33/0wO13JldeGv3ai0uHp0y/IEtkw7DCuWeMTpKpxfuBF6vCAIDIAICUIeeey5teJKgRIVO09VTv915b/8QXJ//4byb3T5h6mSHikvZGYQwbbXrlpdFYmR9lQhOBENCK7Se+0kjyJYxVucaxpQD3HtBf+2G8d3/xuheWdz6cH2rZxU9OISIh/HK5johJ0iyKbPGUow9dWhFZliW+H3meXy7Xms1DffhOgECy6z5zaNc+tabGAWGpa/CIQAp4qmHu2aPOXO9livjTAeQM+CcmjC+WNuli1nkNBJ/9+9a/3JfVov5wLkQsl2uMsaLIsyzpSxiK9emdqd1uWms9zw+CaJGKjAikhw/tU09N6nVjwjlIBrAQwRDt2J2zY/JyLIHkeNfDKs4GlLzs3F3rxsRTk/qhfUp6i+XRjjt7nm+tbbeb/fL9sj5tPWqdp+kUAERRVQi5yOdzGPIE6gE2EHQo2bk7j/OjUeKw9ZNdGRtszpc25HodLxo9JISMoioApOmU1n1rlsr6d31ZmraLImdMOC27eEk+4PQ8p6d2P1E8ftD4c1zSROAJmGjZ+/cq30M78Kda/D4gYrlcZ0wURZ6m7T7mULC+vqpTZEYIP4qqy5V1v5ijmhcoxwPW6LyXjaKqEL61po/Kq/8Acm6hJGkBQBiWfT8aOQy5OZhH0aAjBChf/hLSHtDj+1EYlgGgt5zDwQHIYShN23keA7BSqc65RyN1YS2B7+EP7k8bsfXEMhOgvugEzr1SqQ7A8jxeZNRiEAByGIrjpjGKMV6pjA1zY9d5bR/fwz1zEjaWlwAt/iwqlTHGuDEqjptLcRZsaY7BttuTrlytVKqNlhCaLvTZM13oM7oEiIhKpZorAW23J+3S+ELYEgG/KFQcN4koCMpRVLHWjs6tBZiTtGqJRpEAWWujqBIEZSKK42YP9TrLCaBZMpSmbQCIokoYlkdFDjkt5uqdOQNEHDkCRERhWHYRU3cKS0ckljDjjTEWx80sixFZuVyX0h8Jo2w2b3XPk9oXwNmIESAiK6ULeLEsi+O4yZaywmNpi0cQMY4bRZEjYrk8JsRoYMgT0IjtDx/IpGRypAgQkRXCL5fHELEo8jhuLLURM4DqI2q1Jooi51xUq+MjgSFX6LNjV1Zo8sX8wY2hRU+1Os65KIq81ZoYQHHQAACE1tpWa0KpnHM+Ehhy3qB796rDUxYRfrIrH34CNAc9XKm81Zqw1g6gD9gg6h8R0Vo7NTUyGHKFPo8fMnufKuKU7nt02AnQUeiZmppYZKLqcAFoXgxJGQ6zXcY5tFPzs8fU3oPFLw7pYSZARCRluCzoGRyAjsIQY7xaHQ+C0tD6h4gAAO99tNi5WyUZsWElQNbaIChVq+OMLQN6oC8prV1hiIiKIhNCci48z3fGwnCGOxAhyWnPk/qphvE40lDKnlKpGkVV191n8OgZNIBmMaRUyhh3pbWM8aLIOhnPOXBjHifb9omJ5Wk7tyB0nGckiiqImGVxu314WfZQLMfNRgBwwbIgKIdhiXPRbk8aUwzVKCBXpwF8CNFjOffK5TEpfWspy9ouULosN3DQEmgujPI8dQFXITwpQ2tN37NVTr7l8nsqlXHP86y1cdxMkhZbvnEbYhn3gjGWZW1jinJ5TAivUlklhEyS1hCqs+FRW6VSPQzLruVyuz1ZFDlb1mEtyyaBZuWQMcZRIiGk50nP841ZklYNI72stZ4nK5VVsw3FpqYOu8kTy+zvWF4AzVAiOkqdIZLWxYoomhU8YVgql8c8zyOiJGnGcdN1O132xxPDsUuI6MpNVBTVPM8vlcakjJKkOWPk4zMVPOR5vtsTAFAqn9mTYbE2ll8CHavO3OQYzj3fDxkTWisi+0wTRUSWMR5F9VKpxrlHZNO0NdPLZ4hsVTFUu+ZQkiStosjdtQvDspR+mrbzPHmGaDT3mkFQDsOym6FcFEcEz7DtwBBJoGNFEZEVQjhWJGVgrXGjrE5WGLngoJRBpbIqCMqcc2t1krTiuDlsgmdIJdBRoihNp5RKw7Dq+6Hn+dXquFJZlrWVygFoODe0Z4UFgFL6QVCWMkBk1posS9O05Uytob0zYpi31e1ju304y6SrVPT9SMpAqSzPUyeiRh1G7hV8v+T7oYMOkc2ydpq2nVt1yF9QDP0Oo3OaTU1N5nniLqjvR1KGrjmaa3nuPjZq2ooYE0FQ8v1ICImIRDbPkxkRCyNxN8RIbLcDh1K5UrmUvpSRU2qe5wdBuSiyPE+0LpwiGGYkOdwgMs+Tvh95XuBmPzqFpVQyA52RuQxihG7tHBhlWSZ9P5QyEkIIUfH9kjEqz9OiyLUuZqbw4FDhBgCF8DzP9/2Qc8kYAyCtC6WSPE+1ViMnR0cMQHNghFoXRaE4j6UMfD8Uwve8wPMCF5FVKisKZYyTSbBMrkhyVpWbc+15UspACOlakVprlUrzPFUqc3GbESVzAkZzuewFxzezLPY8X0rfaQQpQylDa60xhdaqKDKttbVmJgvbXXJcKkED06BhTAghPC9wTlEX8iSyRZEXRaZUXhTTtuTyRkOfoQCaa6kBgDsVxCkhpEOSy3h0JMla4yST66hvjCayM2plGkxdomo2n5vm4JkLITgXboIkY5wx7tBqrZnFjXOsz2irkXdojTyA5uq1uUhyAHK6gzHu/upkgLXWWmOt1loTWa0LRDDGiSicwdbxxB4DIETOOScCITxEJoRgTDDGGWOzmojIWquLQmmtiiJ3qJ2B2snjwRJwcq1ZJGldOFrq0MO550YyOMHAuQDwff+IE89a43iuE1fzfrn7Wfcx94e5UCAia421hTHaMTBj9OzXnmS4OWkBdCySZmlHljlqwhnjs5IDkXEuHDgAEIA458fXLI4XIwC5+X7G5ER2VpI58M0hW3jSpxIIeAasuafoOFBRZHPOmAEA5wIRiIBzzpiYrygYrdXGGPcxF5Wbj0udnJLmGQ2gY51Jc6WCExhFkbu/FsWJc+jx6d8Dz+B0pWckgBYCFjyT0dDDYitbsLJWALSyVgC0slYAtLJWALSyVtYKgFbWCoBW1gqAVtYKgFbWylpo/X92E5pcy3oWfQAAAABJRU5ErkJggg==";
+  var i512="data:image/png;base64,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";
+  function add(rel,href,attrs){var l=document.createElement("link");l.rel=rel;l.href=href;if(attrs)for(var k in attrs)l.setAttribute(k,attrs[k]);document.head.appendChild(l);}
+  add("apple-touch-icon",i192);
+  add("icon",i192,{sizes:"192x192",type:"image/png"});
+  try{
+    var m={name:"Granada monumental",short_name:"Granada",start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#ECE8DD",theme_color:"#16305F",icons:[{src:i192,sizes:"192x192",type:"image/png",purpose:"any"},{src:i512,sizes:"512x512",type:"image/png",purpose:"any maskable"}]};
+    var b=new Blob([JSON.stringify(m)],{type:"application/manifest+json"});
+    add("manifest",URL.createObjectURL(b));
+  }catch(e){}
+  // Offline opcional: se activa solo si subes tambien sw.js junto al index
+  try{ if(location.protocol.indexOf("http")===0 && "serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); } }catch(e){}
+})();
+</script>
+</body>
+</html>
