@@ -599,7 +599,7 @@
     <p>Guardo lo que marcas en este dispositivo, así que puedes ir tachando finde a finde. El buscador funciona sin tildes y los filtros se combinan: por ejemplo <b>Gratis + Pendientes</b> te deja justo lo que te falta por ver sin pagar. Y con «Añadir al plan» en cada ficha, la barra de abajo te suma el coste y el tiempo del día.</p>
     <p>Un par de honestidades: precios de la Alhambra son los oficiales de 2026 (con la comisión online incluida); el Aljibe del Rey es visita guiada gratuita solo de lunes a viernes, y el Carmen de la Victoria abre en jornadas puntuales; y la Catedral está con la exposición <i>Kerygma</i> hasta noviembre de 2026, así que recorrido y tarifa cambian.</p>
     <button class="reset" id="reset" type="button">Reiniciar lo marcado</button>
-    <p class="credits">Guía personal de <b>Granada monumental</b>, hecha por Alfonso con la ayuda de Claude (Anthropic). Datos de fuentes oficiales (Patronato de la Alhambra, Ayuntamiento de Granada y las webs de cada sitio), revisados en 2026 — confírmalos el día que vayas. Recomendaciones de bares, propias y de reseñas. <b>En el móvil: menú del navegador → «Añadir a pantalla de inicio»</b> para instalarla como app.</p>
+    <p class="credits">Guía personal de <b>Granada monumental</b>, hecha por Alfonso Carrascosa Martínez con la ayuda de Claude (Anthropic). Datos de fuentes oficiales (Patronato de la Alhambra, Ayuntamiento de Granada y las webs de cada sitio), revisados en 2026 — confírmalos el día que vayas. Recomendaciones de bares, propias y de reseñas. <b>En el móvil: menú del navegador → «Añadir a pantalla de inicio»</b> para instalarla como app.</p>
   </div>
 </footer>
 
@@ -1173,7 +1173,17 @@
 
   var STORAGE_KEY="granada:visitados", DEFAULT_VISITED=["banuelo","maristan","olvidados","cartuja"];
   var visited=new Set(), plan=new Set(), fState="todos", fCat="todo", fPrice="todo", fLevel="todo", fQuery="", fDay=-1;
-  var hasStorage=(typeof window!=="undefined" && window.storage && typeof window.storage.get==="function");
+  var STORE=(function(){
+    if(typeof window!=="undefined" && window.storage && typeof window.storage.get==="function"){
+      return { get:function(k){ return Promise.resolve(window.storage.get(k)).then(function(r){ return (r&&r.value!=null)?r.value:null; }); },
+               set:function(k,v){ try{ return Promise.resolve(window.storage.set(k,v)); }catch(e){ return Promise.resolve(); } } };
+    }
+    var ls=null; try{ ls=window.localStorage; var t="__gr_t"; ls.setItem(t,"1"); ls.removeItem(t); }catch(e){ ls=null; }
+    if(ls){ return { get:function(k){ try{ return Promise.resolve(ls.getItem(k)); }catch(e){ return Promise.resolve(null); } },
+                     set:function(k,v){ try{ ls.setItem(k,v); }catch(e){} return Promise.resolve(); } }; }
+    var MEM={}; return { get:function(k){ return Promise.resolve(k in MEM?MEM[k]:null); },
+                         set:function(k,v){ MEM[k]=v; return Promise.resolve(); } };
+  })();
 
   function norm(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
   function icon(id){ return '<svg aria-hidden="true"><use href="#'+id+'"/></svg>'; }
@@ -1416,14 +1426,12 @@
   }
 
   async function loadVisited(){
-    if(hasStorage){
-      try{ var res=await window.storage.get(STORAGE_KEY); if(res&&res.value){ JSON.parse(res.value).forEach(function(id){ visited.add(id); }); return; } }catch(e){}
-    }
+    try{ var v=await STORE.get(STORAGE_KEY); if(v){ JSON.parse(v).forEach(function(id){ visited.add(id); }); return; } }catch(e){}
     DEFAULT_VISITED.forEach(function(id){ visited.add(id); }); saveVisited();
   }
-  async function saveVisited(){ if(!hasStorage) return; try{ await window.storage.set(STORAGE_KEY, JSON.stringify(Array.from(visited))); }catch(e){} }
-  async function loadPlan(){ if(hasStorage){ try{ var r=await window.storage.get("granada:plan"); if(r&&r.value){ JSON.parse(r.value).forEach(function(id){ plan.add(id); }); } }catch(e){} } }
-  async function savePlan(){ if(!hasStorage) return; try{ await window.storage.set("granada:plan", JSON.stringify(Array.from(plan))); }catch(e){} }
+  async function saveVisited(){ try{ await STORE.set(STORAGE_KEY, JSON.stringify(Array.from(visited))); }catch(e){} }
+  async function loadPlan(){ try{ var v=await STORE.get("granada:plan"); if(v){ JSON.parse(v).forEach(function(id){ plan.add(id); }); } }catch(e){} }
+  async function savePlan(){ try{ await STORE.set("granada:plan", JSON.stringify(Array.from(plan))); }catch(e){} }
 
   /* wire controls */
   document.querySelectorAll(".segmented button").forEach(function(btn){ btn.addEventListener("click", function(){ setState(btn.getAttribute("data-filter")); applyFilter(); }); });
