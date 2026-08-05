@@ -221,6 +221,39 @@
   .itip{margin:0 0 12px;font-size:13.5px;color:var(--ink-soft);background:#FBF3DF;border-left:3px solid var(--ochre);border-radius:0 8px 8px 0;padding:8px 11px}
   .itip .itip-tag{font-family:"Space Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ochre);margin-right:7px}
   .itip b{color:var(--ink);font-weight:600}
+  .notebox{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+  .notebox>summary{cursor:pointer;list-style:none;display:flex;align-items:center;font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.03em;color:var(--ochre)}
+  .notebox>summary::-webkit-details-marker{display:none}
+  .notetext{width:100%;margin-top:8px;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:"Public Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5;color:var(--ink);background:#FCFBF7;resize:vertical;min-height:46px}
+  .notetext::placeholder{color:#9a9482}
+  .notetext:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 2px rgba(22,48,95,.15)}
+  .fold-head{cursor:pointer;user-select:none;transition:color .15s}
+  .fold-head:hover{color:var(--wood)}
+  .fold-arw{margin-left:auto;flex:none;font-size:12px;color:var(--ochre);transition:transform .25s}
+  section:not(.folded) .fold-arw{transform:rotate(180deg)}
+  .folded .fold-body{display:none}
+  .folded .fold-head{margin-bottom:0}
+  .today{padding:16px 0 4px}
+  .today-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;padding:14px 16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  .today-day{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+  .today-day b{color:var(--ink);font-weight:700}
+  .today-lbl{display:flex;align-items:center;gap:7px;font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin:0 0 9px;font-weight:700}
+  .today-lbl svg{width:13px;height:13px}
+  .today-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .today-chip{font-family:"Public Sans",sans-serif;font-size:13px;font-weight:600;color:#fff;background:var(--green);border:none;border-radius:999px;padding:7px 13px;cursor:pointer;transition:filter .15s,transform .1s}
+  .today-chip:hover{filter:brightness(1.08)}
+  .today-chip:active{transform:scale(.97)}
+  .today-none{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+  .today-closed{margin:10px 0 0;padding-top:9px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--wood)}
+  .today-closed b{color:var(--wood)}
+  .today-more{margin-top:12px;background:transparent;border:none;padding:0;font-family:"Space Mono",monospace;font-size:12px;color:var(--cobalt);cursor:pointer}
+  .today-more:hover{text-decoration:underline}
+  .today-tom{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+  .today-lbl.mn{color:var(--ochre)}
+  .daysum-lbl{display:flex;align-items:center;gap:7px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin:0 0 8px;font-weight:700}
+  .daysum-lbl svg{width:13px;height:13px}
+  .daysum-chips{margin-bottom:10px}
+  .daysum-counts{margin:0}
 
   details{margin:0 0 0;border-top:1px dashed var(--line);padding-top:4px;margin-bottom:13px}
   summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--cobalt);list-style:none;display:flex;align-items:center;gap:6px;padding:9px 0 4px;}
@@ -279,6 +312,8 @@
   </div>
   <div class="band" aria-hidden="true"></div>
 </header>
+
+<section class="today" id="todaybox" aria-live="polite"></section>
 
 <section class="strategy">
   <div class="wrap">
@@ -1171,7 +1206,7 @@
       note:"Alhambra por la mañana (hora fija), centro al mediodía y atardecer en San Nicolás. Para primerizos." }
   ];
 
-  var STORAGE_KEY="granada:visitados", DEFAULT_VISITED=["banuelo","maristan","olvidados","cartuja"];
+  var STORAGE_KEY="granada:visitados";
   var visited=new Set(), plan=new Set(), fState="todos", fCat="todo", fPrice="todo", fLevel="todo", fQuery="", fDay=-1;
   var STORE=(function(){
     if(typeof window!=="undefined" && window.storage && typeof window.storage.get==="function"){
@@ -1256,6 +1291,10 @@
         '<span class="add">'+icon("plus")+'Marcar visitado</span>'+
         '<span class="ck">'+icon("check")+'Visitado</span>'+
       '</button>'+
+      '<details class="notebox"'+(notes[m.id]?' open':'')+'>'+
+        '<summary>Mi nota<span class="arw">\u25be</span></summary>'+
+        '<textarea class="notetext" data-note="'+m.id+'" rows="2" placeholder="Tu nota: donde aparcaste, que te gusto, con quien fuiste...">'+escNote(notes[m.id]||'')+'</textarea>'+
+      '</details>'+
     '</article>';
   }
 
@@ -1382,6 +1421,9 @@
     if(d===1 && m.pt==="martes") return {k:"free",t:"¡Gratis este día!"};
     return {k:"open",t:"Abierto · de pago"};
   }
+  function freeSpecial(d){ var a=DATA.filter(function(m){ var s=dayStatus(m,d); return s.k==="free" && m.pt!=="free" && m.pt!=="eu"; }); a.sort(function(x,y){ return (PRINCIPAL.indexOf(y.id)>=0?1:0)-(PRINCIPAL.indexOf(x.id)>=0?1:0); }); return a; }
+  function dayNote(d){ return d===2?" (por la tarde)":""; }
+  function chipList(a){ return a.map(function(m){ return '<button class="today-chip" data-jump="'+m.id+'">'+m.name+'</button>'; }).join(""); }
   function updateDayStatus(){
     var free=0,open=0,closed=0,cita=0;
     DATA.forEach(function(m){
@@ -1395,8 +1437,13 @@
       else { card.removeAttribute("data-closed"); if(s.k==="free") free++; else if(s.k==="cita") cita++; else open++; }
     });
     var sum=document.getElementById("daysum");
-    if(fDay<0){ sum.textContent=""; }
-    else { sum.innerHTML="El "+DAYNAMES[fDay]+": <b>"+free+"</b> gratis · <b>"+open+"</b> de pago abiertos · <b>"+closed+"</b> cerrados"+(cita?(" · "+cita+" con cita"):"")+"."; }
+    if(fDay<0){ sum.innerHTML=""; }
+    else {
+      var sp=freeSpecial(fDay);
+      var head = sp.length ? ('<p class="daysum-lbl">'+icon("star8")+'Interesante gratis'+dayNote(fDay)+'</p><div class="today-chips daysum-chips">'+chipList(sp)+'</div>') : '';
+      sum.innerHTML = head + '<p class="daysum-counts">El '+DAYNAMES[fDay]+': <b>'+free+'</b> gratis &middot; <b>'+open+'</b> de pago abiertos &middot; <b>'+closed+'</b> cerrados'+(cita?(' &middot; '+cita+' con cita'):'')+'.</p>';
+      sum.querySelectorAll("[data-jump]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-jump")); }); });
+    }
     applyFilter();
   }
   function eurStr(v){ return (Number.isInteger(v)? String(v) : v.toFixed(2)).replace(".",","); }
@@ -1426,12 +1473,15 @@
   }
 
   async function loadVisited(){
-    try{ var v=await STORE.get(STORAGE_KEY); if(v){ JSON.parse(v).forEach(function(id){ visited.add(id); }); return; } }catch(e){}
-    DEFAULT_VISITED.forEach(function(id){ visited.add(id); }); saveVisited();
+    try{ var v=await STORE.get(STORAGE_KEY); if(v){ JSON.parse(v).forEach(function(id){ visited.add(id); }); } }catch(e){}
   }
   async function saveVisited(){ try{ await STORE.set(STORAGE_KEY, JSON.stringify(Array.from(visited))); }catch(e){} }
   async function loadPlan(){ try{ var v=await STORE.get("granada:plan"); if(v){ JSON.parse(v).forEach(function(id){ plan.add(id); }); } }catch(e){} }
   async function savePlan(){ try{ await STORE.set("granada:plan", JSON.stringify(Array.from(plan))); }catch(e){} }
+  var notes={};
+  async function loadNotes(){ try{ var v=await STORE.get("granada:notas"); if(v){ notes=JSON.parse(v)||{}; } }catch(e){} }
+  function saveNotes(){ try{ STORE.set("granada:notas", JSON.stringify(notes)); }catch(e){} }
+  function escNote(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
   /* wire controls */
   document.querySelectorAll(".segmented button").forEach(function(btn){ btn.addEventListener("click", function(){ setState(btn.getAttribute("data-filter")); applyFilter(); }); });
@@ -1442,6 +1492,7 @@
   qInput.addEventListener("input", function(){ fQuery=norm(qInput.value.trim()); searchBox.classList.toggle("has", qInput.value.length>0); applyFilter(); });
   document.getElementById("clr").addEventListener("click", function(){ clearSearch(); qInput.focus(); applyFilter(); });
   document.getElementById("reset").addEventListener("click", function(){ visited=new Set(); saveVisited(); syncAll(); });
+  board.addEventListener("input", function(e){ var t=e.target; if(t&&t.classList&&t.classList.contains("notetext")){ var id=t.getAttribute("data-note"); if(t.value.trim()){ notes[id]=t.value; } else { delete notes[id]; } saveNotes(); } });
 
   document.querySelectorAll("#daychips button").forEach(function(b){
     b.addEventListener("click", function(){
@@ -1468,7 +1519,52 @@
   document.getElementById("planbarClear").addEventListener("click", function(){ plan=new Set(); savePlan(); markPlanAll(); updatePlanBar(); });
 
   buildRoutes();
-  (async function(){ await loadVisited(); await loadPlan(); build(); updatePlanBar(); })();
+  function makeFoldable(){
+    document.querySelectorAll("section.strategy, section.passes, section.info, section.routes, section.dayplan").forEach(function(sec){
+      var kicker=sec.querySelector(".kicker"); if(!kicker) return;
+      var body=document.createElement("div"); body.className="fold-body";
+      var node=kicker.nextSibling;
+      while(node){ var nx=node.nextSibling; body.appendChild(node); node=nx; }
+      kicker.parentNode.appendChild(body);
+      kicker.classList.add("fold-head");
+      kicker.setAttribute("role","button"); kicker.setAttribute("tabindex","0"); kicker.setAttribute("aria-expanded","false");
+      var chev=document.createElement("span"); chev.className="fold-arw"; chev.setAttribute("aria-hidden","true"); chev.textContent="\u25be"; kicker.appendChild(chev);
+      sec.classList.add("folded");
+      function tog(){ var folded=sec.classList.toggle("folded"); kicker.setAttribute("aria-expanded", folded?"false":"true"); }
+      kicker.addEventListener("click", tog);
+      kicker.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); tog(); } });
+    });
+  }
+  makeFoldable();
+  function renderToday(){
+    var box=document.getElementById("todaybox"); if(!box) return;
+    var today=(new Date().getDay()+6)%7, tom=(today+1)%7;
+    var sT=freeSpecial(today), sM=freeSpecial(tom);
+    var closedP=DATA.filter(function(m){ return PRINCIPAL.indexOf(m.id)>=0 && dayStatus(m,today).k==="closed"; });
+    var h='<div class="wrap"><div class="today-card">';
+    h+='<p class="today-day">Hoy &middot; <b>'+DAYNAMES[today]+'</b></p>';
+    if(sT.length){ h+='<p class="today-lbl">'+icon("star8")+'Gratis hoy'+dayNote(today)+' &mdash; ma&ntilde;ana ya se paga</p><div class="today-chips">'+chipList(sT)+'</div>'; }
+    else { h+='<p class="today-none">Hoy nada interesante gratis por el d&iacute;a. Lo de siempre (miradores, plazas, museos con DNI) est&aacute; en el filtro <b>Precio &#8594; Gratis</b>.</p>'; }
+    if(closedP.length){ h+='<p class="today-closed"><b>Cerrado hoy:</b> '+closedP.map(function(m){ return m.name; }).join(" &middot; ")+'.</p>'; }
+    h+='<div class="today-tom"><p class="today-day">Ma&ntilde;ana &middot; <b>'+DAYNAMES[tom]+'</b></p>';
+    if(sM.length){ h+='<p class="today-lbl mn">'+icon("star8")+'Gratis ma&ntilde;ana'+dayNote(tom)+'</p><div class="today-chips">'+chipList(sM)+'</div>'; }
+    else { h+='<p class="today-none">Ma&ntilde;ana, nada nuevo gratis por el d&iacute;a.</p>'; }
+    h+='</div>';
+    h+='<button class="today-more" type="button" data-today-more>Ver todo lo de hoy en la lista &#8594;</button>';
+    h+='</div></div>';
+    box.innerHTML=h;
+    box.querySelectorAll("[data-jump]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-jump")); }); });
+    var more=box.querySelector("[data-today-more]");
+    if(more) more.addEventListener("click", function(){
+      var dp=document.querySelector("section.dayplan");
+      if(dp){ dp.classList.remove("folded"); var k=dp.querySelector(".fold-head"); if(k) k.setAttribute("aria-expanded","true"); }
+      var chip=document.querySelector('#daychips button[data-day="'+today+'"]');
+      if(chip){ fDay=today; document.querySelectorAll("#daychips button").forEach(function(x){ x.setAttribute("aria-pressed", x===chip?"true":"false"); }); updateDayStatus(); }
+      if(dp) dp.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }
+  renderToday();
+  (async function(){ await loadVisited(); await loadPlan(); await loadNotes(); build(); updatePlanBar(); })();
 })();
 </script>
 <script>
