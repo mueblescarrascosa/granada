@@ -427,6 +427,10 @@
   .nearby button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:4px 0;font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer}
   .nearby button span{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
 
+  .cpgrid{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:760px){.cpgrid{grid-template-columns:1fr 1fr}}
+  .cpgrp{margin:6px 0 4px;font-family:Fraunces,serif;font-size:20px;color:var(--ink)}
+  .cpgrp small{display:block;font-family:inherit;font-size:13px;color:var(--wood);font-weight:400}
   .rtgrid{display:grid;gap:14px;grid-template-columns:1fr}
   @media(min-width:760px){.rtgrid{grid-template-columns:1fr 1fr}}
   .rtcard{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
@@ -674,7 +678,7 @@
 <section class="info" id="bares">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Bares y experiencias muy locales · lo que hace un granadino</p>
-    <p class="inote">¿Ruta de bares por barrios o la del rock? Están en <a href="#rutastem" data-goto-rt>Rutas temáticas</a>.</p>
+    <p class="inote">¿Ruta de bares por barrios o la del rock? Están en <a href="#rutastem" data-goto-rt>Rutas temáticas</a>. Para la copa de después: <a href="#copas" data-goto-cp>copas, cócteles y terrazas</a>.</p>
     <div id="barlist"></div>
     <h3 class="bartitle">Más cosas de granadino</h3>
     <div class="igrid">
@@ -728,6 +732,14 @@
     <p class="kicker"><svg><use href="#star8"/></svg>Rutas temáticas · rock, tapeo por barrios, flamenco y Lorca</p>
     <p class="inote">Rutas con hilo, al estilo de la ruta oficial GRX R&amp;R del Ayuntamiento. Cada una se abre a pie en Google Maps con sus paradas en orden. Locales comprobados en Google (oct 2026); los horarios cambian, confírmalos.</p>
     <div class="rtgrid" id="rtgrid"></div>
+  </div>
+</section>
+
+<section class="info" id="copas">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Copas, cócteles y terrazas · para después de tapear</p>
+    <p class="inote">Los mejor valorados en Google con muchas reseñas (oct 2026). Aquí no hay tapa gratis: se viene a beber o por las vistas. Horarios de Google; confírmalos.</p>
+    <div id="cplist"></div>
   </div>
 </section>
 
@@ -2044,6 +2056,8 @@
     { id:"entrebrasas", ok:true, n:"EntreBrasas", dir:"c/ Navas 27 · centro", w:"Brasa: en la barra, tapa distinta con cada caña (panceta, secreto…).", cierra:"Domingo y lunes", g:[37.17374,-3.59846] },
     { id:"potemkin", ok:true, n:"Potemkin", dir:"Plta. del Hospicio Viejo 3 · Realejo", w:"Sushi y gyozas de tapa gratis, y una terraza interior secreta.", cierra:"", s:"Ruta Soletes Repsol", g:[37.17453,-3.59457] },
     { id:"candela", ok:true, n:"Candela", dir:"c/ Santa Escolástica 9 · Realejo", w:"Bohemio, con buena música y montaditos.", cierra:"", g:[37.17437,-3.59504] },
+    { id:"vinillo", ok:true, n:"El Vinillo", dir:"c/ Pedro Antonio de Alarcón 83 (esq. c/ Sol) · Pedro Antonio", w:"Taberna de barrio con tapa a elegir con cada bebida y raciones extra a un par de euros. Abre todos los días de 12 a 24.", cierra:"", g:[37.17647,-3.60867] },
+    { id:"verea", ok:true, n:"La Verea", dir:"c/ Pedro Antonio de Alarcón 83 · Pedro Antonio", w:"Pegada a El Vinillo y de los mismos dueños: ambiente joven y tapa grande a elegir. Abre todos los días.", cierra:"", g:[37.17644,-3.60863] },
     { id:"casajulio", ok:false, n:"Casa Julio", dir:"c/ Hermosa 5 · junto a Plaza Nueva", w:"Fritura auténtica de pie; su pescado de tapa tiene fama.", cierra:"Lunes; domingo solo mediodía", g:[37.17661,-3.59667] },
     { id:"omkalsum", ok:false, n:"Om Kalsum", dir:"c/ Jardines 17 · Pedro Antonio", w:"Tapas marroquíes: falafel, cuscús, albóndigas.", cierra:"Domingo; lunes solo noche", g:[37.17409,-3.60336] },
     { id:"mascarones", ok:false, n:"Los Mascarones", dir:"c/ Pagés 20 · Albaicín alto", w:"Migas, pulpo y tapas de barrio. Encaja con un domingo andalusí.", cierra:"Miércoles; solo a mediodía (12–16)", g:[37.18390,-3.59302] },
@@ -2055,7 +2069,7 @@
     { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", s:"Carta a Granada", g:[37.17690,-3.60161] },
     { id:"altramuces", ok:false, n:"Los Altramuces", dir:"Campo del Príncipe · Realejo", w:"Terraza en la plaza y tapas generosas: calamares, berenjenas fritas, pimientos.", cierra:"Miércoles y jueves", g:[37.17313,-3.59245] },
     { id:"pajuana", ok:false, n:"La Pajuana", dir:"c/ Virgen del Rosario 10 · Realejo", w:"Tapas calientes y originales que van a más con cada ronda; guisos y hojaldres.", cierra:"El horario de Google no es fiable: confírmalo", g:[37.17270,-3.59624] },
-    { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor.", cierra:"Domingo; lunes y martes solo noche", g:[37.17655,-3.60845] },
+    { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor. Es de los mismos dueños que El Vinillo y La Verea, justo enfrente.", cierra:"Google dice domingo, pero lo viste abierto un domingo noche (11 oct); lunes y martes solo noche", g:[37.17655,-3.60845] },
     { id:"rondel", ok:false, n:"El Rondel", dir:"Av. de América 8 · Zaidín", w:"Una veintena de tapas a elegir, caseras y muy baratas.", cierra:"Domingo y lunes; noches solo de jueves a sábado", g:[37.16173,-3.60134] },
     { id:"picaeta", ok:false, n:"La Picaeta", dir:"c/ Pavía 15 · Zaidín", w:"Tapas caseras con giro, de barrio de verdad. Se llena: reserva.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15452,-3.59786] },
     { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] },
@@ -2241,9 +2255,9 @@
     { id:"tapeo_centro", t:"Navas y el centro", meta:"Mediodía o noche · ~1 km", bares:["diamantes","entrebrasas","casajulio","riviera","tocateja","barrojo","poe"],
       p:"Fritura y brasa en la calle Navas, Casa Julio junto a Plaza Nueva, La Riviera en Elvira y remate en Tocateja, el Bar Rojo o el Poë.",
       extra:"Domingo y lunes cierran varios (EntreBrasas, Tocateja, Casa Julio): mejor de martes a sábado." },
-    { id:"tapeo_ronda", t:"Pedro Antonio y Camino de Ronda", meta:"Noche · ~1,5 km · de barrio y universitario", bares:["sancho","omkalsum","rodri","misadeseis","quintillo"],
-      p:"Lejos del circuito turístico: tu visto bueno (Sancho, Rodri, Misa de Seis) mezclado con dos por probar.",
-      extra:"Domingo y lunes casi todo cerrado: de martes a sábado." },
+    { id:"tapeo_ronda", t:"Pedro Antonio y Camino de Ronda", meta:"Noche · ~1,5 km · de barrio y universitario", bares:["sancho","omkalsum","rodri","misadeseis","quintillo","verea","vinillo"],
+      p:"Lejos del circuito turístico: tu visto bueno (Sancho, Rodri, Misa de Seis) y remate en el trío de Pedro Antonio 76–83 (El Quintillo, La Verea y El Vinillo, mismos dueños).",
+      extra:"Domingo y lunes cierran Sancho, Rodri y Misa de Seis; El Vinillo y La Verea abren todos los días." },
     { id:"tapeo_zaidin", t:"Zaidín de barrio", meta:"Noche · ~1,5 km · el más local", bares:["rondel","guejareno","picaeta"],
       p:"Tres bares de barrio de verdad, baratos y con tapa caliente. Para cuando quieras ver la Granada de diario.",
       extra:"Mejor de miércoles a sábado: lunes y martes cierran casi todos. En La Picaeta, reserva." },
@@ -2294,6 +2308,44 @@
     host.querySelectorAll("[data-rtj]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-rtj")); }); });
     host.querySelectorAll("[data-rtb]").forEach(function(b){ b.addEventListener("click", function(){ var sec=document.getElementById("bares"); openSec(sec); var c=document.querySelector('[data-bar="'+b.getAttribute("data-rtb")+'"]'); if(c){ c.scrollIntoView({behavior:"smooth",block:"center"}); c.classList.add("flash"); setTimeout(function(){ c.classList.remove("flash"); },1500); } }); });
   }
+  /* ===== copas, cócteles y terrazas ===== */
+  var COPAS=[
+    { t:"Cócteles", s:"Coctelerías de autor, casi todas en el Realejo y el centro.", l:[
+      {n:"Hanalei Cocktail Bar", dir:"c/ Piedra Santa 22 · Realejo", w:"De las más valoradas de Granada: cócteles tiki y buena música. Abre todos los días desde las 20:00.", cierra:"", g:[37.17389,-3.59800]},
+      {n:"La Guaracha", dir:"c/ San Matías 14 · Realejo", w:"Coctelería tropical con nota perfecta en Google; muy viva el finde.", cierra:"Lunes y martes", g:[37.17352,-3.59680]},
+      {n:"3 Onzas", dir:"c/ Laurel de San Matías 2 · Realejo", w:"Pequeña y acogedora, sillones y cócteles equilibrados.", cierra:"Domingo y lunes", g:[37.17429,-3.59735]},
+      {n:"NOIR Craft Cocktail Bar", dir:"c/ San Jerónimo 22 · centro", w:"Te hacen el cóctel a medida según lo que te guste.", cierra:"", g:[37.17790,-3.60070]},
+      {n:"The Real McCoy", dir:"c/ Nueva del Santísimo 1 · centro", w:"Coctelería clásica de barra, de las de camarero que se lo curra. Abre a las 21:00.", cierra:"Lunes", g:[37.18139,-3.60125]},
+      {n:"Piccolo Posto", dir:"c/ Pintor López Mezquita 20 · Pedro Antonio", w:"A un paso de El Vinillo: para seguir la noche sin moverte de la zona.", cierra:"Lunes", g:[37.17612,-3.60813]},
+      {n:"Silk Road", dir:"c/ San Antón 61 · centro", w:"Chill out de aire oriental; el pornstar martini tiene fama.", cierra:"Domingo y lunes", g:[37.16984,-3.59954]} ]},
+    { t:"Terrazas y azoteas", s:"Para la puesta de sol o una copa con la Alhambra delante.", l:[
+      {n:"Huerto del Loro", dir:"Cuesta de la Churra 4 · bajo San Nicolás", w:"Carmen con terraza y vistas a la Alhambra, tranquilo y sin el gentío del mirador.", cierra:"Lunes a miércoles", g:[37.17769,-3.59347]},
+      {n:"Terraza Reina Mora", dir:"Mirador de San Cristóbal · Albaicín alto", w:"Chill out con una de las mejores vistas de la ciudad y la Alhambra; mojitos.", cierra:"Lunes a miércoles", g:[37.18332,-3.59579]},
+      {n:"BHeaven", dir:"Acera del Darro 62, ático · centro", w:"Azotea con vistas a Sierra Nevada y la Alhambra; cócteles helados. Cierra pronto (22:00 los domingos).", cierra:"", g:[37.17057,-3.59830]},
+      {n:"Terraza Mirador de San Antón", dir:"c/ San Antón 74 · centro", w:"Azotea con buen trato y vistas, para comer o para la copa.", cierra:"", g:[37.16748,-3.59892]},
+      {n:"La Azotea", dir:"c/ Recogidas 16 · centro", w:"Terraza alta sobre Recogidas que además pone tapa; vistas a la Alhambra.", cierra:"Domingo tarde", g:[37.17261,-3.60148]},
+      {n:"Terraza Monasterio", dir:"c/ Gran Capitán 1 · centro", w:"Azotea frente al monasterio de San Jerónimo con vistas a la Alhambra; abre todo el día.", cierra:"", g:[37.17883,-3.60354]},
+      {n:"Terraza Eurostars Gran Vía", dir:"Gran Vía de Colón 20 · centro", w:"Azotea de hotel, pequeña y más cara, pero con muy buena vista.", cierra:"Lunes y martes", g:[37.17786,-3.59850]} ]},
+    { t:"Pubs y cerveza", s:"Pubs de toda la vida, irlandeses y cerveza artesana.", l:[
+      {n:"Capitán Amargo", dir:"c/ Molinos 28 · Realejo", w:"Cerveza artesana con degustación de 5; la mejor valorada de la ciudad en su estilo.", cierra:"Domingo", g:[37.17276,-3.59266]},
+      {n:"Nito's Pub", dir:"c/ Dr. Martín Lagos 4 · Camino de Ronda", w:"Pub de los de antes, lleno de recuerdos; tranquilo y cerveza muy fría.", cierra:"Lunes", g:[37.17146,-3.60235]},
+      {n:"Nirvanas", dir:"c/ Martínez de la Rosa 4 · Pedro Antonio", w:"Rock y chupitos, decorado con todo lo de Nirvana. Cerca de El Vinillo.", cierra:"", g:[37.17730,-3.60719]},
+      {n:"Bar Chaplin", dir:"c/ Elvira 95 · junto a Plaza Nueva", w:"Barecito de copas con buen barman; también cerveza artesana.", cierra:"", g:[37.18093,-3.59884]},
+      {n:"Daly's – The Cobblestone", dir:"c/ Santa Escolástica 15 · Realejo", w:"Irlandés pequeño, buena Guinness y fútbol; al lado de Candela.", cierra:"", g:[37.17413,-3.59472]},
+      {n:"Hannigan & Sons", dir:"c/ Cetti Meriem 1 · junto a Elvira", w:"El irlandés grande del centro, con deportes en pantalla. Abre hasta las 4.", cierra:"", g:[37.17722,-3.59774]} ]}
+  ];
+  function buildCopas(){
+    var host=document.getElementById("cplist"); if(!host) return;
+    host.innerHTML=COPAS.map(function(gr){
+      return '<h3 class="cpgrp">'+gr.t+'<small>'+gr.s+'</small></h3><div class="cpgrid">'+gr.l.map(function(b){
+        var url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(b.n+" "+b.dir.split(" · ")[0]+" Granada");
+        return '<article class="barcard"><h4>'+escNote(b.n)+'</h4><p class="bdir">'+escNote(b.dir)+'</p><p>'+escNote(b.w)+'</p>'+
+          (b.cierra?'<p class="bcierra">Cierra: '+escNote(b.cierra.toLowerCase())+' (según Google, oct 2026)</p>':'')+
+          '<div class="fbtns"><a class="fbtn" href="'+url+'" target="_blank" rel="noopener">Mapa</a></div></article>';
+      }).join("")+'</div>';
+    }).join("");
+  }
+  document.addEventListener("click", function(e){ var a=e.target.closest("[data-goto-cp]"); if(!a) return; e.preventDefault(); var sec=document.getElementById("copas"); openSec(sec); sec.scrollIntoView({behavior:"smooth",block:"start"}); });
   /* ===== pestañas de la agenda ===== */
   function setAg(which){
     document.querySelectorAll(".agtabs [data-ag]").forEach(function(b){ b.setAttribute("aria-selected", b.getAttribute("data-ag")===which?"true":"false"); });
@@ -2500,7 +2552,7 @@
   }
   renderToday();
   netState();
-  (async function(){ await loadVisited(); await loadPlan(); await loadNotes(); await loadBares(); build(); buildEscapadas(); renderBares(); buildRutasT(); updatePlanBar(); renderFinde(); checkIncomingPlan(); updateBackupMeta(); askPersist(); loadWeather(); })();
+  (async function(){ await loadVisited(); await loadPlan(); await loadNotes(); await loadBares(); build(); buildEscapadas(); renderBares(); buildRutasT(); buildCopas(); updatePlanBar(); renderFinde(); checkIncomingPlan(); updateBackupMeta(); askPersist(); loadWeather(); })();
 })();
 </script>
 <script>

@@ -60,6 +60,8 @@ async def main():
         comprobar(bares >= 5, f"Solo hay {bares} bares en la lista")
         rutas = await pg.evaluate('document.querySelectorAll("#routes .route").length')
         comprobar(rutas >= 5, f"Solo hay {rutas} rutas")
+        copas = await pg.evaluate('document.querySelectorAll("#cplist .barcard").length')
+        comprobar(copas >= 10, f"Solo hay {copas} sitios de copas")
         nav = await pg.evaluate('document.querySelectorAll("#bnav [data-nav]").length')
         comprobar(nav == 6, "Falta la barra de navegación")
         # interacción básica: marcar, añadir al plan y filtrar
