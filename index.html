@@ -367,6 +367,7 @@
   @media(min-width:640px){.bargrid{grid-template-columns:1fr 1fr}}
   .barcard{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)}
   .barcard.nuevo{border-left-color:var(--ochre)}
+  .barcard .bsello{font-size:.78rem;font-weight:600;color:var(--ochre);margin:.1rem 0 .2rem}
   .barcard h4{margin:0 0 2px;font-family:Fraunces,serif;font-size:17px;color:var(--ink)}
   .barcard .bdir{margin:0 0 6px;font-size:13px;color:var(--ink-soft)}
   .barcard p{margin:0 0 6px;font-size:14px;color:var(--ink-soft)}
@@ -425,6 +426,20 @@
   .nearby h4{margin:8px 0 4px;font-size:14px;color:var(--indigo)}
   .nearby button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:4px 0;font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer}
   .nearby button span{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
+
+  .rtgrid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:760px){.rtgrid{grid-template-columns:1fr 1fr}}
+  .rtcard{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
+  .rtcard h3{margin:0 0 2px;font-family:Fraunces,serif;font-size:19px;color:var(--ink)}
+  .rtcard .rtmeta{margin:0 0 6px;font-family:"Space Mono",monospace;font-size:12px;color:var(--ochre)}
+  .rtcard p{margin:0 0 8px;font-size:14px;color:var(--ink-soft)}
+  .rtstops{list-style:none;counter-reset:st;margin:6px 0 10px;padding:0}
+  .rtstops li{counter-increment:st;position:relative;padding:6px 0 6px 30px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-soft)}
+  .rtstops li:first-child{border-top:none}
+  .rtstops li::before{content:counter(st);position:absolute;left:0;top:7px;width:21px;height:21px;border-radius:50%;background:var(--indigo);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .rtstops b{color:var(--ink)}
+  .rtstops button{background:none;border:none;padding:0;font:inherit;color:var(--cobalt);text-decoration:underline;cursor:pointer}
+  .rtgo{display:inline-block;background:var(--indigo);color:#fff;border-radius:8px;padding:8px 12px;font-size:14px;text-decoration:none;font-weight:600}
   footer .reset{margin-top:8px;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:"Space Mono",monospace;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;}
   footer .reset:hover{border-color:var(--wood);color:var(--wood)}
   .credits{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
@@ -659,6 +674,7 @@
 <section class="info" id="bares">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Bares y experiencias muy locales · lo que hace un granadino</p>
+    <p class="inote">¿Ruta de bares por barrios o la del rock? Están en <a href="#rutastem" data-goto-rt>Rutas temáticas</a>.</p>
     <div id="barlist"></div>
     <h3 class="bartitle">Más cosas de granadino</h3>
     <div class="igrid">
@@ -704,6 +720,14 @@
     <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
     <div class="nearby" id="nearby" hidden></div>
+  </div>
+</section>
+
+<section class="info" id="rutastem">
+  <div class="wrap">
+    <p class="kicker"><svg><use href="#star8"/></svg>Rutas temáticas · rock, tapeo por barrios, flamenco y Lorca</p>
+    <p class="inote">Rutas con hilo, al estilo de la ruta oficial GRX R&amp;R del Ayuntamiento. Cada una se abre a pie en Google Maps con sus paradas en orden. Locales comprobados en Google (oct 2026); los horarios cambian, confírmalos.</p>
+    <div class="rtgrid" id="rtgrid"></div>
   </div>
 </section>
 
@@ -2015,26 +2039,33 @@
   var BARES=[
     { id:"misadeseis", ok:true, n:"Misa de Seis", dir:"c/ Obispo Hurtado 24 · Camino de Ronda", w:"Pequeñito, con terraza. Mollejas, torreznos y jamón asado.", cierra:"Domingo y lunes", g:[37.17371,-3.60757] },
     { id:"sancho", ok:true, n:"Sancho Original", dir:"c/ Tablas 16 · centro", w:"Desde 1981. En la barra o mesas altas, tapa con cada bebida; en mesa es a la carta.", cierra:"", g:[37.17590,-3.60362] },
-    { id:"diamantes", ok:true, n:"Los Diamantes", dir:"c/ Navas 28 · centro", w:"La catedral de la fritura: pescaíto de tapa, de pie y a reventar.", cierra:"", g:[37.17374,-3.59836] },
+    { id:"diamantes", ok:true, n:"Los Diamantes", dir:"c/ Navas 28 · centro", w:"La catedral de la fritura: pescaíto de tapa, de pie y a reventar.", cierra:"", s:"Ruta Soletes Repsol · Carta a Granada", g:[37.17374,-3.59836] },
     { id:"rodri", ok:true, n:"El Rincón de Rodri", dir:"c/ Músico Vicente Zarzo 3 · Pedro Antonio", w:"El rey del pescaíto de la zona; tapas casi de comida.", cierra:"Domingo y lunes", g:[37.17245,-3.60540] },
     { id:"entrebrasas", ok:true, n:"EntreBrasas", dir:"c/ Navas 27 · centro", w:"Brasa: en la barra, tapa distinta con cada caña (panceta, secreto…).", cierra:"Domingo y lunes", g:[37.17374,-3.59846] },
-    { id:"potemkin", ok:true, n:"Potemkin", dir:"Plta. del Hospicio Viejo 3 · Realejo", w:"Sushi y gyozas de tapa gratis, y una terraza interior secreta.", cierra:"", g:[37.17453,-3.59457] },
+    { id:"potemkin", ok:true, n:"Potemkin", dir:"Plta. del Hospicio Viejo 3 · Realejo", w:"Sushi y gyozas de tapa gratis, y una terraza interior secreta.", cierra:"", s:"Ruta Soletes Repsol", g:[37.17453,-3.59457] },
     { id:"candela", ok:true, n:"Candela", dir:"c/ Santa Escolástica 9 · Realejo", w:"Bohemio, con buena música y montaditos.", cierra:"", g:[37.17437,-3.59504] },
     { id:"casajulio", ok:false, n:"Casa Julio", dir:"c/ Hermosa 5 · junto a Plaza Nueva", w:"Fritura auténtica de pie; su pescado de tapa tiene fama.", cierra:"Lunes; domingo solo mediodía", g:[37.17661,-3.59667] },
     { id:"omkalsum", ok:false, n:"Om Kalsum", dir:"c/ Jardines 17 · Pedro Antonio", w:"Tapas marroquíes: falafel, cuscús, albóndigas.", cierra:"Domingo; lunes solo noche", g:[37.17409,-3.60336] },
     { id:"mascarones", ok:false, n:"Los Mascarones", dir:"c/ Pagés 20 · Albaicín alto", w:"Migas, pulpo y tapas de barrio. Encaja con un domingo andalusí.", cierra:"Miércoles; solo a mediodía (12–16)", g:[37.18390,-3.59302] },
     { id:"laflota", ok:false, n:"Freiduría La Flota", dir:"c/ Pérez Galdós 9 · zona Ronda", w:"Pescaíto de los que eligen los granadinos. Reserva en finde.", cierra:"Lunes; domingo solo mediodía", g:[37.18157,-3.61465] },
     { id:"diamantesvr", ok:false, n:"Los Diamantes (Rosario)", dir:"c/ Virgen del Rosario 12 · Realejo", w:"La otra casa de Los Diamantes, con menos agobio que Navas.", cierra:"", g:[37.17266,-3.59615] },
-    { id:"avila", ok:false, n:"Bar Ávila", dir:"c/ Verónica de la Virgen 16 · Realejo", w:"Un clásico de tapa caliente y generosa: cazón, carne frita, guisos, jamón asado. Antes de abrir (20:00) ya hay cola.", cierra:"Domingo", g:[37.17001,-3.59907] },
+    { id:"avila", ok:false, n:"Bar Ávila", dir:"c/ Verónica de la Virgen 16 · Realejo", w:"Un clásico de tapa caliente y generosa: cazón, carne frita, guisos, jamón asado. Antes de abrir (20:00) ya hay cola.", cierra:"Domingo", s:"Ruta Soletes Repsol", g:[37.17001,-3.59907] },
     { id:"riviera", ok:false, n:"La Riviera", dir:"c/ Cetti Meriem 7 · junto a Elvira", w:"Eliges la tapa de una carta larga: pinchitos, albóndigas, alitas. Lleno a todas horas.", cierra:"", g:[37.17734,-3.59750] },
     { id:"poe", ok:false, n:"Bar Poë", dir:"c/ Verónica de la Magdalena 40 · centro", w:"Eliges tapa caliente con giro internacional (alitas, brochetas, cosas picantes). Solo efectivo y abre hasta tarde.", cierra:"", g:[37.17439,-3.60344] },
-    { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", g:[37.17690,-3.60161] },
+    { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", s:"Carta a Granada", g:[37.17690,-3.60161] },
     { id:"altramuces", ok:false, n:"Los Altramuces", dir:"Campo del Príncipe · Realejo", w:"Terraza en la plaza y tapas generosas: calamares, berenjenas fritas, pimientos.", cierra:"Miércoles y jueves", g:[37.17313,-3.59245] },
     { id:"pajuana", ok:false, n:"La Pajuana", dir:"c/ Virgen del Rosario 10 · Realejo", w:"Tapas calientes y originales que van a más con cada ronda; guisos y hojaldres.", cierra:"El horario de Google no es fiable: confírmalo", g:[37.17270,-3.59624] },
     { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor.", cierra:"Domingo; lunes y martes solo noche", g:[37.17655,-3.60845] },
     { id:"rondel", ok:false, n:"El Rondel", dir:"Av. de América 8 · Zaidín", w:"Una veintena de tapas a elegir, caseras y muy baratas.", cierra:"Domingo y lunes; noches solo de jueves a sábado", g:[37.16173,-3.60134] },
     { id:"picaeta", ok:false, n:"La Picaeta", dir:"c/ Pavía 15 · Zaidín", w:"Tapas caseras con giro, de barrio de verdad. Se llena: reserva.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15452,-3.59786] },
-    { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] }
+    { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] },
+    { id:"braserito", ok:false, n:"Patio Braserito", dir:"c/ Virgen del Rosario 7 · Realejo", w:"Tapa con cada bebida: alcachofas, bacalao en tomate, huevos rotos, secreto. Comedor al fondo.", cierra:"Martes", s:"Ruta Soletes Repsol", g:[37.17296,-3.59655] },
+    { id:"provincias", ok:false, n:"Bar Provincias", dir:"c/ Provincias 4 · centro", w:"Lleno de granadinos; tapa de marisco y pescado (gambas, pulpo, chopitos, a veces paella).", cierra:"Domingo y lunes", s:"Ruta Soletes Repsol", g:[37.17569,-3.60026] },
+    { id:"saintgermain", ok:false, n:"Saint Germain", dir:"c/ Postigo Velutti 4 · centro", w:"Bar de vinos con carteles retro; tapa caliente con la copa (pulpo, costillas, chorizo a la miel).", cierra:"Domingo y lunes", s:"Ruta Soletes Repsol", g:[37.17840,-3.59973] },
+    { id:"esquinita", ok:false, n:"La Esquinita de Javi", dir:"Pl. Mariana Pineda 1 · centro", w:"Marisquería con tapa: pescaíto frito y mejillones. Se llena y el servicio va lento.", cierra:"Lunes; domingo solo mediodía", s:"Ruta Soletes Repsol", g:[37.17248,-3.59701] },
+    { id:"aliatar", ok:false, n:"Aliatar Los Caracoles", dir:"Pl. Aliatar 4 · Albaicín", w:"Caracoles picantes de tapa, berenjenas con miel y croquetas en una placeta muy viva.", cierra:"Lunes y martes solo mediodía; domingo solo mediodía", s:"Carta a Granada", g:[37.18263,-3.59133] },
+    { id:"mitico", ok:false, n:"Mítico Bar", dir:"Pl. de la Encarnación 6 · centro", w:"Croquetas, berenjena rellena y fritos; terraza tranquila. Abre todos los días.", cierra:"", s:"Solete Repsol · Carta a Granada", g:[37.17839,-3.60126] },
+    { id:"oliver", ok:false, n:"Oliver", dir:"Pl. Pescadería 12 · centro", w:"Clásico de pescado: tapa en barra y chopitos a la plancha; si comes, es a la carta.", cierra:"Domingo", s:"Solete Repsol · Carta a Granada", g:[37.17596,-3.60048] }
   ];
   var BARES_PROBAR=BARES.filter(function(b){ return !b.ok; }).map(function(b){ return { id:b.id, n:b.n, d:b.dir, w:b.w+(b.cierra?" (Cierra: "+b.cierra.toLowerCase()+".)":"") }; });
   var BARES_OK=BARES.filter(function(b){ return b.ok; }).map(function(b){ return { id:b.id, n:b.n, d:b.dir, w:b.w+(b.cierra?" (Cierra: "+b.cierra.toLowerCase()+".)":"") }; });
@@ -2043,7 +2074,7 @@
     var host=document.getElementById("barlist"); if(!host) return;
     function card(b,nuevo){
       var pr=baresProbados[b.id];
-      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p><p>'+b.w+'</p>'+
+      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p>'+(b.s?'<p class="bsello">'+b.s+'</p>':'')+'<p>'+b.w+'</p>'+
         (b.cierra?'<p class="bcierra">Cierra: '+b.cierra.toLowerCase()+' (según Google, oct 2026)</p>':'')+
         (pr&&!b.ok?'<p class="bcierra" style="color:var(--green)">Probado el '+pr.split("-").reverse().join("/")+'</p>':'')+
         '<div class="fbtns"><a class="fbtn" href="'+barMapUrl(b)+'" target="_blank" rel="noopener">Mapa</a>'+
@@ -2053,6 +2084,7 @@
     var ok=BARES.filter(function(b){ return b.ok || baresProbados[b.id]; }), por=BARES.filter(function(b){ return !b.ok && !baresProbados[b.id]; });
     host.innerHTML='<h3 class="bartitle">Con tu visto bueno</h3><div class="bargrid">'+ok.map(function(b){ return card(b,false); }).join("")+'</div>'+
       (por.length?'<h3 class="bartitle">Por probar (según reseñas · tapa caliente)</h3><div class="bargrid">'+por.map(function(b){ return card(b,true); }).join("")+'</div>':'');
+    if(typeof buildRutasT==="function" && document.getElementById("rtgrid") && document.getElementById("rtgrid").innerHTML) buildRutasT();
     host.querySelectorAll("[data-bar-mark]").forEach(function(x){ x.addEventListener("click", function(){ baresProbados[x.getAttribute("data-bar-mark")]=isoDay(new Date()); saveBares(); renderBares(); renderFinde(); toast("Apuntado como probado."); }); });
     host.querySelectorAll("[data-bar-undo]").forEach(function(x){ x.addEventListener("click", function(){ delete baresProbados[x.getAttribute("data-bar-undo")]; saveBares(); renderBares(); renderFinde(); }); });
   }
@@ -2189,6 +2221,78 @@
     var eg=box.querySelector("[data-esc-go]"); if(eg) eg.addEventListener("click", function(){ jumpEsc(eg.getAttribute("data-esc-go")); });
   }
 
+
+  /* ===== rutas temáticas ===== */
+  var RUTAS_T=[
+    { id:"rock", t:"Granada Ciudad del Rock (GRX R&R)", meta:"Tarde-noche · a pie · centro, Realejo y Elvira",
+      p:"Granada es la ciudad de Los Planetas, Lagartija Nick, 091, Lori Meyers o Niños Mutantes, y el Ayuntamiento tiene una ruta oficial con los locales que han hecho su escena (llevan una placa en la fachada). Esta es una selección de los que siguen abiertos, en orden para hacerla de tarde a madrugada.",
+      stops:[ {n:"Discos Marcapasos", g:[37.17686,-3.60179], w:"c/ Duquesa 6. La tienda de discos de referencia; empieza aquí antes de las 20:30 (cierra domingo y sábado tarde)."},
+              {n:"El Bar de Eric", g:[37.17789,-3.60173], w:"c/ Escuelas 8. El bar de Eric Jiménez, batería de Los Planetas; tapa con la bebida. Abre de martes a sábado por la noche (vie y sáb también mediodía)."},
+              {n:"Loop Bar & Records", g:[37.17306,-3.59691], w:"c/ San Matías 8. Vinilos de grupos andaluces y tapas creativas calientes; de lo mejor de la ruta."},
+              {bar:"candela", w:"c/ Santa Escolástica 9. También está en la ruta oficial; el de tu visto bueno."},
+              {n:"El Enano Rojo", g:[37.18056,-3.59915], w:"c/ Elvira 91. Sótano de rock y cerveza, de los de toda la vida."},
+              {n:"Pata Palo", g:[37.18162,-3.59996], w:"c/ de los Naranjos 2, junto a Elvira. Clásico del underground; abre a las 23:00 (cierra domingo y lunes)."},
+              {n:"Planta Baja", g:[37.17629,-3.60427], w:"c/ Horno de Abad 11. La sala de conciertos histórica; mira su programación (abre jueves a sábado por la noche)."} ],
+      extra:"Fuera del centro: El Perro Andaluz (Pedro Antonio 61, punk y metal, barato) y la sala Industrial Copera (La Zubia) para conciertos grandes.", mode:"walking" },
+    { id:"tapeo_realejo", t:"Tapeo por el Realejo", meta:"Noche · ~1,5 km a pie", bares:["candela","potemkin","altramuces","pajuana","diamantesvr","avila"],
+      p:"El barrio con más ambiente de tapeo: de las placetas altas al Campo del Príncipe y bajando hacia Virgen del Rosario. Tapa caliente en casi todos.",
+      extra:"Ojo: Bar Ávila cierra el domingo y Los Altramuces miércoles y jueves." },
+    { id:"tapeo_centro", t:"Navas y el centro", meta:"Mediodía o noche · ~1 km", bares:["diamantes","entrebrasas","casajulio","riviera","tocateja","poe"],
+      p:"Fritura y brasa en la calle Navas, Casa Julio junto a Plaza Nueva, La Riviera en Elvira y remate en Tocateja o el Poë.",
+      extra:"Domingo y lunes cierran varios (EntreBrasas, Tocateja, Casa Julio): mejor de martes a sábado." },
+    { id:"tapeo_ronda", t:"Pedro Antonio y Camino de Ronda", meta:"Noche · ~1,5 km · de barrio y universitario", bares:["sancho","omkalsum","rodri","misadeseis","quintillo"],
+      p:"Lejos del circuito turístico: tu visto bueno (Sancho, Rodri, Misa de Seis) mezclado con dos por probar.",
+      extra:"Domingo y lunes casi todo cerrado: de martes a sábado." },
+    { id:"tapeo_zaidin", t:"Zaidín de barrio", meta:"Noche · ~1,5 km · el más local", bares:["rondel","guejareno","picaeta"],
+      p:"Tres bares de barrio de verdad, baratos y con tapa caliente. Para cuando quieras ver la Granada de diario.",
+      extra:"Mejor de miércoles a sábado: lunes y martes cierran casi todos. En La Picaeta, reserva." },
+    { id:"soletes", t:"Ruta Soletes de la Guía Repsol", meta:"Noche · ~1,5 km a pie · centro y Realejo", bares:["saintgermain","provincias","diamantes","esquinita","braserito","avila","potemkin"],
+      p:"Los bares que la Guía Repsol eligió en su ruta de «Soletes» por Granada (nov. 2025), ordenados para ir andando de la Catedral al Realejo. Su lista incluye también El Bar de Eric (está en la ruta del rock).",
+      extra:"Martes cierra el Braserito; domingo, Provincias, Saint Germain y Ávila; lunes, Provincias, Saint Germain y La Esquinita. Mejor de miércoles a sábado." },
+    { id:"carta", t:"Carta a Granada (Cervezas Alhambra)", meta:"Mediodía · Albaicín y centro · ~2 km",
+      bares:["aliatar","mitico","oliver","tocateja","diamantes"],
+      p:"Cervezas Alhambra tiene un mapa de bares «de toda la vida» de Granada. Estos son los de tapa caliente; empieza arriba en el Albaicín con los caracoles y baja al centro.",
+      extra:"De su lista dejo fuera los de tapa fría o de copas y los que ya tenías descartados. Aliatar solo abre a mediodía de domingo a martes." },
+    { id:"flamenco", t:"Ruta flamenca", meta:"Tarde-noche · Albaicín y Sacromonte",
+      p:"Del flamenco de peña, con aficionados, a las zambras de las cuevas del Sacromonte. Para cualquier espectáculo, reserva antes.",
+      stops:[ {n:"Peña La Platería", g:[37.18028,-3.59028], w:"Placeta de Toqueros 7. Una de las peñas flamencas más antiguas; cante los jueves (reserva por correo o teléfono, se paga en efectivo) y terraza con vistas a la Alhambra."},
+              {n:"Jardines de Zoraya", g:[37.18242,-3.59165], w:"c/ Panaderos 32. Tablao con cena en un jardín; muy bien valorado. Hay que llegar antes para cenar."},
+              {id:"cuevas", w:"Para entender el barrio y su flamenco antes de la zambra (cierra a las 18:00 en invierno)."},
+              {n:"Venta El Gallo", g:[37.18195,-3.58395], w:"Barranco de los Negros 5. Zambra en cueva, con opción de cena."},
+              {n:"Cueva de la Rocío", g:[37.18155,-3.58529], w:"Camino del Sacromonte 70. La cueva clásica, más turística pero con mucho sabor."} ],
+      extra:"La Platería es la experiencia más auténtica; las cuevas, la más vistosa.", mode:"walking" },
+    { id:"lorca", t:"Tras los pasos de Lorca", meta:"Día completo · en coche",
+      p:"De la casa donde nació a la casa de verano donde escribió buena parte de su obra, pasando por el café de sus tertulias y el lugar donde fue asesinado en 1936.",
+      stops:[ {n:"Casa Natal (Fuente Vaqueros)", g:[37.22062,-3.78470], w:"A ~20 min en coche. Visita guiada por pases; según Google abre de martes a sábado 10–15 y domingo 10–13."},
+              {id:"lorca", w:"La Huerta de San Vicente, su casa de verano (martes gratis)."},
+              {id:"centrolorca", w:"El archivo de Lorca, en la Romanilla, junto a la Catedral."},
+              {n:"Chikito (antiguo Café Alameda)", g:[37.17202,-3.59772], w:"Plaza del Campillo 9. Aquí se reunía la tertulia de «El Rinconcillo» con Lorca y Falla. Hoy restaurante clásico; cierra los miércoles."},
+              {n:"Parque Federico García Lorca (Alfacar)", g:[37.24417,-3.55330], w:"Memorial junto al barranco donde lo asesinaron. Lugar de recogimiento."} ],
+      extra:"Combínala con la Casa de los Tiros (manuscritos de Lorca) si te sobra tiempo.", mode:"driving" }
+  ];
+  function rtStops(r){
+    if(r.bares) return r.bares.map(function(id){ return {bar:id}; });
+    return r.stops;
+  }
+  function stopInfo(s){
+    if(s.bar){ var b=BARES.filter(function(x){ return x.id===s.bar; })[0]; if(!b) return null; return {n:b.n, g:b.g, w:s.w||(b.dir+'. '+b.w+(b.cierra?' Cierra: '+b.cierra.toLowerCase()+'.':'')), bar:b.id, ok:b.ok||!!baresProbados[b.id]}; }
+    if(s.id){ var m=IDS[s.id]; if(!m||!GEO[s.id]) return null; return {n:m.name, g:GEO[s.id], w:s.w, site:s.id}; }
+    return s;
+  }
+  function buildRutasT(){
+    var host=document.getElementById("rtgrid"); if(!host) return;
+    host.innerHTML=RUTAS_T.map(function(r){
+      var st=rtStops(r).map(stopInfo).filter(Boolean);
+      var p=function(x){ return x.g[0]+","+x.g[1]; };
+      var url="https://www.google.com/maps/dir/?api=1&travelmode="+(r.mode||"walking")+"&origin="+p(st[0])+"&destination="+p(st[st.length-1])+(st.length>2?"&waypoints="+st.slice(1,-1).slice(0,9).map(p).join("%7C"):"");
+      return '<article class="rtcard"><h3>'+r.t+'</h3><p class="rtmeta">'+r.meta+'</p><p>'+r.p+'</p><ol class="rtstops">'+
+        st.map(function(x){ var name=x.site?'<button type="button" data-rtj="'+x.site+'">'+escNote(x.n)+'</button>':(x.bar?'<button type="button" data-rtb="'+x.bar+'">'+escNote(x.n)+'</button>':'<b>'+escNote(x.n)+'</b>');
+          return '<li>'+name+(x.bar&&x.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+escNote(x.w)+'</li>'; }).join("")+'</ol>'+
+        (r.extra?'<p>'+r.extra+'</p>':'')+'<a class="rtgo" href="'+url+'" target="_blank" rel="noopener">Abrir la ruta en Google Maps</a></article>';
+    }).join("");
+    host.querySelectorAll("[data-rtj]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-rtj")); }); });
+    host.querySelectorAll("[data-rtb]").forEach(function(b){ b.addEventListener("click", function(){ var sec=document.getElementById("bares"); openSec(sec); var c=document.querySelector('[data-bar="'+b.getAttribute("data-rtb")+'"]'); if(c){ c.scrollIntoView({behavior:"smooth",block:"center"}); c.classList.add("flash"); setTimeout(function(){ c.classList.remove("flash"); },1500); } }); });
+  }
   /* ===== pestañas de la agenda ===== */
   function setAg(which){
     document.querySelectorAll(".agtabs [data-ag]").forEach(function(b){ b.setAttribute("aria-selected", b.getAttribute("data-ag")===which?"true":"false"); });
@@ -2221,6 +2325,7 @@
       document.querySelectorAll("#bnav [data-nav]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-nav")===cur); }); }
     window.addEventListener("scroll", function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } }, {passive:true}); upd();
   })();
+  document.addEventListener("click", function(e){ var a=e.target.closest("[data-goto-rt]"); if(!a) return; e.preventDefault(); var sec=document.getElementById("rutastem"); openSec(sec); sec.scrollIntoView({behavior:"smooth",block:"start"}); });
   function updateNavPlan(){ var c=document.getElementById("navPlanCount"); if(!c) return; c.hidden=!plan.size; c.textContent=plan.size; }
 
   /* ===== ruta del plan en Google Maps ===== */
@@ -2394,7 +2499,7 @@
   }
   renderToday();
   netState();
-  (async function(){ await loadVisited(); await loadPlan(); await loadNotes(); await loadBares(); build(); buildEscapadas(); renderBares(); updatePlanBar(); renderFinde(); checkIncomingPlan(); updateBackupMeta(); askPersist(); loadWeather(); })();
+  (async function(){ await loadVisited(); await loadPlan(); await loadNotes(); await loadBares(); build(); buildEscapadas(); renderBares(); buildRutasT(); updatePlanBar(); renderFinde(); checkIncomingPlan(); updateBackupMeta(); askPersist(); loadWeather(); })();
 })();
 </script>
 <script>
