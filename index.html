@@ -348,6 +348,15 @@
   .agpane[hidden]{display:none}
   /* navegación inferior */
   :root{--navh:58px}
+  .view[hidden]{display:none}
+  .vhead{background:var(--indigo);color:#F3EFE4;padding:20px 0 16px}
+  .vhead small{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E7C77C}
+  .vhead h2{margin:2px 0 0;font-family:Fraunces,serif;font-size:28px;font-weight:600;line-height:1.1}
+  .cmtabs{margin-top:14px}
+  .view[data-view="comer"] section.info,.view[data-view="escapadas"] section.info{padding-top:14px}
+  .planintro{padding:16px 0 0}
+  .planintro p{margin:0 0 10px;color:var(--ink-soft);font-size:15px;line-height:1.5}
+  .view[data-view="plan"] footer{margin-top:10px}
   .bnav{position:fixed;left:0;right:0;bottom:0;z-index:45;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
   .bnav-in{max-width:1000px;margin:0 auto;display:flex}
   .bnav button{flex:1;border:none;background:transparent;padding:7px 2px 6px;font-family:inherit;font-size:11px;color:var(--ink-soft);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
@@ -469,7 +478,7 @@
   <div class="wrap">
     <p class="eyebrow">Guía viva · finde a finde</p>
     <h1>Granada<br><em>monumental</em></h1>
-    <p class="lede">La Alhambra al completo y todo lo demás: casas nazaríes, cármenes, catacumbas, miradores y barroco. Cada ficha lleva web oficial, cómo sacar la entrada, mejor época, precio y horario. Arriba, rutas ya montadas por franjas. Busca, filtra y marca lo visitado — se guarda solo.</p>
+    <p class="lede">Monumentos, bares, copas, rutas y escapadas, con precios, horarios y avisos al día. Marca lo que visitas y monta tu plan: se guarda en tu móvil.</p>
   </div>
   <div class="band" aria-hidden="true"></div>
 </header>
@@ -514,7 +523,7 @@
           <p class="pll"><b>Igual en las cuatro modalidades:</b> Catedral, Capilla Real, Cartuja, San Jerónimo, Abadía del Sacromonte, Parque de las Ciencias, Casa de Zafra, Cuarto Real, Casa de los Tiros, Museo de Bellas Artes, Museo Arqueológico, 9 viajes de bus urbano y 1 en tren turístico. Todo eso lo tienes con cualquiera de ellas.</p>
           <p class="pll"><b>Lo único que cambia es la Alhambra (y los andalusíes):</b> <b>72 h</b> (4 días) — Alhambra completa de día (Nazaríes + Alcazaba + Generalife) <b>y</b> los 5 andalusíes (Corral, Bañuelo, Casa Horno de Oro, Maristán, Dar al-Horra). <b>48 h</b> (3 días) — Alhambra completa de día, pero <b>sin</b> los andalusíes. <b>24 h</b> (2 días) — Alhambra <b>solo la nocturna</b> a los Nazaríes (sin Alcazaba ni Generalife). <b>Jardines</b> (2 días) — Alcazaba y Generalife, <b>sin</b> Nazaríes.</p>
           <p class="pll"><b>Cómo comprar:</b> online en <a href="https://granadatur.clorian.com/" target="_blank" rel="noopener">granadatur.clorian.com</a> (o tel. 858 880 990) hasta 3 meses antes; eliges <b>día y hora de la Alhambra</b> al pagar (no se cambia). La llevas impresa o en el móvil; los billetes de bus se recogen en las máquinas de las paradas.</p>
-          <p class="pnote">Para ti, que vienes mucho y tiras de lo gratis, solo compensa el día del circuito completo (Alhambra + catedral + monasterios + buses).</p>
+          <p class="pnote">Si vienes a menudo y tiras de lo gratis, solo compensa el día del circuito completo (Alhambra + catedral + monasterios + buses).</p>
         </details>
       </article>
       <article class="pass">
@@ -536,7 +545,7 @@
           <summary>Qué incluye y opciones <span class="arw">▾</span></summary>
           <p class="pll"><b>Incluye:</b> Catedral, Capilla Real, Monasterio de la Cartuja, Monasterio de San Jerónimo, Abadía del Sacromonte e Iglesia de San Nicolás + Torre Silentia. <b>Caducidad: 1 año</b> desde la compra, visitándolos a tu ritmo.</p>
           <p class="pll"><b>Opciones:</b> entradas sueltas, el <b>Ticket Combinado</b> (5 monumentos con descuento) o combos como “Catedral + Capilla con guía”. También visitas guiadas temáticas (Sefardí, Ruta del Sacromonte, Albaicín…). Durante la expo <i>Kerygma</i> el combinado sube de precio.</p>
-          <p class="pnote">Tu mejor opción para el bloque barroco/cristiano — y como dura un año, lo compras y lo vas gastando finde a finde.</p>
+          <p class="pnote">La mejor opción para el bloque barroco/cristiano — y como dura un año, lo compras y lo vas gastando finde a finde.</p>
         </details>
       </article>
       <article class="pass">
@@ -553,7 +562,7 @@
   </div>
 </section>
 
-<section class="info">
+<section class="info" id="s_bono">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>¿Qué bono te compensa? (y por qué)</p>
     <div class="igrid">
@@ -570,21 +579,21 @@
         <p>El <b>bono Granada Cristiana</b> ahorra hasta un 33% y <b>vale 1 año</b>, así que puedes repartir las visitas en varios días o findes. El acceso gratis es solo para <b>empadronados en Granada</b> (y en martes), así que para el resto de visitantes el bono es la vía.</p>
       </article>
       <article class="ibox">
-        <h3>Vienes muchos findes (tu caso)</h3>
-        <p><b>Normalmente, ningún bono.</b> Exprime los días gratis (domingo Albaicín, martes Lorca) y paga suelta la Alhambra cuando la hagas. Los cristianos no tienen gratis para ti (solo empadronados en Granada, en martes). Los bonos son para turistas que concentran muchas visitas en pocos días.</p>
+        <h3>Si vienes muchos findes</h3>
+        <p><b>Normalmente, ningún bono.</b> Exprime los días gratis (domingo Albaicín, martes Lorca) y paga suelta la Alhambra cuando la hagas. Los cristianos solo son gratis para empadronados en Granada (en martes). Los bonos son para turistas que concentran muchas visitas en pocos días.</p>
       </article>
     </div>
     <p class="caveat">Regla rápida: un bono compensa si vas a ver <b>6–7 sitios de pago en pocos días</b> y usas bastante el bus. Si no, sale mejor suelto + aprovechar los días gratis.</p>
   </div>
 </section>
 
-<section class="info">
+<section class="info" id="s_finde">
   <div class="wrap">
-    <p class="kicker"><svg><use href="#star8"/></svg>Para ti · findes de viernes tarde a domingo noche</p>
+    <p class="kicker"><svg><use href="#star8"/></svg>Si vienes de finde · de viernes tarde a domingo noche</p>
     <div class="igrid">
       <article class="ibox">
         <h3>Bonos: solo Granada Cristiana</h3>
-        <p><b>Granada Card, Dobla de Oro y Bono andalusí: no.</b> Los andalusíes ya son gratis el domingo, así que sale mejor pagar la Alhambra suelta. <b>Sí te compensa Granada Cristiana:</b> como su gratis es solo para empadronados en Granada (tú eres de Jaén, no aplica), y el bono <b>vale 1 año</b> (hasta 33% de ahorro), puedes comprarlo e ir gastándolo finde a finde en Catedral, Capilla Real, Cartuja, San Jerónimo y Sacromonte.</p>
+        <p><b>Granada Card, Dobla de Oro y Bono andalusí: no.</b> Los andalusíes ya son gratis el domingo, así que sale mejor pagar la Alhambra suelta. <b>Sí te compensa Granada Cristiana:</b> como su gratis es solo para empadronados en Granada (si no vives en Granada, no te sirve), y el bono <b>vale 1 año</b> (hasta 33% de ahorro), puedes comprarlo e ir gastándolo finde a finde en Catedral, Capilla Real, Cartuja, San Jerónimo y Sacromonte.</p>
       </article>
       <article class="ibox">
         <h3>El domingo, al Albaicín (gratis)</h3>
@@ -602,7 +611,7 @@
   </div>
 </section>
 
-<section class="info">
+<section class="info" id="s_alh">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Reservar la Alhambra · lo que hay que saber</p>
     <div class="igrid">
@@ -625,7 +634,7 @@
   </div>
 </section>
 
-<section class="info">
+<section class="info" id="s_mover">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Cómo moverte · microbuses y a pie</p>
     <div class="igrid">
@@ -651,7 +660,7 @@
   </div>
 </section>
 
-<section class="info">
+<section class="info" id="s_otras">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Otras experiencias que merecen la pena</p>
     <div class="igrid">
@@ -746,7 +755,7 @@
 <section class="info escapadas">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Escapadas fuera de Granada · Alpujarra, Sierra Nevada y alrededores</p>
-    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer salen de reseñas, salvo los marcados con <b>tu visto bueno</b>. En los pueblos, reserva en finde.</p>
+    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer salen de reseñas, salvo los marcados como <b>★ recomendado</b>, probados en persona. En los pueblos, reserva en finde.</p>
     <div class="igrid" id="escapgrid"></div>
   </div>
 </section>
@@ -857,7 +866,7 @@
       <p class="dt-meta" id="bkMeta"></p>
       <button class="reset" id="reset" type="button">Reiniciar lo marcado</button>
     </div>
-    <p class="credits">Guía personal de <b>Granada monumental</b>, hecha por Alfonso Carrascosa Martínez con la ayuda de Claude (Anthropic). Datos de fuentes oficiales (Patronato de la Alhambra, Ayuntamiento de Granada y las webs de cada sitio), revisados en 2026 — confírmalos el día que vayas. Recomendaciones de bares, propias y de reseñas. <b>En el móvil: menú del navegador → «Añadir a pantalla de inicio»</b> para instalarla como app.</p>
+    <p class="credits">Guía de <b>Granada monumental</b>, hecha por Alfonso Carrascosa Martínez con la ayuda de Claude (Anthropic). Datos de fuentes oficiales (Patronato de la Alhambra, Ayuntamiento de Granada y las webs de cada sitio), revisados en 2026 — confírmalos el día que vayas. Recomendaciones de bares, propias y de reseñas. <b>En el móvil: menú del navegador → «Añadir a pantalla de inicio»</b> para instalarla como app.</p>
   </div>
 </footer>
 
@@ -866,7 +875,7 @@
     <button type="button" data-nav="agenda"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 8h14v10H5z"/></svg>Hoy</button>
     <button type="button" data-nav="sitios"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 2 7v2h20V7zM4 11v7h3v-7zm6.5 0v7h3v-7zM17 11v7h3v-7zM2 20v2h20v-2z"/></svg>Sitios</button>
     <button type="button" data-nav="mapa"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5"/></svg>Mapa</button>
-    <button type="button" data-nav="bares"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3h16l-7 9v7h4v2H7v-2h4v-7z"/></svg>Bares</button>
+    <button type="button" data-nav="bares"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3h16l-7 9v7h4v2H7v-2h4v-7z"/></svg>Comer</button>
     <button type="button" data-nav="escapadas"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m14 6-4.2 5.6 3.2 4.3-1.6 1.2L7 11l-6 8h22z"/></svg>Escapadas</button>
     <button type="button" data-nav="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Plan<span class="bcount" id="navPlanCount" hidden></span></button>
   </div>
@@ -1331,7 +1340,7 @@
   var ZONES = {
     Z1:{ t:"La Alhambra y el Generalife", s:"Los tipos de entrada, las nocturnas y lo que es gratis dentro (Carlos V, museos, Torres Bermejas, Silla del Moro)." },
     Z2:{ t:"Colina de la Alhambra · cármenes y jardines", s:"Jardines y vistas, todos en la misma ladera; se encadenan bien." },
-    Z3:{ t:"Albaicín · Carrera del Darro", s:"Casas nazaríes y andalusíes. Casi todo gratis los domingos — tu ruta de finde." },
+    Z3:{ t:"Albaicín · Carrera del Darro", s:"Casas nazaríes y andalusíes. Casi todo gratis los domingos — la ruta de domingo." },
     Z4:{ t:"Sacromonte", s:"La abadía, las catacumbas y el mundo de las cuevas, en su propio valle." },
     Z5:{ t:"Realejo · Centro", s:"A un paseo de Puerta Real y Plaza Nueva; se hilan en un rato." },
     Z6:{ t:"Renacimiento y barroco", s:"Lo que dejó la Granada cristiana: piedra, oro y madera de primera." },
@@ -1982,7 +1991,7 @@
   var ESCAPADAS=[
     { id:"sierranevada", t:"Sierra Nevada (Pradollano)", donde:"Estación de esquí y alta montaña", coche:"~45 min (A-395)", wx:1, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
       desc:"Con nieve, esquí; sin nieve, vistas y paseo por la zona alta. La estación suele abrir a finales de noviembre (la temporada 2025-26 abrió el 29 nov).",
-      comer:[ {n:"Tía María", d:"Plaza de Andalucía, Pradollano", w:"Comes muy bien; reserva sí o sí.", ok:true},
+      comer:[ {n:"Tía María", d:"Plaza de Andalucía, Pradollano", w:"Cocina de montaña muy rica; reserva sí o sí.", ok:true},
               {n:"La Antorcha", d:"c/ Virgen de las Nieves 8, Pradollano", w:"Carne a la piedra con embutido de aperitivo. Cierra los miércoles."},
               {n:"Little Morgan", d:"Plaza de Pradollano 4", w:"Fondue y raclette; pocas mesas, reserva por la noche."} ],
       tip:"Los findes con nieve la carretera se colapsa: sube antes de las 9 y lleva cadenas. Estado de pistas y carretera en sierranevada.es.", web:"https://sierranevada.es/", pueblo:"Sierra Nevada" },
@@ -2064,7 +2073,7 @@
     { id:"sitarilla", ok:false, n:"La Sitarilla", dir:"c/ San Miguel Alta 7 · centro", w:"Tapa sorpresa (la elige la cocina) y enorme; hay cola antes de abrir. Paredes llenas de vírgenes y cerámica.", cierra:"Martes; lunes solo mediodía", g:[37.17338,-3.60356] },
     { id:"buenavida", ok:false, n:"La Buena Vida", dir:"c/ Almireceros 7 · junto a Plaza Nueva", w:"Tapa grande a elegir; las albóndigas, las más repetidas. Abre todos los días.", cierra:"", g:[37.17687,-3.59723] },
     { id:"bultaco", ok:false, n:"Bultaco Bar", dir:"c/ Elvira 116 · Albaicín bajo", w:"Barecito de un solo dueño, carta en la pared; tortilla y pinchos caseros muy buenos. Solo noches.", cierra:"Abre solo de 20 a 24", g:[37.18097,-3.59893] },
-    { id:"titapaca", ok:true, n:"Tita Paca", dir:"c/ Pedro Antonio de Alarcón 54 · Pedro Antonio", w:"Taberna con terraza en la acera; tapa de plancha a elegir de la carta del día (ternera con chimichurri, pollo con queso de cabra) y cañas muy frías. Ganó la segunda oportunidad.", cierra:"", g:[37.17448,-3.60723] },
+    { id:"titapaca", ok:true, n:"Tita Paca", dir:"c/ Pedro Antonio de Alarcón 54 · Pedro Antonio", w:"Taberna con terraza en la acera; tapa de plancha a elegir de la carta del día (ternera con chimichurri, pollo con queso de cabra) y cañas muy frías.", cierra:"", g:[37.17448,-3.60723] },
     { id:"casajulio", ok:false, n:"Casa Julio", dir:"c/ Hermosa 5 · junto a Plaza Nueva", w:"Fritura auténtica de pie; su pescado de tapa tiene fama.", cierra:"Lunes; domingo solo mediodía", g:[37.17661,-3.59667] },
     { id:"omkalsum", ok:false, n:"Om Kalsum", dir:"c/ Jardines 17 · Pedro Antonio", w:"Tapas marroquíes: falafel, cuscús, albóndigas.", cierra:"Domingo; lunes solo noche", g:[37.17409,-3.60336] },
     { id:"mascarones", ok:false, n:"Los Mascarones", dir:"c/ Pagés 20 · Albaicín alto", w:"Migas, pulpo y tapas de barrio. Encaja con un domingo andalusí.", cierra:"Miércoles; solo a mediodía (12–16)", g:[37.18390,-3.59302] },
@@ -2076,7 +2085,7 @@
     { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", s:"Carta a Granada", g:[37.17690,-3.60161] },
     { id:"altramuces", ok:false, n:"Los Altramuces", dir:"Campo del Príncipe · Realejo", w:"Terraza en la plaza y tapas generosas: calamares, berenjenas fritas, pimientos.", cierra:"Miércoles y jueves", g:[37.17313,-3.59245] },
     { id:"pajuana", ok:false, n:"La Pajuana", dir:"c/ Virgen del Rosario 10 · Realejo", w:"Tapas calientes y originales que van a más con cada ronda; guisos y hojaldres.", cierra:"El horario de Google no es fiable: confírmalo", g:[37.17270,-3.59624] },
-    { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor. Es de los mismos dueños que El Vinillo y La Verea, justo enfrente.", cierra:"Google dice domingo, pero lo viste abierto un domingo noche (11 oct); lunes y martes solo noche", g:[37.17655,-3.60845] },
+    { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor. Es de los mismos dueños que El Vinillo y La Verea, justo enfrente.", cierra:"Lunes y martes solo noche (Google dice que cierra el domingo, pero abre el domingo por la noche)", g:[37.17655,-3.60845] },
     { id:"rondel", ok:false, n:"El Rondel", dir:"Av. de América 8 · Zaidín", w:"Una veintena de tapas a elegir, caseras y muy baratas.", cierra:"Domingo y lunes; noches solo de jueves a sábado", g:[37.16173,-3.60134] },
     { id:"picaeta", ok:false, n:"La Picaeta", dir:"c/ Pavía 15 · Zaidín", w:"Tapas caseras con giro, de barrio de verdad. Se llena: reserva.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15452,-3.59786] },
     { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] },
@@ -2104,8 +2113,8 @@
         '</div></article>';
     }
     var ok=BARES.filter(function(b){ return b.ok || baresProbados[b.id]; }), por=BARES.filter(function(b){ return !b.ok && !baresProbados[b.id]; });
-    host.innerHTML='<h3 class="bartitle">Con tu visto bueno</h3><div class="bargrid">'+ok.map(function(b){ return card(b,false); }).join("")+'</div>'+
-      (por.length?'<h3 class="bartitle">Por probar (según reseñas · tapa caliente)</h3><div class="bargrid">'+por.map(function(b){ return card(b,true); }).join("")+'</div>':'');
+    host.innerHTML='<h3 class="bartitle">★ Recomendados · probados en persona</h3><div class="bargrid">'+ok.map(function(b){ return card(b,false); }).join("")+'</div>'+
+      (por.length?'<h3 class="bartitle">Más para probar · según reseñas, tapa caliente</h3><div class="bargrid">'+por.map(function(b){ return card(b,true); }).join("")+'</div>':'');
     if(typeof buildRutasT==="function" && document.getElementById("rtgrid") && document.getElementById("rtgrid").innerHTML) buildRutasT();
     host.querySelectorAll("[data-bar-mark]").forEach(function(x){ x.addEventListener("click", function(){ baresProbados[x.getAttribute("data-bar-mark")]=isoDay(new Date()); saveBares(); renderBares(); renderFinde(); toast("Apuntado como probado."); }); });
     host.querySelectorAll("[data-bar-undo]").forEach(function(x){ x.addEventListener("click", function(){ delete baresProbados[x.getAttribute("data-bar-undo")]; saveBares(); renderBares(); renderFinde(); }); });
@@ -2120,7 +2129,7 @@
     var host=document.getElementById("escapgrid"); if(!host) return;
     host.innerHTML=ESCAPADAS.map(function(e){
       return '<article class="ibox" data-esc="'+e.id+'"><h3>'+e.t+'</h3><p class="esc-meta">'+e.donde+' · '+e.coche+'</p><p>'+e.desc+'</p>'+
-        '<div class="esc-wx" data-escwx="'+e.id+'" hidden></div><p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
+        '<div class="esc-wx" data-escwx="'+e.id+'" hidden></div><p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">★ recomendado</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
         '<p class="esc-comer"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.t+" "+e.donde)+'" target="_blank" rel="noopener">Ver en mapa</a>'+(e.web?' · <a href="'+e.web+'" target="_blank" rel="noopener">Web</a>':'')+'</p></article>';
     }).join("");
   }
@@ -2251,7 +2260,7 @@
       stops:[ {n:"Discos Marcapasos", g:[37.17686,-3.60179], w:"c/ Duquesa 6. La tienda de discos de referencia; empieza aquí antes de las 20:30 (cierra domingo y sábado tarde)."},
               {n:"El Bar de Eric", g:[37.17789,-3.60173], w:"c/ Escuelas 8. El bar de Eric Jiménez, batería de Los Planetas; tapa con la bebida. Abre de martes a sábado por la noche (vie y sáb también mediodía)."},
               {n:"Loop Bar & Records", g:[37.17306,-3.59691], w:"c/ San Matías 8. Vinilos de grupos andaluces y tapas creativas calientes; de lo mejor de la ruta."},
-              {bar:"candela", w:"c/ Santa Escolástica 9. También está en la ruta oficial; el de tu visto bueno."},
+              {bar:"candela", w:"c/ Santa Escolástica 9. También está en la ruta oficial."},
               {n:"El Enano Rojo", g:[37.18056,-3.59915], w:"c/ Elvira 91. Sótano de rock y cerveza, de los de toda la vida."},
               {n:"Pata Palo", g:[37.18162,-3.59996], w:"c/ de los Naranjos 2, junto a Elvira. Clásico del underground; abre a las 23:00 (cierra domingo y lunes)."},
               {n:"Planta Baja", g:[37.17629,-3.60427], w:"c/ Horno de Abad 11. La sala de conciertos histórica; mira su programación (abre jueves a sábado por la noche)."} ],
@@ -2263,7 +2272,7 @@
       p:"Fritura y brasa en la calle Navas, Casa Julio junto a Plaza Nueva, La Riviera en Elvira y remate en Tocateja, el Bar Rojo o el Poë.",
       extra:"Domingo y lunes cierran varios (EntreBrasas, Tocateja, Casa Julio): mejor de martes a sábado." },
     { id:"tapeo_ronda", t:"Pedro Antonio y Camino de Ronda", meta:"Noche · ~1,5 km · de barrio y universitario", bares:["sancho","omkalsum","rodri","macetilla","titapaca","misadeseis","quintillo","verea","vinillo","tango"],
-      p:"Lejos del circuito turístico: tu visto bueno (Sancho, Rodri, Tita Paca, Misa de Seis) el trío de Pedro Antonio 76–83 (El Quintillo, La Verea y El Vinillo, mismos dueños) y el Tango en la calle Sol.",
+      p:"Lejos del circuito turístico: los recomendados (Sancho, Rodri, Tita Paca, Misa de Seis), el trío de Pedro Antonio 76–83 (El Quintillo, La Verea y El Vinillo, mismos dueños) y el Tango en la calle Sol.",
       extra:"Domingo y lunes cierran Sancho, Rodri y Misa de Seis; El Vinillo y La Verea abren todos los días." },
     { id:"tapeo_zaidin", t:"Zaidín de barrio", meta:"Noche · ~1,5 km · el más local", bares:["rondel","guejareno","picaeta"],
       p:"Tres bares de barrio de verdad, baratos y con tapa caliente. Para cuando quieras ver la Granada de diario.",
@@ -2309,7 +2318,7 @@
       var url="https://www.google.com/maps/dir/?api=1&travelmode="+(r.mode||"walking")+"&origin="+p(st[0])+"&destination="+p(st[st.length-1])+(st.length>2?"&waypoints="+st.slice(1,-1).slice(0,9).map(p).join("%7C"):"");
       return '<article class="rtcard"><h3>'+r.t+'</h3><p class="rtmeta">'+r.meta+'</p><p>'+r.p+'</p><ol class="rtstops">'+
         st.map(function(x){ var name=x.site?'<button type="button" data-rtj="'+x.site+'">'+escNote(x.n)+'</button>':(x.bar?'<button type="button" data-rtb="'+x.bar+'">'+escNote(x.n)+'</button>':'<b>'+escNote(x.n)+'</b>');
-          return '<li>'+name+(x.bar&&x.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+escNote(x.w)+'</li>'; }).join("")+'</ol>'+
+          return '<li>'+name+(x.bar&&x.ok?' <span class="esc-ok">★ recomendado</span>':'')+' · '+escNote(x.w)+'</li>'; }).join("")+'</ol>'+
         (r.extra?'<p>'+r.extra+'</p>':'')+'<a class="rtgo" href="'+url+'" target="_blank" rel="noopener">Abrir la ruta en Google Maps</a></article>';
     }).join("");
     host.querySelectorAll("[data-rtj]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-rtj")); }); });
@@ -2333,9 +2342,9 @@
       {n:"La Azotea", dir:"c/ Recogidas 16 · centro", w:"Terraza alta sobre Recogidas que además pone tapa; vistas a la Alhambra.", cierra:"Domingo tarde", g:[37.17261,-3.60148]},
       {n:"Terraza Monasterio", dir:"c/ Gran Capitán 1 · centro", w:"Azotea frente al monasterio de San Jerónimo con vistas a la Alhambra; abre todo el día.", cierra:"", g:[37.17883,-3.60354]},
       {n:"Terraza Eurostars Gran Vía", dir:"Gran Vía de Colón 20 · centro", w:"Azotea de hotel, pequeña y más cara, pero con muy buena vista.", cierra:"Lunes y martes", g:[37.17786,-3.59850]} ]},
-    { t:"Pubs, billar y cerveza", s:"Vuestros dos fijos, pubs de toda la vida, irlandeses y cerveza artesana.", l:[
-      {ok:true, n:"Amsterdam Café Pub", dir:"c/ Pedro Antonio de Alarcón 52", w:"Vuestro sitio para tomar algo: rock de los 70 a los 90, gin-tonics bien hechos, cervezas de importación en la nevera del fondo y mesa de billar. Te ponen algo de picar con la copa.", cierra:"", g:[37.17414,-3.60698]},
-      {ok:true, n:"Lo + Pool", dir:"c/ Prosperidad 8 · junto a Pedro Antonio", w:"Vuestro billar: buenas mesas y tacos. Abre todos los días desde las 19:00. Si están todas ocupadas, apuntaos y estad pendientes del turno; según reseñas, a veces solo cobran en efectivo.", cierra:"", g:[37.17415,-3.60759]},
+    { t:"Pubs, billar y cerveza", s:"Pubs de toda la vida, billar, irlandeses y cerveza artesana.", l:[
+      {ok:true, n:"Amsterdam Café Pub", dir:"c/ Pedro Antonio de Alarcón 52", w:"Un fijo para tomar algo: rock de los 70 a los 90, gin-tonics bien hechos, cervezas de importación en la nevera del fondo y mesa de billar. Te ponen algo de picar con la copa.", cierra:"", g:[37.17414,-3.60698]},
+      {ok:true, n:"Lo + Pool", dir:"c/ Prosperidad 8 · junto a Pedro Antonio", w:"Billar con buenas mesas y tacos. Abre todos los días desde las 19:00. Si están todas ocupadas, apúntate y está pendiente del turno; según reseñas, a veces solo cobran en efectivo.", cierra:"", g:[37.17415,-3.60759]},
       {n:"Capitán Amargo", dir:"c/ Molinos 28 · Realejo", w:"Cerveza artesana con degustación de 5; la mejor valorada de la ciudad en su estilo.", cierra:"Domingo", g:[37.17276,-3.59266]},
       {n:"Nito's Pub", dir:"c/ Dr. Martín Lagos 4 · Camino de Ronda", w:"Pub de los de antes, lleno de recuerdos; tranquilo y cerveza muy fría.", cierra:"Lunes", g:[37.17146,-3.60235]},
       {n:"Nirvanas", dir:"c/ Martínez de la Rosa 4 · Pedro Antonio", w:"Rock y chupitos, decorado con todo lo de Nirvana. Cerca de El Vinillo.", cierra:"", g:[37.17730,-3.60719]},
@@ -2349,7 +2358,7 @@
     host.innerHTML=COPAS.map(function(gr){
       return '<h3 class="cpgrp">'+gr.t+'<small>'+gr.s+'</small></h3><div class="cpgrid">'+gr.l.map(function(b){
         var url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(b.n+" "+b.dir.split(" · ")[0]+" Granada");
-        return '<article class="barcard"><h4>'+escNote(b.n)+(b.ok?' <span class="esc-ok">tu visto bueno</span>':'')+'</h4><p class="bdir">'+escNote(b.dir)+'</p><p>'+escNote(b.w)+'</p>'+
+        return '<article class="barcard"><h4>'+escNote(b.n)+(b.ok?' <span class="esc-ok">★ recomendado</span>':'')+'</h4><p class="bdir">'+escNote(b.dir)+'</p><p>'+escNote(b.w)+'</p>'+
           (b.cierra?'<p class="bcierra">Cierra: '+escNote(b.cierra.toLowerCase())+' (según Google, oct 2026)</p>':'')+
           '<div class="fbtns"><a class="fbtn" href="'+url+'" target="_blank" rel="noopener">Mapa</a></div></article>';
       }).join("")+'</div>';
@@ -2366,28 +2375,71 @@
 
   /* ===== navegación inferior ===== */
   function openSec(sec){ if(sec && sec.classList.contains("folded")){ sec.classList.remove("folded"); var k=sec.querySelector(".fold-head"); if(k) k.setAttribute("aria-expanded","true"); } }
-  function goNav(t){
-    var el=null;
-    if(t==="agenda") el=document.getElementById("agenda");
-    else if(t==="sitios") el=document.querySelector(".controls");
-    else if(t==="mapa"){ el=document.getElementById("mapa"); initMap(); }
-    else if(t==="bares"){ el=document.getElementById("bares"); openSec(el); }
-    else if(t==="escapadas"){ el=document.querySelector("section.escapadas"); openSec(el); }
-    else if(t==="plan"){
-      if(!plan.size){ toast("Tu plan está vacío: añade sitios con «Añadir al plan»."); return; }
-      var bar=document.getElementById("planbar"); if(bar.getAttribute("data-open")!=="true") document.getElementById("planbarToggle").click(); return;
+  /* ===== pantallas: cada botón de abajo enseña solo lo suyo ===== */
+  var NAV2VIEW={agenda:"hoy",sitios:"sitios",mapa:"mapa",bares:"comer",escapadas:"escapadas",plan:"plan"};
+  var VTITLE={sitios:"Sitios y entradas",mapa:"Mapa",comer:"Comer y beber",escapadas:"Escapadas",plan:"Mi plan"};
+  var curView=null, scrollMem={};
+  function showView(v, keepScroll){
+    if(!document.querySelector('.view[data-view="'+v+'"]')) v="hoy";
+    if(v!==curView){
+      if(curView) scrollMem[curView]=window.scrollY;
+      document.querySelectorAll(".view").forEach(function(el){ el.hidden=el.getAttribute("data-view")!==v; });
+      curView=v;
+      document.querySelectorAll("#bnav [data-nav]").forEach(function(b){ var on=NAV2VIEW[b.getAttribute("data-nav")]===v; b.classList.toggle("on",on); if(on) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
+      try{ history.replaceState(null,"","#"+v); }catch(e){}
+      if(!keepScroll) window.scrollTo(0, scrollMem[v]||0);
     }
-    if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+    if(v==="mapa") initMap();
   }
-  document.querySelectorAll("#bnav [data-nav]").forEach(function(b){ b.addEventListener("click", function(){ goNav(b.getAttribute("data-nav")); }); });
+  function setCm(which){
+    document.querySelectorAll("[data-cm]").forEach(function(b){ b.setAttribute("aria-selected", b.getAttribute("data-cm")===which?"true":"false"); });
+    document.querySelectorAll("[data-cmpane]").forEach(function(p){ p.hidden=p.getAttribute("data-cmpane")!==which; });
+    try{ localStorage.setItem("granada:cmtab", which); }catch(e){}
+  }
+  function ensureVisible(el){
+    if(!el || !el.closest) return;
+    var view=el.closest(".view"); if(view && view.hidden) showView(view.getAttribute("data-view"), true);
+    var pane=el.closest("[data-cmpane]"); if(pane && pane.hidden) setCm(pane.getAttribute("data-cmpane"));
+  }
   (function(){
-    var order=[["agenda",function(){ return document.getElementById("agenda"); }],["sitios",function(){ return document.querySelector(".controls"); }],["mapa",function(){ return document.getElementById("mapa"); }],["escapadas",function(){ return document.querySelector("section.escapadas"); }],["sitios",function(){ return document.querySelector("main"); }],["bares",function(){ return document.getElementById("bares"); }]];
-    var tick=false;
-    function upd(){ tick=false; var y=window.innerHeight*0.35, cur="agenda", best=-Infinity;
-      order.forEach(function(o){ var el=o[1](); if(!el) return; var t=el.getBoundingClientRect().top; if(t<=y && t>best){ best=t; cur=o[0]; } });
-      document.querySelectorAll("#bnav [data-nav]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-nav")===cur); }); }
-    window.addEventListener("scroll", function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } }, {passive:true}); upd();
+    var _siv=Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView=function(o){ try{ ensureVisible(this); }catch(e){} return _siv.call(this,o); };
   })();
+  function goNav(t){
+    var v=NAV2VIEW[t]||"hoy";
+    if(v===curView) window.scrollTo({top:0,behavior:"smooth"}); else showView(v);
+    if(t==="plan" && plan.size){ var bar=document.getElementById("planbar"); if(bar.getAttribute("data-open")!=="true") document.getElementById("planbarToggle").click(); }
+  }
+  (function buildViews(){
+    function q(sel){ return document.querySelector(sel); }
+    var inbox=q("#inbox"); inbox=inbox?inbox.parentNode:null;
+    var G={
+      hoy:[q("header.hero"), inbox, q("#agenda"), q("#s_finde"), q("section.strategy")],
+      sitios:[q("section.dayplan"), q("nav.controls"), q("main"), q("section.passes"), q("#s_bono"), q("#s_alh"), q("#s_mover"), q("#s_otras")],
+      mapa:[q("#mapa")],
+      comer:[q("#bares"), q("#copas"), q("#rutastem")],
+      escapadas:[q("section.escapadas")],
+      plan:[q("section.routes"), q("footer")]
+    };
+    var anchor=q("#bnav");
+    Object.keys(G).forEach(function(v){
+      var box=document.createElement("div"); box.className="view"; box.setAttribute("data-view",v); box.hidden=true;
+      if(VTITLE[v]){ var h=document.createElement("div"); h.className="vhead"; h.innerHTML='<div class="wrap"><small>Granada monumental</small><h2>'+VTITLE[v]+'</h2></div>'; box.appendChild(h); }
+      if(v==="comer"){ var t=document.createElement("div"); t.className="wrap"; t.innerHTML='<div class="agtabs cmtabs" role="tablist" aria-label="Comer y beber"><button role="tab" type="button" data-cm="bares">Bares</button><button role="tab" type="button" data-cm="copas">Copas</button><button role="tab" type="button" data-cm="rutas">Rutas</button></div>'; box.appendChild(t); }
+      if(v==="plan"){ var ph=document.createElement("section"); ph.className="planintro"; ph.innerHTML='<div class="wrap"><p>Añade sitios con <b>«Añadir al plan»</b> en sus fichas: la barra azul de abajo los ordena por cercanía y abre la ruta en Google Maps. Aquí tienes además rutas ya montadas y, al final, cómo guardar copia de lo que llevas.</p><button type="button" class="dt-btn" id="planOpen">Ver mi plan</button></div>'; box.appendChild(ph); }
+      G[v].forEach(function(el){ if(el) box.appendChild(el); });
+      anchor.parentNode.insertBefore(box, anchor);
+    });
+    [["bares","bares"],["copas","copas"],["rutastem","rutas"]].forEach(function(p){ var el=document.getElementById(p[0]); if(el){ el.setAttribute("data-cmpane",p[1]); openSec(el); } });
+    openSec(q("section.escapadas")); openSec(q("section.routes"));
+    document.querySelectorAll("[data-cm]").forEach(function(b){ b.addEventListener("click", function(){ setCm(b.getAttribute("data-cm")); }); });
+    var cm="bares"; try{ cm=localStorage.getItem("granada:cmtab")||"bares"; }catch(e){}
+    setCm(cm);
+    var po=document.getElementById("planOpen"); if(po) po.addEventListener("click", function(){ if(!plan.size){ toast("Tu plan está vacío: añade sitios con «Añadir al plan»."); return; } var bar=document.getElementById("planbar"); if(bar.getAttribute("data-open")!=="true") document.getElementById("planbarToggle").click(); });
+    var h=(location.hash||"").replace("#","");
+    showView(Object.keys(G).indexOf(h)>=0 ? h : "hoy");
+  })();
+  document.querySelectorAll("#bnav [data-nav]").forEach(function(b){ b.addEventListener("click", function(){ goNav(b.getAttribute("data-nav")); }); });
   document.addEventListener("click", function(e){ var a=e.target.closest("[data-goto-rt]"); if(!a) return; e.preventDefault(); var sec=document.getElementById("rutastem"); openSec(sec); sec.scrollIntoView({behavior:"smooth",block:"start"}); });
   function updateNavPlan(){ var c=document.getElementById("navPlanCount"); if(!c) return; c.hidden=!plan.size; c.textContent=plan.size; }
 

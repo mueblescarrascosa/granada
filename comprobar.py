@@ -73,6 +73,25 @@ async def main():
         comprobar(marcado, "Marcar como visitado no funciona")
         plan = await pg.evaluate('!document.getElementById("planbar").hidden')
         comprobar(plan, "Añadir al plan no funciona")
+        # pantallas: cada botón enseña una sola vista
+        for nav, vista in [("sitios","sitios"),("mapa","mapa"),("bares","comer"),("escapadas","escapadas"),("plan","plan"),("agenda","hoy")]:
+            await pg.evaluate(f'document.querySelector(\'#bnav [data-nav="{nav}"]\').click()')
+            await pg.wait_for_timeout(120)
+            vis_v = await pg.evaluate('[...document.querySelectorAll(".view")].filter(v=>!v.hidden).map(v=>v.dataset.view)')
+            comprobar(vis_v == [vista], f"El botón {nav} enseña {vis_v} en vez de {vista}")
+        # saltar desde una ruta a su ficha cambia de pantalla
+        await pg.evaluate('document.querySelector("#routes [data-jump]").click()')
+        await pg.wait_for_timeout(300)
+        vis_v = await pg.evaluate('[...document.querySelectorAll(".view")].filter(v=>!v.hidden).map(v=>v.dataset.view)')
+        comprobar(vis_v == ["sitios"], f"Tocar una parada de ruta no lleva a la ficha (vista {vis_v})")
+        # pestañas de Comer y beber
+        await pg.evaluate('document.querySelector(\'#bnav [data-nav="bares"]\').click()')
+        for cm, sec in [("copas","copas"),("rutas","rutastem"),("bares","bares")]:
+            await pg.evaluate(f'document.querySelector(\'[data-cm="{cm}"]\').click()')
+            ok = await pg.evaluate(f'!!document.getElementById("{sec}").offsetParent')
+            comprobar(ok, f"La pestaña {cm} no enseña su sección")
+        await pg.evaluate('document.querySelector(\'#bnav [data-nav="sitios"]\').click()')
+        await pg.wait_for_timeout(120)
         await pg.fill("#q", "alhambra")
         await pg.wait_for_timeout(200)
         vis = await pg.evaluate('[...document.querySelectorAll(".card")].filter(c=>c.offsetParent).length')
