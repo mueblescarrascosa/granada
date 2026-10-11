@@ -414,6 +414,17 @@
   .zcell .zw{color:#8A2E1F;font-size:10.5px;font-weight:700}
   .esc-wx{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:2px 0 8px;padding:7px 9px;background:#F3F6FB;border-radius:8px}
   .esc-wx .ed{font-size:11.5px;color:var(--ink-soft);margin-right:2px}
+
+  .evlist{list-style:none;margin:6px 0 0;padding:0}
+  .evlist li{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+  .evlist li:first-child{border-top:none}
+  .evdate{flex:none;width:44px;text-align:center;background:var(--indigo);color:#fff;border-radius:8px;padding:4px 0;font-size:11px;line-height:1.15}
+  .evdate b{display:block;font-size:17px}
+  .evlist b.evn{color:var(--ink)}
+  .nearby{margin-top:10px}
+  .nearby h4{margin:8px 0 4px;font-size:14px;color:var(--indigo)}
+  .nearby button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:4px 0;font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer}
+  .nearby button span{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
   footer .reset{margin-top:8px;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:"Space Mono",monospace;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;}
   footer .reset:hover{border-color:var(--wood);color:var(--wood)}
   .credits{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
@@ -688,10 +699,11 @@
       <button type="button" data-mf="hoy" aria-pressed="false">Gratis hoy</button>
       <button type="button" data-mf="plan" aria-pressed="false">Mi plan</button>
       <button type="button" data-mf="bares" aria-pressed="false">Bares</button>
-      <button type="button" id="mapLocate">Dónde estoy</button>
+      <button type="button" id="mapLocate">Cerca de mí</button>
     </div>
     <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
+    <div class="nearby" id="nearby" hidden></div>
   </div>
 </section>
 
@@ -2073,6 +2085,21 @@
     el.scrollIntoView({behavior:"smooth",block:"center"}); el.classList.add("flash"); setTimeout(function(){ el.classList.remove("flash"); },1500);
   }
 
+
+  /* Eventos (los mantiene la revisión automática de los jueves) */
+  var EVENTOS_FUENTE="La Ganzúa, Granada por el Mundo y festivalesdeespana.com · revisado el 11 oct 2026";
+  var EVENTOS=[
+    { d1:"2026-10-16", d2:"2026-10-16", t:"Fernandocosta", donde:"Plaza de Toros", w:"Rap", url:"https://www.laganzua.net/conciertos/granada/octubre-2026" },
+    { d1:"2026-10-17", d2:"2026-10-17", t:"Loquillo", donde:"Palacio de los Deportes, 21:30", w:"Rock (ciclo 1001 Músicas)", url:"https://granadaporelmundo.com/agenda" },
+    { d1:"2026-10-17", d2:"2026-10-17", t:"Raimundo Amador", donde:"Sala Industrial Copera", w:"Flamenco y blues", url:"https://www.laganzua.net/conciertos/granada/octubre-2026" },
+    { d1:"2026-10-17", d2:"2026-10-17", t:"Fausto Taranto + Carmencita Calavera", donde:"Teatro CajaGranada", w:"Rock", url:"https://www.laganzua.net/conciertos/granada/octubre-2026" },
+    { d1:"2026-10-24", d2:"2026-10-24", t:"Niña Pastori", donde:"Plaza de Toros", w:"Flamenco", url:"https://www.laganzua.net/conciertos/granada/octubre-2026" },
+    { d1:"2026-10-29", d2:"2026-11-07", t:"Festival Internacional de Jazz", donde:"Teatro Isabel la Católica + «Jazz en Paralelo» en bares", w:"46ª edición", url:"https://www.festivalesdeespana.com/festival/festival-internacional-de-jazz-de-granada-granada" }
+  ];
+  function eventosEn(days){
+    var a=isoDay(days[0]), b=isoDay(days[days.length-1]);
+    return EVENTOS.filter(function(e){ return e.d1<=b && e.d2>=a; }).sort(function(x,y){ return x.d1<y.d1?-1:1; });
+  }
   /* ===== este finde ===== */
   var WX=null;
   var MESES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
@@ -2134,6 +2161,14 @@
     var ew=wxAt(LOC_IDX[e.id],si);
     if(ew) h+='<div class="esc-wx"><span class="ed">El '+DAYNAMES[wdOf(sat)]+' allí:</span>'+wxBadge(ew)+warnHTML(wxWarns(ew))+'</div>'+(badMtn?'<p class="wxadv">Hay mal tiempo en otras zonas: te propongo una que se libra.</p>':'');
     h+='<div class="fbtns"><button class="fbtn solid" type="button" data-esc-go="'+e.id+'">Ver la escapada</button></div></div></div>';
+    var evs=eventosEn(days);
+    h+='<div class="zonas"><h3>Qué hay este finde en Granada</h3>';
+    if(evs.length){
+      h+='<ul class="evlist">'+evs.map(function(e){ var dd=new Date(e.d1+"T12:00:00"), multi=e.d1!==e.d2;
+        return '<li><span class="evdate">'+DAYNAMES[wdOf(dd)].slice(0,3)+'<b>'+dd.getDate()+'</b></span><span><a href="'+e.url+'" target="_blank" rel="noopener"><b class="evn">'+escNote(e.t)+'</b></a> · '+escNote(e.donde)+'. '+escNote(e.w)+(multi?' (hasta el '+parseInt(e.d2.slice(8),10)+' '+MESES[parseInt(e.d2.slice(5,7),10)-1]+')':'')+'</span></li>'; }).join("")+'</ul>';
+      h+='<p class="wxadv">Según '+EVENTOS_FUENTE+'. Confirma horarios y entradas en la web del evento.</p>';
+    } else h+='<p class="wxadv">No tengo eventos apuntados para estos días. La lista se actualiza los jueves.</p>';
+    h+='</div>';
     if(WX){
       var Z=[["Granada","granada"],["Sierra Nevada","sierranevada"],["Alpujarra","poqueira"],["Costa","salobrena"],["Guadix","guadix"]];
       var cols=days.filter(function(d){ return wxAt(0,dayIdx(d)); });
@@ -2263,13 +2298,28 @@
     mapFilter=b.getAttribute("data-mf"); document.querySelectorAll("#mapchips [data-mf]").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
     if(!LMAP) initMap(); else drawMap(); }); });
   var meMk=null;
+  function distM(a,b,c,d){ var R=6371000, t=Math.PI/180, x=(d-b)*t*Math.cos((a+c)/2*t), y=(c-a)*t; return Math.sqrt(x*x+y*y)*R; }
+  function walk(m){ var min=Math.round(m*1.3/75); return m>4000?(m/1000).toFixed(1)+" km":(min<1?"1":min)+" min a pie"; }
+  function renderNearby(lat,lng){
+    var el=document.getElementById("nearby"); if(!el) return; var now=new Date();
+    var sites=DATA.filter(function(m){ return GEO[m.id] && !visited.has(m.id) && dayStatusDate(m,now).k!=="closed"; })
+      .map(function(m){ return {m:m,d:distM(lat,lng,GEO[m.id][0],GEO[m.id][1])}; }).sort(function(a,b){ return a.d-b.d; }).slice(0,6);
+    var bars=BARES.map(function(b){ return {b:b,d:distM(lat,lng,b.g[0],b.g[1])}; }).sort(function(a,b){ return a.d-b.d; }).slice(0,4);
+    if(sites.length && sites[0].d>30000){ el.innerHTML='<p class="wxadv">Estás lejos de Granada: la lista de cercanía funciona cuando estés allí.</p>'; el.hidden=false; return; }
+    el.innerHTML='<h4>Cerca de ti y aún sin ver</h4>'+sites.map(function(x){ return '<button type="button" data-nj="'+x.m.id+'">'+esc(x.m.name)+(AVISOS[x.m.id]?' ⚠':'')+'<span>'+walk(x.d)+'</span></button>'; }).join("")+
+      '<h4>Bares cerca</h4>'+bars.map(function(x){ return '<button type="button" data-nb="'+x.b.id+'">'+esc(x.b.n)+(x.b.ok||baresProbados[x.b.id]?'':' · por probar')+'<span>'+walk(x.d)+'</span></button>'; }).join("")+
+      '<p class="wxadv">Distancias aproximadas en línea recta. «⚠» = tiene aviso en la ficha.</p>';
+    el.hidden=false;
+    el.querySelectorAll("[data-nj]").forEach(function(b){ b.addEventListener("click", function(){ jumpTo(b.getAttribute("data-nj")); }); });
+    el.querySelectorAll("[data-nb]").forEach(function(b){ b.addEventListener("click", function(){ var sec=document.getElementById("bares"); openSec(sec); var c=document.querySelector('[data-bar="'+b.getAttribute("data-nb")+'"]'); if(c){ c.scrollIntoView({behavior:"smooth",block:"center"}); c.classList.add("flash"); setTimeout(function(){ c.classList.remove("flash"); },1500); } }); });
+  }
   document.getElementById("mapLocate").addEventListener("click", function(){
     if(!navigator.geolocation){ toast("Este navegador no da la ubicación."); return; }
     initMap();
     navigator.geolocation.getCurrentPosition(function(p){
       var go=function(){ if(!LMAP){ setTimeout(go,300); return; } var ll=[p.coords.latitude,p.coords.longitude];
         if(meMk) meMk.remove(); meMk=L.circleMarker(ll,{radius:8,color:"#fff",weight:3,fillColor:"#B23A2A",fillOpacity:1}).addTo(LMAP).bindPopup("Estás aquí"); LMAP.setView(ll,16); };
-      go();
+      go(); renderNearby(p.coords.latitude,p.coords.longitude);
     }, function(){ toast("No tengo permiso para tu ubicación."); }, {enableHighAccuracy:true,timeout:10000});
   });
   if("IntersectionObserver" in window){ var mio=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ initMap(); mio.disconnect(); } },{rootMargin:"200px"}); mio.observe(document.getElementById("map")); }
