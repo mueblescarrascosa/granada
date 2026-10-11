@@ -437,6 +437,7 @@
   .nearby button span{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
 
   .barcard .blleno{display:inline-block;font-size:.75rem;font-weight:700;color:#fff;background:var(--wood);border-radius:999px;padding:1px 9px;margin:.1rem 0 .25rem}
+  .barcard .bnota{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink-soft);margin:.1rem 0 .3rem}
   .cpgrid{display:grid;gap:12px;grid-template-columns:1fr}
   @media(min-width:760px){.cpgrid{grid-template-columns:1fr 1fr}}
   .cpgrp{margin:6px 0 4px;font-family:Fraunces,serif;font-size:20px;color:var(--ink)}
@@ -2066,6 +2067,21 @@
       tip:"Sube al castillo a primera hora y baja a comer a la playa.", pueblo:"Salobreña" }
   ];
 
+  /* ===== notas de reseñas (las actualiza la revisión automática; g = Google, ta = Tripadvisor, tf = TheFork sobre 10) ===== */
+  var NOTAS_FECHA="11 oct 2026";
+  var NOTAS={"Misa de Seis": {"g": [4.4, 7]}, "Sancho Original": {"g": [4.4, 2061]}, "Los Diamantes": {"g": [4.5, 5480]}, "El Rincón de Rodri": {"g": [4.6, 3254]}, "EntreBrasas": {"g": [4.6, 4778]}, "Potemkin": {"g": [4.7, 1420]}, "Candela": {"g": [4.6, 945]}, "Casa Julio": {"g": [4.3, 1747]}, "Om Kalsum": {"g": [4.7, 1451]}, "Los Mascarones": {"g": [4.6, 625]}, "Freiduría La Flota": {"g": [4.5, 1224]}, "Los Diamantes (Rosario)": {"g": [4.0, 166]}, "Bar Ávila": {"g": [4.6, 5801]}, "La Riviera": {"g": [4.5, 13716]}, "Bar Poë": {"g": [4.7, 1509]}, "Tocateja": {"g": [4.6, 2000]}, "Los Altramuces": {"g": [4.4, 1518]}, "La Pajuana": {"g": [4.6, 2021]}, "El Quintillo": {"g": [4.8, 173]}, "El Rondel": {"g": [4.6, 1290]}, "La Picaeta": {"g": [4.8, 282]}, "Rincón del Güejareño": {"g": [4.7, 499]}, "El Vinillo": {"g": [4.3, 1187]}, "La Verea": {"g": [4.4, 978]}, "Tita Paca": {"g": [4.5, 1108]}, "Tango Bar": {"g": [4.6, 1591]}, "Dorita's": {"g": [4.7, 282]}, "La Macetilla": {"g": [4.3, 820]}, "La Sitarilla": {"g": [4.6, 7637]}, "La Buena Vida": {"g": [4.4, 5254]}, "Bultaco Bar": {"g": [4.7, 194]}, "Bar Rojo": {"g": [4.4, 997]}, "Patio Braserito": {"g": [4.4, 1666]}, "Bar Provincias": {"g": [4.4, 3003]}, "Saint Germain": {"g": [4.5, 1352]}, "La Esquinita de Javi": {"g": [4.3, 2810]}, "Aliatar Los Caracoles": {"g": [4.2, 1725]}, "Mítico Bar": {"g": [4.2, 1630]}, "Oliver": {"g": [4.4, 2871]}, "Puesto 43": {"g": [4.4, 702]}, "La Taberna 2.0": {"g": [4.2, 201]}, "Hanalei Cocktail Bar": {"g": [4.8, 1248]}, "La Guaracha": {"g": [5.0, 1022]}, "3 Onzas": {"g": [4.9, 392]}, "NOIR Craft Cocktail Bar": {"g": [4.9, 341]}, "The Real McCoy": {"g": [4.9, 335]}, "Piccolo Posto": {"g": [5.0, 315]}, "Silk Road": {"g": [4.7, 952]}, "La Brujidera": {"g": [4.5, 1292]}, "Taberna Malvasía": {"g": [4.6, 863]}, "La Taberna de Kafka": {"g": [4.7, 715]}, "Ajoblanco": {"g": [4.6, 196]}, "Vinauro": {"g": [4.8, 114]}, "El Quejío": {"g": [4.5, 205]}, "Huerto del Loro": {"g": [4.4, 1344]}, "Terraza Reina Mora": {"g": [4.3, 82]}, "BHeaven": {"g": [4.2, 1311]}, "Terraza Mirador de San Antón": {"g": [4.6, 167]}, "La Azotea": {"g": [4.4, 577]}, "Terraza Monasterio": {"g": [4.1, 1614]}, "Terraza Eurostars Gran Vía": {"g": [4.7, 15]}, "Amsterdam Café Pub": {"g": [4.6, 2214]}, "Lo + Pool": {"g": [4.4, 606]}, "Bar Chaplin": {"g": [4.5, 549]}, "Nito's Pub": {"g": [4.6, 311]}, "Nirvanas": {"g": [4.6, 896]}, "La Marisma": {"g": [4.5, 1041]}, "Capitán Amargo": {"g": [4.8, 1733]}, "Daly's – The Cobblestone": {"g": [4.4, 520]}, "Hannigan & Sons": {"g": [4.4, 2133]}, "Faralá": {"g": [4.6, 844]}, "Damasqueros": {"g": [4.4, 786]}, "María de la O": {"g": [4.3, 1669]}, "Cala": {"g": [4.8, 580]}, "Atelier Casa de Comidas": {"g": [4.7, 1636]}, "Le Bistró by El Conjuro": {"g": [4.4, 419]}, "Albidaya": {"g": [4.9, 280]}, "Yama": {"g": [4.9, 421]}, "Ruta del Veleta": {"g": [4.7, 1871]}, "Arriaga": {"g": [4.5, 834]}, "Carmen de San Miguel": {"g": [4.5, 1154]}, "Mirador de Morayma": {"g": [4.4, 2003]}};
+  function notaHTML(n){
+    var r=NOTAS[n]; if(!r) return "";
+    function f(x){ return String(x).replace(".",","); }
+    function c(x){ return x>=1000?String(x).replace(/\B(?=(\d{3})+(?!\d))/g,"."):String(x); }
+    var p=[];
+    if(r.g) p.push("Google "+f(r.g[0])+" ★"+(r.g[1]?" ("+c(r.g[1])+")":""));
+    if(r.ta) p.push("Tripadvisor "+f(r.ta[0])+(r.ta[1]?" ("+c(r.ta[1])+")":""));
+    if(r.tf) p.push("TheFork "+f(r.tf[0])+"/10"+(r.tf[1]?" ("+c(r.tf[1])+")":""));
+    if(!p.length) return "";
+    var pocas=r.g && r.g[1]<50 ? ' · <i>pocas reseñas, poco fiable</i>':'';
+    return '<p class="bnota">'+p.join(" · ")+pocas+(r.ojo?' · <b>'+escNote(r.ojo)+'</b>':'')+'</p>';
+  }
   var BARES=[
     { id:"misadeseis", ok:true, n:"Misa de Seis", dir:"c/ Obispo Hurtado 24 · Camino de Ronda", w:"Pequeñito, con terraza. Mollejas, torreznos y jamón asado.", cierra:"Domingo y lunes", g:[37.17371,-3.60757] },
     { id:"sancho", ok:true, n:"Sancho Original", dir:"c/ Tablas 16 · centro", w:"Desde 1981. En la barra o mesas altas, tapa con cada bebida; en mesa es a la carta.", cierra:"", s:"Emblemático de Granada · La Mejor Tapa del Mundo: 1.º 2018 y 2.º 2019", g:[37.17590,-3.60362] },
@@ -2116,7 +2132,7 @@
     var host=document.getElementById("barlist"); if(!host) return;
     function card(b,nuevo){
       var pr=baresProbados[b.id];
-      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p>'+(b.lleno?'<p class="blleno">Se llena siempre: llega pronto</p>':'')+(b.s?'<p class="bsello">'+b.s+'</p>':'')+'<p>'+b.w+'</p>'+
+      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p>'+(b.lleno?'<p class="blleno">Se llena siempre: llega pronto</p>':'')+notaHTML(b.n)+(b.s?'<p class="bsello">'+b.s+'</p>':'')+'<p>'+b.w+'</p>'+
         (b.cierra?'<p class="bcierra">Cierra: '+b.cierra.toLowerCase()+' (según Google, oct 2026)</p>':'')+
         (pr&&!b.ok?'<p class="bcierra" style="color:var(--green)">Probado el '+pr.split("-").reverse().join("/")+'</p>':'')+
         '<div class="fbtns"><a class="fbtn" href="'+barMapUrl(b)+'" target="_blank" rel="noopener">Mapa</a>'+
@@ -2392,7 +2408,7 @@
     return groups.map(function(gr){
       return '<h3 class="cpgrp">'+gr.t+'<small>'+gr.s+'</small></h3><div class="cpgrid">'+gr.l.map(function(b){
         var url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(b.n+" "+b.dir.split(" · ")[0]+" Granada");
-        return '<article class="barcard"><h4>'+escNote(b.n)+(b.ok?' <span class="esc-ok">★ recomendado</span>':'')+'</h4><p class="bdir">'+escNote(b.dir)+'</p>'+(b.s?'<p class="bsello">'+escNote(b.s)+'</p>':'')+'<p>'+escNote(b.w)+'</p>'+
+        return '<article class="barcard"><h4>'+escNote(b.n)+(b.ok?' <span class="esc-ok">★ recomendado</span>':'')+'</h4><p class="bdir">'+escNote(b.dir)+'</p>'+notaHTML(b.n)+(b.s?'<p class="bsello">'+escNote(b.s)+'</p>':'')+'<p>'+escNote(b.w)+'</p>'+
           (b.cierra?'<p class="bcierra">Cierra: '+escNote(b.cierra.toLowerCase())+' (según Google, oct 2026)</p>':'')+
           '<div class="fbtns"><a class="fbtn" href="'+url+'" target="_blank" rel="noopener">Mapa</a></div></article>';
       }).join("")+'</div>';
