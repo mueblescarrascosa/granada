@@ -2333,7 +2333,9 @@
       {n:"La Azotea", dir:"c/ Recogidas 16 · centro", w:"Terraza alta sobre Recogidas que además pone tapa; vistas a la Alhambra.", cierra:"Domingo tarde", g:[37.17261,-3.60148]},
       {n:"Terraza Monasterio", dir:"c/ Gran Capitán 1 · centro", w:"Azotea frente al monasterio de San Jerónimo con vistas a la Alhambra; abre todo el día.", cierra:"", g:[37.17883,-3.60354]},
       {n:"Terraza Eurostars Gran Vía", dir:"Gran Vía de Colón 20 · centro", w:"Azotea de hotel, pequeña y más cara, pero con muy buena vista.", cierra:"Lunes y martes", g:[37.17786,-3.59850]} ]},
-    { t:"Pubs y cerveza", s:"Pubs de toda la vida, irlandeses y cerveza artesana.", l:[
+    { t:"Pubs, billar y cerveza", s:"Vuestros dos fijos, pubs de toda la vida, irlandeses y cerveza artesana.", l:[
+      {ok:true, n:"Amsterdam Café Pub", dir:"c/ Pedro Antonio de Alarcón 52", w:"Vuestro sitio para tomar algo: rock de los 70 a los 90, gin-tonics bien hechos, cervezas de importación en la nevera del fondo y mesa de billar. Te ponen algo de picar con la copa.", cierra:"", g:[37.17414,-3.60698]},
+      {ok:true, n:"Lo + Pool", dir:"c/ Prosperidad 8 · junto a Pedro Antonio", w:"Vuestro billar: buenas mesas y tacos. Abre todos los días desde las 19:00. Si están todas ocupadas, apuntaos y estad pendientes del turno; según reseñas, a veces solo cobran en efectivo.", cierra:"", g:[37.17415,-3.60759]},
       {n:"Capitán Amargo", dir:"c/ Molinos 28 · Realejo", w:"Cerveza artesana con degustación de 5; la mejor valorada de la ciudad en su estilo.", cierra:"Domingo", g:[37.17276,-3.59266]},
       {n:"Nito's Pub", dir:"c/ Dr. Martín Lagos 4 · Camino de Ronda", w:"Pub de los de antes, lleno de recuerdos; tranquilo y cerveza muy fría.", cierra:"Lunes", g:[37.17146,-3.60235]},
       {n:"Nirvanas", dir:"c/ Martínez de la Rosa 4 · Pedro Antonio", w:"Rock y chupitos, decorado con todo lo de Nirvana. Cerca de El Vinillo.", cierra:"", g:[37.17730,-3.60719]},
@@ -2347,7 +2349,7 @@
     host.innerHTML=COPAS.map(function(gr){
       return '<h3 class="cpgrp">'+gr.t+'<small>'+gr.s+'</small></h3><div class="cpgrid">'+gr.l.map(function(b){
         var url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(b.n+" "+b.dir.split(" · ")[0]+" Granada");
-        return '<article class="barcard"><h4>'+escNote(b.n)+'</h4><p class="bdir">'+escNote(b.dir)+'</p><p>'+escNote(b.w)+'</p>'+
+        return '<article class="barcard"><h4>'+escNote(b.n)+(b.ok?' <span class="esc-ok">tu visto bueno</span>':'')+'</h4><p class="bdir">'+escNote(b.dir)+'</p><p>'+escNote(b.w)+'</p>'+
           (b.cierra?'<p class="bcierra">Cierra: '+escNote(b.cierra.toLowerCase())+' (según Google, oct 2026)</p>':'')+
           '<div class="fbtns"><a class="fbtn" href="'+url+'" target="_blank" rel="noopener">Mapa</a></div></article>';
       }).join("")+'</div>';
