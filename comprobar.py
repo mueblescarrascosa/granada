@@ -86,7 +86,7 @@ async def main():
         comprobar(vis_v == ["sitios"], f"Tocar una parada de ruta no lleva a la ficha (vista {vis_v})")
         # pestañas de Comer y beber
         await pg.evaluate('document.querySelector(\'#bnav [data-nav="bares"]\').click()')
-        for cm, sec in [("copas","copas"),("rutas","rutastem"),("bares","bares")]:
+        for cm, sec in [("copas","copas"),("especial","especial"),("rutas","rutastem"),("bares","bares")]:
             await pg.evaluate(f'document.querySelector(\'[data-cm="{cm}"]\').click()')
             ok = await pg.evaluate(f'!!document.getElementById("{sec}").offsetParent')
             comprobar(ok, f"La pestaña {cm} no enseña su sección")
