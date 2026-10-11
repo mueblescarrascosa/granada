@@ -299,7 +299,7 @@
   footer .reset.armed{border-color:var(--wood);color:var(--wood);font-weight:600}
   .planbar-share{background:transparent;border:1px solid rgba(255,255,255,.5);color:inherit;border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer;margin-right:6px}
   .planbar-clear.armed{font-weight:700;text-decoration:underline}
-  .today-wx{margin:10px 0 0;font-size:14px;color:var(--ink-soft)}
+  .today-wx{margin:0 0 12px;font-size:14px;color:var(--ink-soft)}
   .today-wx b{color:var(--ink)}
   .wx-go{margin-left:6px;background:transparent;border:none;padding:0;color:var(--cobalt);font-size:14px;cursor:pointer;text-decoration:underline}
   .inbox{margin:12px 0;padding:12px 16px;border-radius:12px;background:var(--ochre-soft);border:1px solid var(--ochre);font-size:15px}
@@ -386,6 +386,34 @@
   .mappop .mp-b{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
   .mappop button,.mappop a{font-size:12.5px;border:1px solid #16305F;border-radius:6px;padding:4px 8px;background:#fff;color:#16305F;cursor:pointer;text-decoration:none}
   .mapmsg{font-size:14px;color:var(--ink-soft);padding:20px;text-align:center}
+
+  /* tiempo */
+  .wxi{display:inline-block;vertical-align:middle;flex:none}
+  .wxb{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  .wxb b{color:var(--ink);font-size:14px}
+  .wxb .lo{color:var(--ink-soft)}
+  .wxb .rn{display:inline-flex;align-items:center;gap:1px;color:#2F6DB5;margin-left:3px}
+  .wxtoday{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .wxcard{background:linear-gradient(160deg,#F3F6FB,#fff);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;gap:10px;align-items:center}
+  .wxcard .wxl{font-size:12px;color:var(--ink-soft);margin:0}
+  .wxcard .wxt{font-size:20px;font-weight:700;color:var(--ink);margin:0;line-height:1.1}
+  .wxcard .wxt span{font-size:14px;font-weight:400;color:var(--ink-soft)}
+  .wxcard .wxs{font-size:12px;color:var(--ink-soft);margin:2px 0 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .wxadv{margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)}
+  .wxwarn{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:600;color:#8A2E1F;background:#FBE7E2;border-radius:999px;padding:2px 8px;margin:2px 4px 0 0}
+  .fday-h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .zonas{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+  .zonas h3{margin:0 0 6px;font-size:16px;color:var(--ink)}
+  .ztab{width:100%;border-collapse:collapse;font-size:13px}
+  .ztab th{font-weight:600;color:var(--ink-soft);font-size:12px;text-align:center;padding:4px 2px}
+  .ztab th:first-child,.ztab td:first-child{text-align:left}
+  .ztab td{padding:6px 2px;border-top:1px solid var(--line);text-align:center;vertical-align:middle}
+  .ztab td:first-child{font-weight:600;color:var(--ink);font-size:13px}
+  .zcell{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.1}
+  .zcell small{color:var(--ink-soft);font-size:11.5px}
+  .zcell .zw{color:#8A2E1F;font-size:10.5px;font-weight:700}
+  .esc-wx{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:2px 0 8px;padding:7px 9px;background:#F3F6FB;border-radius:8px}
+  .esc-wx .ed{font-size:11.5px;color:var(--ink-soft);margin-right:2px}
   footer .reset{margin-top:8px;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:"Space Mono",monospace;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;}
   footer .reset:hover{border-color:var(--wood);color:var(--wood)}
   .credits{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
@@ -1748,7 +1776,7 @@
     var now=new Date(), tmr=addDays(now,1), today=wdOf(now), tom=wdOf(tmr);
     var sT=freeSpecialDate(now), sM=freeSpecialDate(tmr), fT=festivoOf(now), fM=festivoOf(tmr);
     var closedP=DATA.filter(function(m){ return PRINCIPAL.indexOf(m.id)>=0 && dayStatusDate(m,now).k==="closed"; });
-    var h='<div class="wrap"><div class="today-card">';
+    var h='<div class="wrap"><div class="today-card"><div class="today-wx" id="todayWx" hidden></div>';
     h+='<p class="today-day">Hoy &middot; <b>'+DAYNAMES[today]+'</b>'+(fT?' &middot; <span class="fest">festivo: '+fT+'</span>':'')+'</p>';
     if(sT.length){ h+='<p class="today-lbl">'+icon("star8")+'Gratis hoy'+dayNote(today)+' &mdash; ma&ntilde;ana ya se paga</p><div class="today-chips">'+chipList(sT)+'</div>'; }
     else { h+='<p class="today-none">Hoy nada interesante gratis por el d&iacute;a. Lo de siempre (miradores, plazas, museos con DNI) est&aacute; en el filtro <b>Precio &#8594; Gratis</b>.</p>'; }
@@ -1758,7 +1786,6 @@
     if(sM.length){ h+='<p class="today-lbl mn">'+icon("star8")+'Gratis ma&ntilde;ana'+dayNote(tom)+'</p><div class="today-chips">'+chipList(sM)+'</div>'; }
     else { h+='<p class="today-none">Ma&ntilde;ana, nada nuevo gratis por el d&iacute;a.</p>'; }
     h+='</div>';
-    h+='<p class="today-wx" id="todayWx" hidden></p>';
     h+='<button class="today-more" type="button" data-today-more>Ver todo lo de hoy en la lista &#8594;</button>';
     h+='</div></div>';
     box.innerHTML=h;
@@ -2010,9 +2037,18 @@
     var host=document.getElementById("escapgrid"); if(!host) return;
     host.innerHTML=ESCAPADAS.map(function(e){
       return '<article class="ibox" data-esc="'+e.id+'"><h3>'+e.t+'</h3><p class="esc-meta">'+e.donde+' · '+e.coche+'</p><p>'+e.desc+'</p>'+
-        '<p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
+        '<div class="esc-wx" data-escwx="'+e.id+'" hidden></div><p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
         '<p class="esc-comer"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.t+" "+e.donde)+'" target="_blank" rel="noopener">Ver en mapa</a>'+(e.web?' · <a href="'+e.web+'" target="_blank" rel="noopener">Web</a>':'')+'</p></article>';
     }).join("");
+  }
+  function paintEscWx(){
+    if(!WX) return; var days=findeDays();
+    document.querySelectorAll("[data-escwx]").forEach(function(el){
+      var id=el.getAttribute("data-escwx"), idx=LOC_IDX[id]; if(idx==null) return;
+      var parts=days.map(function(d){ var w=wxAt(idx,dayIdx(d)); if(!w) return ''; return '<span class="ed">'+DAYNAMES[wdOf(d)].slice(0,3)+'</span>'+wxBadge(w)+warnHTML(wxWarns(w)); }).filter(Boolean);
+      if(!parts.length){ el.hidden=true; return; }
+      el.innerHTML='<span class="ed" style="width:100%">Este finde allí:</span>'+parts.join(""); el.hidden=false;
+    });
   }
   function jumpEsc(id){
     var sec=document.querySelector("section.escapadas"); if(sec){ sec.classList.remove("folded"); var k=sec.querySelector(".fold-head"); if(k) k.setAttribute("aria-expanded","true"); }
@@ -2035,7 +2071,7 @@
     return days;
   }
   function dayIdx(dt){ var t=new Date(); var a=new Date(t.getFullYear(),t.getMonth(),t.getDate()); return Math.round((dt-a)/86400000); }
-  function wxAt(loc,i){ if(!WX||!WX[loc]||!WX[loc].daily) return null; var d=WX[loc].daily; if(i<0||i>=d.time.length) return null; return { code:d.weather_code[i], max:d.temperature_2m_max[i], min:d.temperature_2m_min[i], rain:d.precipitation_probability_max[i], sunset:(d.sunset&&d.sunset[i])?d.sunset[i].slice(11,16):"" }; }
+  function wxAt(loc,i){ if(!WX||!WX[loc]||!WX[loc].daily) return null; var d=WX[loc].daily; if(i<0||i>=d.time.length) return null; return { code:d.weather_code[i], max:d.temperature_2m_max[i], min:d.temperature_2m_min[i], rain:d.precipitation_probability_max[i], sunset:(d.sunset&&d.sunset[i])?d.sunset[i].slice(11,16):"", snow:(d.snowfall_sum&&d.snowfall_sum[i])||0, gust:(d.wind_gusts_10m_max&&d.wind_gusts_10m_max[i])||0 }; }
   function wxTxt(w){ return wxLabel(w.code)+", "+Math.round(w.min)+"–"+Math.round(w.max)+" °C"+(w.rain!=null?", lluvia "+w.rain+" %":""); }
   function minusMin(hm,mins){ var p=hm.split(":"); var t=parseInt(p[0],10)*60+parseInt(p[1],10)-mins; return Math.floor(t/60)+":"+("0"+(t%60)).slice(-2); }
   function pendingBy(fn){ return DATA.filter(function(m){ return !visited.has(m.id) && fn(m); }).sort(function(x,y){ return (PRINCIPAL.indexOf(y.id)>=0?1:0)-(PRINCIPAL.indexOf(x.id)>=0?1:0); }); }
@@ -2045,8 +2081,8 @@
     var h='<div class="wrap"><div class="finde-card"><h2>Este finde</h2><p class="fsub">Lo que te conviene según el día, el tiempo y lo que te falta por ver. Se recalcula solo.</p>';
     days.forEach(function(dt,k){
       var i=dayIdx(dt), wd=wdOf(dt), f=festivoOf(dt), w=wxAt(0,i);
-      h+='<div class="fday"><h3>'+DAYNAMES[wd].charAt(0).toUpperCase()+DAYNAMES[wd].slice(1)+' '+dt.getDate()+' '+MESES[dt.getMonth()]+(f?' <span class="fest">· festivo: '+f+'</span>':'')+'</h3>';
-      if(w) h+='<p>'+wxTxt(w)+(w.sunset?' · atardecer '+w.sunset:'')+'</p>';
+      h+='<div class="fday"><div class="fday-h"><h3>'+DAYNAMES[wd].charAt(0).toUpperCase()+DAYNAMES[wd].slice(1)+' '+dt.getDate()+' '+MESES[dt.getMonth()]+(f?' <span class="fest">· festivo: '+f+'</span>':'')+'</h3>'+(w?wxBadge(w):'')+'</div>';
+      if(w) h+='<p>'+wxLabel(w.code).charAt(0).toUpperCase()+wxLabel(w.code).slice(1)+(w.sunset?' · '+ICO_SUNSET+' atardecer '+w.sunset:'')+'</p>'+(wxWarns(w).length?'<p>'+warnHTML(wxWarns(w))+'</p>':'');
       else h+='<p>'+(WX?'Previsión aún no disponible: sale una semana antes.':'Sin previsión ahora mismo (necesita conexión).')+'</p>';
       var fr=freeSpecialDate(dt).filter(function(m){ return !visited.has(m.id); }).slice(0,5);
       if(fr.length) h+='<p><b>Gratis ese día y aún sin ver:</b></p><div class="today-chips">'+chipList(fr)+'</div>';
@@ -2073,12 +2109,24 @@
     // escapada del finde
     var mon=days[0].getMonth()+1, sat=days.filter(function(d){ return wdOf(d)===5; })[0]||days[0], si=dayIdx(sat);
     var esc=ESCAPADAS.filter(function(e){ return e.meses.indexOf(mon)>=0; });
-    var mw=wxAt(1,si), aw=wxAt(2,si), badMtn=(mw&&mw.rain>=60)||(aw&&aw.rain>=60);
-    if(badMtn){ var dry=esc.filter(function(e){ return !e.monte; }); if(dry.length) esc=dry; }
+    function bad(e){ var w=wxAt(LOC_IDX[e.id],si); if(!w) return false; return w.rain>=60 || w.gust>=60 || w.code>=95 || (e.monte && (w.snow>=1 && e.id!=="sierranevada")) || w.max>=36; }
+    var badMtn=false, okE=esc.filter(function(e){ return !bad(e); });
+    if(okE.length && okE.length<esc.length){ badMtn=true; esc=okE; }
     var e=esc[wk%esc.length];
     h+='<div class="fbox"><h4>Escapada del finde</h4><span class="fname">'+e.t+'</span>'+e.donde+' · '+e.coche+'.';
-    if(mw||aw) h+='<br>El '+DAYNAMES[wdOf(sat)]+': Sierra Nevada '+(mw?wxTxt(mw):'—')+' · Alpujarra '+(aw?wxTxt(aw):'—')+'.'+(badMtn?' Mal tiempo en la montaña: te propongo algo más bajo.':'');
+    var ew=wxAt(LOC_IDX[e.id],si);
+    if(ew) h+='<div class="esc-wx"><span class="ed">El '+DAYNAMES[wdOf(sat)]+' allí:</span>'+wxBadge(ew)+warnHTML(wxWarns(ew))+'</div>'+(badMtn?'<p class="wxadv">Hay mal tiempo en otras zonas: te propongo una que se libra.</p>':'');
     h+='<div class="fbtns"><button class="fbtn solid" type="button" data-esc-go="'+e.id+'">Ver la escapada</button></div></div></div>';
+    if(WX){
+      var Z=[["Granada","granada"],["Sierra Nevada","sierranevada"],["Alpujarra","poqueira"],["Costa","salobrena"],["Guadix","guadix"]];
+      var cols=days.filter(function(d){ return wxAt(0,dayIdx(d)); });
+      if(cols.length){
+        h+='<div class="zonas"><h3>El tiempo por zonas</h3><table class="ztab"><thead><tr><th></th>'+cols.map(function(d){ return '<th>'+DAYNAMES[wdOf(d)].slice(0,3)+' '+d.getDate()+'</th>'; }).join("")+'</tr></thead><tbody>'+
+          Z.map(function(z){ return '<tr><td>'+z[0]+'</td>'+cols.map(function(d){ var w=wxAt(LOC_IDX[z[1]],dayIdx(d)); if(!w) return '<td>—</td>';
+            var wr=wxWarns(w); return '<td><div class="zcell">'+wxIcon(w.code,24)+'<span><b>'+Math.round(w.max)+'°</b> <small>'+Math.round(w.min)+'°</small></span>'+(w.rain>=20?'<small style="color:#2F6DB5">'+w.rain+'%</small>':'')+(wr.length?'<span class="zw">⚠ '+wr[0]+'</span>':'')+'</div></td>'; }).join("")+'</tr>'; }).join("")+
+          '</tbody></table><p class="wxadv">Avisos oficiales de la AEMET: <a href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=hoy&k=and" target="_blank" rel="noopener">aemet.es</a>.</p></div>';
+      }
+    }
     var av=["alh_general","catedral","angustias","jeronimo"].filter(function(id){ return IDS[id] && !visited.has(id); });
     if(av.length) h+='<p class="fsub" style="margin-top:12px"><b>Avisos ('+AVISOS_FECHA+'):</b> '+av.map(function(id){ return IDS[id].name; }).join(" · ")+'. Lo tienes en el recuadro rojo de cada ficha.</p>';
     h+='</div></div>';
@@ -2209,7 +2257,39 @@
   });
   if("IntersectionObserver" in window){ var mio=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ initMap(); mio.disconnect(); } },{rootMargin:"200px"}); mio.observe(document.getElementById("map")); }
   /* ===== el tiempo (Open-Meteo, sin clave) ===== */
-  var WX_URL="https://api.open-meteo.com/v1/forecast?latitude=37.177,37.094,36.962&longitude=-3.599,-3.395,-3.358&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunset&timezone=Europe%2FMadrid&forecast_days=8";
+  var ESC_LL={ sierranevada:[37.094,-3.398], poqueira:[36.955,-3.360], trevelez:[37.0025,-3.266], lanjaron:[36.918,-3.487], vereda:[37.141,-3.405], cahorros:[37.133,-3.537],
+    gollizno:[37.340,-3.787], alhama:[37.003,-3.989], montefrio:[37.321,-4.011], ventanas:[37.443,-3.440], guadix:[37.300,-3.135], gorafe:[37.480,-3.043], salobrena:[36.743,-3.588] };
+  var LOC_IDX={granada:0}, LOC_LL=[[37.177,-3.599]];
+  ESCAPADAS.forEach(function(e){ if(ESC_LL[e.id]){ LOC_IDX[e.id]=LOC_LL.length; LOC_LL.push(ESC_LL[e.id]); } });
+  var WX_URL="https://api.open-meteo.com/v1/forecast?latitude="+LOC_LL.map(function(x){ return x[0]; }).join(",")+"&longitude="+LOC_LL.map(function(x){ return x[1]; }).join(",")+
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunset,snowfall_sum,wind_gusts_10m_max&timezone=Europe%2FMadrid&forecast_days=8";
+  /* iconos del tiempo (SVG propio) */
+  var WXC={sun:"#E1A23A",cloud:"#8C97AB",dark:"#5F6B80",rain:"#2F6DB5",snow:"#7FB2E5"};
+  function cloudP(dy,fill){ return '<path d="M7.2 '+(17+dy)+'h9.6a3.9 3.9 0 0 0 .6-7.75 5.6 5.6 0 0 0-10.7 1.3A3.3 3.3 0 0 0 7.2 '+(17+dy)+'z" fill="'+fill+'"/>'; }
+  function sunP(cx,cy,r){ var rays=""; for(var k=0;k<8;k++){ var a=k*Math.PI/4, x1=cx+Math.cos(a)*(r+2), y1=cy+Math.sin(a)*(r+2), x2=cx+Math.cos(a)*(r+4.2), y2=cy+Math.sin(a)*(r+4.2); rays+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="'+WXC.sun+'" stroke-width="1.8" stroke-linecap="round"/>'; } return rays+'<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+WXC.sun+'"/>'; }
+  function drops(n,col){ var o=""; for(var k=0;k<n;k++){ var x=8+k*4; o+='<path d="M'+x+' 18.5l-1.2 2.6a1.3 1.3 0 0 0 2.4 0z" fill="'+col+'"/>'; } return o; }
+  function wxIcon(c,sz){
+    sz=sz||22; var g;
+    if(c===0) g=sunP(12,12,4.6);
+    else if(c<=2) g=sunP(9,8.5,3.4)+cloudP(1,WXC.cloud);
+    else if(c===3) g=cloudP(0,WXC.cloud);
+    else if(c===45||c===48) g='<g stroke="'+WXC.cloud+'" stroke-width="2" stroke-linecap="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="6" y1="13" x2="18" y2="13"/><line x1="4" y1="17" x2="20" y2="17"/></g>';
+    else if(c>=51&&c<=57) g=cloudP(-3,WXC.cloud)+drops(2,WXC.rain);
+    else if((c>=61&&c<=67)||(c>=80&&c<=82)) g=cloudP(-3,WXC.dark)+drops(3,WXC.rain);
+    else if((c>=71&&c<=77)||c===85||c===86) g=cloudP(-3,WXC.cloud)+'<g fill="'+WXC.snow+'"><circle cx="8" cy="19.5" r="1.3"/><circle cx="12" cy="21" r="1.3"/><circle cx="16" cy="19.5" r="1.3"/></g>';
+    else if(c>=95) g=cloudP(-3,WXC.dark)+'<path d="M12.5 15l-3 4.5h2.5l-1 3.5 3.5-5h-2.5z" fill="'+WXC.sun+'"/>';
+    else g=cloudP(0,WXC.cloud);
+    return '<svg class="wxi" width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" aria-hidden="true">'+g+'</svg>';
+  }
+  var ICO_DROP='<svg class="wxi" width="11" height="11" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l-5.5 9a6 6 0 1 0 11 0z" fill="#2F6DB5"/></svg>';
+  var ICO_SUNSET='<svg class="wxi" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17a7 7 0 0 1 14 0z" fill="#E1A23A"/><line x1="2" y1="19.5" x2="22" y2="19.5" stroke="#A9741E" stroke-width="1.8" stroke-linecap="round"/><path d="M12 4v4m-3-2 3 3 3-3" stroke="#A9741E" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>';
+  function wxWarns(w){ var a=[]; if(!w) return a;
+    if(w.code>=95) a.push("tormenta"); if(w.snow>=1) a.push("nieve"+(w.snow>=5?" ("+Math.round(w.snow)+" cm)":""));
+    if(w.gust>=60) a.push("rachas de "+Math.round(w.gust)+" km/h"); if(w.max>=35) a.push("calor fuerte"); if(w.min<=0) a.push("helada");
+    if(w.rain>=70 && a.indexOf("tormenta")<0) a.push("lluvia casi segura"); return a; }
+  function wxBadge(w){ if(!w) return '<span class="wxb">—</span>';
+    return '<span class="wxb" title="'+esc(wxLabel(w.code))+'">'+wxIcon(w.code,22)+'<b>'+Math.round(w.max)+'°</b><span class="lo">'+Math.round(w.min)+'°</span>'+(w.rain>=20?'<span class="rn">'+ICO_DROP+w.rain+'%</span>':'')+'</span>'; }
+  function warnHTML(a){ return a.map(function(x){ return '<span class="wxwarn">⚠ '+x+'</span>'; }).join(""); }
   function wxLabel(c){
     if(c===0) return "despejado"; if(c<=2) return "algo de nubes"; if(c===3) return "nublado";
     if(c===45||c===48) return "niebla"; if(c>=51&&c<=57) return "llovizna"; if(c>=61&&c<=67) return "lluvia";
@@ -2218,28 +2298,31 @@
   function wxDay(d,i){ return wxLabel(d.weather_code[i])+", "+Math.round(d.temperature_2m_min[i])+"–"+Math.round(d.temperature_2m_max[i])+" °C"+(d.precipitation_probability_max[i]!=null?", lluvia "+d.precipitation_probability_max[i]+" %":""); }
   function paintWeather(arr){
     if(!Array.isArray(arr)||!arr[0]||!arr[0].daily) return;
-    WX=arr; renderFinde();
+    WX=arr; renderFinde(); paintEscWx();
     var d=arr[0].daily;
     var el=document.getElementById("todayWx"); if(!el||!d.weather_code) return;
     var wet=(d.precipitation_probability_max[0]||0)>=60, hot=(d.temperature_2m_max[0]||0)>=35;
-    var h='<b>El tiempo hoy:</b> '+wxDay(d,0)+(d.sunset&&d.sunset[0]?' · atardecer '+d.sunset[0].slice(11,16):'')+'. <b>Mañana:</b> '+wxDay(d,1)+'.';
-    if(wet) h+=' Día de techo: tira de museos e interiores.<button class="wx-go" type="button" data-wx="museo">Ver museos</button>';
-    else if(hot) h+=' Mucho calor: miradores a primera hora o al atardecer, y a mediodía, interiores.';
+    function card(lbl,i){ var w=wxAt(0,i); if(!w) return ''; return '<div class="wxcard">'+wxIcon(w.code,40)+'<div><p class="wxl">'+lbl+' · '+wxLabel(w.code)+'</p><p class="wxt">'+Math.round(w.max)+'° <span>/ '+Math.round(w.min)+'°</span></p><p class="wxs">'+(w.rain!=null?'<span>'+ICO_DROP+' '+w.rain+'%</span>':'')+(w.sunset?'<span>'+ICO_SUNSET+' '+w.sunset+'</span>':'')+'</p></div></div>'; }
+    var h='<div class="wxtoday">'+card("Hoy",0)+card("Mañana",1)+'</div>';
+    var wt=wxWarns(wxAt(0,0)), wm=wxWarns(wxAt(0,1));
+    if(wt.length||wm.length) h+='<p class="wxadv">'+(wt.length?'Hoy: '+warnHTML(wt):'')+(wm.length?' Mañana: '+warnHTML(wm):'')+'</p>';
+    if(wet) h+='<p class="wxadv">Día de techo: tira de museos e interiores.<button class="wx-go" type="button" data-wx="museo">Ver museos</button></p>';
+    else if(hot) h+='<p class="wxadv">Mucho calor: miradores a primera hora o al atardecer, y a mediodía, interiores.</p>';
     el.innerHTML=h; el.hidden=false;
     var b=el.querySelector("[data-wx]"); if(b) b.addEventListener("click", function(){ setState("todos"); setPrice("todo"); setLevel("todo"); clearSearch(); setCat("museo"); applyFilter(); board.scrollIntoView({behavior:"smooth",block:"start"}); });
   }
   async function loadWeather(){
     try{
-      var c=await STORE.get("granada:tiempo3");
+      var c=await STORE.get("granada:tiempo4");
       if(c){ c=JSON.parse(c); var hoy=isoDay(new Date());
-        if(c && c.t && Date.now()-c.t<3600000 && Array.isArray(c.d) && c.d[0] && c.d[0].daily && c.d[0].daily.time[0]===hoy){ paintWeather(c.d); return; } }
+        if(c && c.t && Date.now()-c.t<3600000 && Array.isArray(c.d) && c.d.length===LOC_LL.length && c.d[0] && c.d[0].daily && c.d[0].daily.time[0]===hoy){ paintWeather(c.d); return; } }
     }catch(e){}
     if(navigator.onLine===false) return;
     try{
       var ctl=("AbortController" in window)?new AbortController():null; var to=setTimeout(function(){ if(ctl) ctl.abort(); }, 6000);
       var r=await fetch(WX_URL, ctl?{signal:ctl.signal}:{}); clearTimeout(to);
       if(!r.ok) return; var j=await r.json(); if(!Array.isArray(j)) j=[j]; if(!j[0]||!j[0].daily) return;
-      paintWeather(j); STORE.set("granada:tiempo3", JSON.stringify({t:Date.now(), d:j}));
+      paintWeather(j); STORE.set("granada:tiempo4", JSON.stringify({t:Date.now(), d:j}));
     }catch(e){}
   }
   renderToday();
