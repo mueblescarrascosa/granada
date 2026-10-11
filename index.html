@@ -2005,7 +2005,16 @@
     { id:"mascarones", ok:false, n:"Los Mascarones", dir:"c/ Pagés 20 · Albaicín alto", w:"Migas, pulpo y tapas de barrio. Encaja con un domingo andalusí.", cierra:"Miércoles; solo a mediodía (12–16)", g:[37.18390,-3.59302] },
     { id:"laflota", ok:false, n:"Freiduría La Flota", dir:"c/ Pérez Galdós 9 · zona Ronda", w:"Pescaíto de los que eligen los granadinos. Reserva en finde.", cierra:"Lunes; domingo solo mediodía", g:[37.18157,-3.61465] },
     { id:"diamantesvr", ok:false, n:"Los Diamantes (Rosario)", dir:"c/ Virgen del Rosario 12 · Realejo", w:"La otra casa de Los Diamantes, con menos agobio que Navas.", cierra:"", g:[37.17266,-3.59615] },
-    { id:"latana", ok:false, n:"La Tana", dir:"Placeta del Agua 3 · Realejo", w:"Taberna de vinos con mucha carta y tapa con cada copa.", cierra:"", g:[37.17273,-3.59612] }
+    { id:"avila", ok:false, n:"Bar Ávila", dir:"c/ Verónica de la Virgen 16 · Realejo", w:"Un clásico de tapa caliente y generosa: cazón, carne frita, guisos, jamón asado. Antes de abrir (20:00) ya hay cola.", cierra:"Domingo", g:[37.17001,-3.59907] },
+    { id:"riviera", ok:false, n:"La Riviera", dir:"c/ Cetti Meriem 7 · junto a Elvira", w:"Eliges la tapa de una carta larga: pinchitos, albóndigas, alitas. Lleno a todas horas.", cierra:"", g:[37.17734,-3.59750] },
+    { id:"poe", ok:false, n:"Bar Poë", dir:"c/ Verónica de la Magdalena 40 · centro", w:"Eliges tapa caliente con giro internacional (alitas, brochetas, cosas picantes). Solo efectivo y abre hasta tarde.", cierra:"", g:[37.17439,-3.60344] },
+    { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", g:[37.17690,-3.60161] },
+    { id:"altramuces", ok:false, n:"Los Altramuces", dir:"Campo del Príncipe · Realejo", w:"Terraza en la plaza y tapas generosas: calamares, berenjenas fritas, pimientos.", cierra:"Miércoles y jueves", g:[37.17313,-3.59245] },
+    { id:"pajuana", ok:false, n:"La Pajuana", dir:"c/ Virgen del Rosario 10 · Realejo", w:"Tapas calientes y originales que van a más con cada ronda; guisos y hojaldres.", cierra:"El horario de Google no es fiable: confírmalo", g:[37.17270,-3.59624] },
+    { id:"quintillo", ok:false, n:"El Quintillo", dir:"c/ Pedro Antonio de Alarcón 76", w:"Bar de barrio, barato y sin turistas; las croquetas de cecina, lo mejor.", cierra:"Domingo; lunes y martes solo noche", g:[37.17655,-3.60845] },
+    { id:"rondel", ok:false, n:"El Rondel", dir:"Av. de América 8 · Zaidín", w:"Una veintena de tapas a elegir, caseras y muy baratas.", cierra:"Domingo y lunes; noches solo de jueves a sábado", g:[37.16173,-3.60134] },
+    { id:"picaeta", ok:false, n:"La Picaeta", dir:"c/ Pavía 15 · Zaidín", w:"Tapas caseras con giro, de barrio de verdad. Se llena: reserva.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15452,-3.59786] },
+    { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] }
   ];
   var BARES_PROBAR=BARES.filter(function(b){ return !b.ok; }).map(function(b){ return { id:b.id, n:b.n, d:b.dir, w:b.w+(b.cierra?" (Cierra: "+b.cierra.toLowerCase()+".)":"") }; });
   var BARES_OK=BARES.filter(function(b){ return b.ok; }).map(function(b){ return { id:b.id, n:b.n, d:b.dir, w:b.w+(b.cierra?" (Cierra: "+b.cierra.toLowerCase()+".)":"") }; });
@@ -2023,7 +2032,7 @@
     }
     var ok=BARES.filter(function(b){ return b.ok || baresProbados[b.id]; }), por=BARES.filter(function(b){ return !b.ok && !baresProbados[b.id]; });
     host.innerHTML='<h3 class="bartitle">Con tu visto bueno</h3><div class="bargrid">'+ok.map(function(b){ return card(b,false); }).join("")+'</div>'+
-      (por.length?'<h3 class="bartitle">Por probar (según reseñas)</h3><div class="bargrid">'+por.map(function(b){ return card(b,true); }).join("")+'</div>':'');
+      (por.length?'<h3 class="bartitle">Por probar (según reseñas · tapa caliente)</h3><div class="bargrid">'+por.map(function(b){ return card(b,true); }).join("")+'</div>':'');
     host.querySelectorAll("[data-bar-mark]").forEach(function(x){ x.addEventListener("click", function(){ baresProbados[x.getAttribute("data-bar-mark")]=isoDay(new Date()); saveBares(); renderBares(); renderFinde(); toast("Apuntado como probado."); }); });
     host.querySelectorAll("[data-bar-undo]").forEach(function(x){ x.addEventListener("click", function(){ delete baresProbados[x.getAttribute("data-bar-undo")]; saveBares(); renderBares(); renderFinde(); }); });
   }
