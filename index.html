@@ -1319,7 +1319,11 @@
     sanmiguelbajo:"La iglesia sufrió daños en la torre y la cornisa (agosto). La plaza sigue siendo de paso; puede haber zona acotada.",
     capillareal:"Reabrió el 20 ago tras los terremotos. El 12 oct solo abre por la tarde.",
     cartuja:"Reabrió el 20 ago tras los terremotos.",
-    sacromonte:"Reabrió el 20 ago tras los terremotos."
+    sacromonte:"Reabrió el 20 ago tras los terremotos.",
+    darhorra:"Cerró el 19 ago por los terremotos y <b>no he encontrado confirmación de que haya reabierto</b>. Llama antes al 958 027 971 (Patronato).",
+    banuelo:"Los monumentos andalusíes cerraron tras los terremotos de agosto para revisarlos. La web oficial ya no da aviso, pero confírmalo en el 958 027 971.",
+    maristan:"Cerró tras los terremotos de agosto para revisarlo. Confírmalo en el 958 027 971.",
+    morisca:"Cerró tras los terremotos de agosto para revisarla. Confírmalo en el 958 027 971."
   };
   var WEBS={
     catedral:"https://catedraldegranada.com/",
@@ -2136,7 +2140,7 @@
           '</tbody></table><p class="wxadv">Avisos oficiales de la AEMET: <a href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=hoy&k=and" target="_blank" rel="noopener">aemet.es</a>.</p></div>';
       }
     }
-    var av=["alh_general","catedral","angustias","jeronimo"].filter(function(id){ return IDS[id] && !visited.has(id); });
+    var av=["alh_general","catedral","angustias","jeronimo","darhorra"].filter(function(id){ return IDS[id] && !visited.has(id); });
     if(av.length) h+='<p class="fsub" style="margin-top:12px"><b>Avisos ('+AVISOS_FECHA+'):</b> '+av.map(function(id){ return IDS[id].name; }).join(" · ")+'. Lo tienes en el recuadro rojo de cada ficha.</p>';
     h+='</div></div>';
     box.innerHTML=h;
