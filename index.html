@@ -436,6 +436,7 @@
   .nearby button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:4px 0;font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer}
   .nearby button span{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
 
+  .barcard .blleno{display:inline-block;font-size:.75rem;font-weight:700;color:#fff;background:var(--wood);border-radius:999px;padding:1px 9px;margin:.1rem 0 .25rem}
   .cpgrid{display:grid;gap:12px;grid-template-columns:1fr}
   @media(min-width:760px){.cpgrid{grid-template-columns:1fr 1fr}}
   .cpgrp{margin:6px 0 4px;font-family:Fraunces,serif;font-size:20px;color:var(--ink)}
@@ -2068,7 +2069,7 @@
   var BARES=[
     { id:"misadeseis", ok:true, n:"Misa de Seis", dir:"c/ Obispo Hurtado 24 · Camino de Ronda", w:"Pequeñito, con terraza. Mollejas, torreznos y jamón asado.", cierra:"Domingo y lunes", g:[37.17371,-3.60757] },
     { id:"sancho", ok:true, n:"Sancho Original", dir:"c/ Tablas 16 · centro", w:"Desde 1981. En la barra o mesas altas, tapa con cada bebida; en mesa es a la carta.", cierra:"", s:"Emblemático de Granada · La Mejor Tapa del Mundo: 1.º 2018 y 2.º 2019", g:[37.17590,-3.60362] },
-    { id:"diamantes", ok:true, n:"Los Diamantes", dir:"c/ Navas 28 · centro", w:"La catedral de la fritura: pescaíto de tapa, de pie y a reventar.", cierra:"", s:"Ruta Soletes Repsol · Carta a Granada", g:[37.17374,-3.59836] },
+    { id:"diamantes", ok:true, lleno:true, n:"Los Diamantes", dir:"c/ Navas 28 · centro", w:"La catedral de la fritura: pescaíto de tapa, de pie y a reventar.", cierra:"", s:"Ruta Soletes Repsol · Carta a Granada", g:[37.17374,-3.59836] },
     { id:"rodri", ok:true, n:"El Rincón de Rodri", dir:"c/ Músico Vicente Zarzo 3 · Pedro Antonio", w:"El rey del pescaíto de la zona; tapas casi de comida.", cierra:"Domingo y lunes", g:[37.17245,-3.60540] },
     { id:"entrebrasas", ok:true, n:"EntreBrasas", dir:"c/ Navas 27 · centro", w:"Brasa: en la barra, tapa distinta con cada caña (panceta, secreto…).", cierra:"Domingo y lunes", g:[37.17374,-3.59846] },
     { id:"potemkin", ok:true, n:"Potemkin", dir:"Plta. del Hospicio Viejo 3 · Realejo", w:"Sushi y gyozas de tapa gratis, y una terraza interior secreta.", cierra:"", s:"Ruta Soletes Repsol", g:[37.17453,-3.59457] },
@@ -2078,7 +2079,7 @@
     { id:"tango", ok:false, n:"Tango Bar", dir:"c/ Sol 22 · Pedro Antonio", w:"Un clásico de la zona: con cada bebida eliges mini pizza al horno, mini burrito o nachos. Terraza siempre llena. Tiene otro local en c/ San Miguel Alta 19.", cierra:"De lunes a miércoles solo noche", g:[37.17668,-3.60892] },
     { id:"doritas", ok:false, n:"Dorita's", dir:"c/ Almenillas 1 · zona universidad", w:"Bar de estudiantes con tapa grande a elegir; la carne en salsa de tomate, la que más piden.", cierra:"", g:[37.17915,-3.61081] },
     { id:"macetilla", ok:false, n:"La Macetilla", dir:"c/ Infanta Beatriz 3 · Pedro Antonio", w:"Taberna andaluza: jamón asado al espetón y guisos en cazuela de barro.", cierra:"Martes y miércoles", g:[37.17308,-3.60729] },
-    { id:"sitarilla", ok:false, n:"La Sitarilla", dir:"c/ San Miguel Alta 7 · centro", w:"Tapa sorpresa (la elige la cocina) y enorme; hay cola antes de abrir. Paredes llenas de vírgenes y cerámica.", cierra:"Martes; lunes solo mediodía", g:[37.17338,-3.60356] },
+    { id:"sitarilla", ok:false, lleno:true, n:"La Sitarilla", dir:"c/ San Miguel Alta 7 · centro", w:"Tapa sorpresa (la elige la cocina) y enorme; hay cola antes de abrir. Paredes llenas de vírgenes y cerámica.", cierra:"Martes; lunes solo mediodía", g:[37.17338,-3.60356] },
     { id:"buenavida", ok:false, n:"La Buena Vida", dir:"c/ Almireceros 7 · junto a Plaza Nueva", w:"Tapa grande a elegir; las albóndigas, las más repetidas. Abre todos los días.", cierra:"", g:[37.17687,-3.59723] },
     { id:"bultaco", ok:false, n:"Bultaco Bar", dir:"c/ Elvira 116 · Albaicín bajo", w:"Barecito de un solo dueño, carta en la pared; tortilla y pinchos caseros muy buenos. Solo noches.", cierra:"Abre solo de 20 a 24", g:[37.18097,-3.59893] },
     { id:"titapaca", ok:true, n:"Tita Paca", dir:"c/ Pedro Antonio de Alarcón 54 · Pedro Antonio", w:"Taberna con terraza en la acera; tapa de plancha a elegir de la carta del día (ternera con chimichurri, pollo con queso de cabra) y cañas muy frías.", cierra:"", g:[37.17448,-3.60723] },
@@ -2089,8 +2090,8 @@
     { id:"mascarones", ok:false, n:"Los Mascarones", dir:"c/ Pagés 20 · Albaicín alto", w:"Migas, pulpo y tapas de barrio. Encaja con un domingo andalusí.", cierra:"Miércoles; solo a mediodía (12–16)", g:[37.18390,-3.59302] },
     { id:"laflota", ok:false, n:"Freiduría La Flota", dir:"c/ Pérez Galdós 9 · zona Ronda", w:"Pescaíto de los que eligen los granadinos. Reserva en finde.", cierra:"Lunes; domingo solo mediodía", g:[37.18157,-3.61465] },
     { id:"diamantesvr", ok:false, n:"Los Diamantes (Rosario)", dir:"c/ Virgen del Rosario 12 · Realejo", w:"La otra casa de Los Diamantes, con menos agobio que Navas.", cierra:"", g:[37.17266,-3.59615] },
-    { id:"avila", ok:false, n:"Bar Ávila", dir:"c/ Verónica de la Virgen 16 · Realejo", w:"Un clásico de tapa caliente y generosa: cazón, carne frita, guisos, jamón asado. Antes de abrir (20:00) ya hay cola.", cierra:"Domingo", s:"Ruta Soletes Repsol", g:[37.17001,-3.59907] },
-    { id:"riviera", ok:false, n:"La Riviera", dir:"c/ Cetti Meriem 7 · junto a Elvira", w:"Eliges la tapa de una carta larga: pinchitos, albóndigas, alitas. Lleno a todas horas.", cierra:"", g:[37.17734,-3.59750] },
+    { id:"avila", ok:false, lleno:true, n:"Bar Ávila", dir:"c/ Verónica de la Virgen 16 · Realejo", w:"Un clásico de tapa caliente y generosa: cazón, carne frita, guisos, jamón asado. Antes de abrir (20:00) ya hay cola.", cierra:"Domingo", s:"Ruta Soletes Repsol", g:[37.17001,-3.59907] },
+    { id:"riviera", ok:false, lleno:true, n:"La Riviera", dir:"c/ Cetti Meriem 7 · junto a Elvira", w:"Eliges la tapa de una carta larga: pinchitos, albóndigas, alitas. Lleno a todas horas.", cierra:"", g:[37.17734,-3.59750] },
     { id:"poe", ok:false, n:"Bar Poë", dir:"c/ Verónica de la Magdalena 40 · centro", w:"Eliges tapa caliente con giro internacional (alitas, brochetas, cosas picantes). Solo efectivo y abre hasta tarde.", cierra:"", g:[37.17439,-3.60344] },
     { id:"tocateja", ok:false, n:"Tocateja", dir:"c/ Trinidad 8 · centro", w:"Albóndigas, cerdo frito y guiso del día; tapa con cada bebida.", cierra:"Domingo", s:"Carta a Granada", g:[37.17690,-3.60161] },
     { id:"altramuces", ok:false, n:"Los Altramuces", dir:"Campo del Príncipe · Realejo", w:"Terraza en la plaza y tapas generosas: calamares, berenjenas fritas, pimientos.", cierra:"Miércoles y jueves", g:[37.17313,-3.59245] },
@@ -2099,9 +2100,9 @@
     { id:"rondel", ok:false, n:"El Rondel", dir:"Av. de América 8 · Zaidín", w:"Una veintena de tapas a elegir, caseras y muy baratas.", cierra:"Domingo y lunes; noches solo de jueves a sábado", g:[37.16173,-3.60134] },
     { id:"picaeta", ok:false, n:"La Picaeta", dir:"c/ Pavía 15 · Zaidín", w:"Tapas caseras con giro, de barrio de verdad. Se llena: reserva.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15452,-3.59786] },
     { id:"guejareno", ok:false, n:"Rincón del Güejareño", dir:"Zaidín", w:"Bar de barrio sin adornos, buena tapa y salsas muy picantes.", cierra:"Lunes y martes; domingo solo mediodía", g:[37.15719,-3.59925] },
-    { id:"barrojo", ok:false, n:"Bar Rojo", dir:"c/ Laurel de las Tablas 10 · centro", w:"Diminuto y todo rojo; tortilla recién hecha de tapa y croquetas con fama. A las 20:00 ya hay cola en la calle.", cierra:"Domingo y lunes", s:"Muy recomendado por granadinos", g:[37.17665,-3.60222] },
+    { id:"barrojo", ok:false, lleno:true, n:"Bar Rojo", dir:"c/ Laurel de las Tablas 10 · centro", w:"Diminuto y todo rojo; tortilla recién hecha de tapa y croquetas con fama. A las 20:00 ya hay cola en la calle.", cierra:"Domingo y lunes", s:"Muy recomendado por granadinos", g:[37.17665,-3.60222] },
     { id:"braserito", ok:false, n:"Patio Braserito", dir:"c/ Virgen del Rosario 7 · Realejo", w:"Tapa con cada bebida: alcachofas, bacalao en tomate, huevos rotos, secreto. Comedor al fondo.", cierra:"Martes", s:"Ruta Soletes Repsol", g:[37.17296,-3.59655] },
-    { id:"provincias", ok:false, n:"Bar Provincias", dir:"c/ Provincias 4 · centro", w:"Lleno de granadinos; tapa de marisco y pescado (gambas, pulpo, chopitos, a veces paella).", cierra:"Domingo y lunes", s:"Ruta Soletes Repsol", g:[37.17569,-3.60026] },
+    { id:"provincias", ok:false, lleno:true, n:"Bar Provincias", dir:"c/ Provincias 4 · centro", w:"Lleno de granadinos; tapa de marisco y pescado (gambas, pulpo, chopitos, a veces paella).", cierra:"Domingo y lunes", s:"Ruta Soletes Repsol", g:[37.17569,-3.60026] },
     { id:"saintgermain", ok:false, n:"Saint Germain", dir:"c/ Postigo Velutti 4 · centro", w:"Bar de vinos con carteles retro; tapa caliente con la copa (pulpo, costillas, chorizo a la miel).", cierra:"Domingo y lunes", s:"Ruta Soletes Repsol", g:[37.17840,-3.59973] },
     { id:"esquinita", ok:false, n:"La Esquinita de Javi", dir:"Pl. Mariana Pineda 1 · centro", w:"Marisquería con tapa: pescaíto frito y mejillones. Se llena y el servicio va lento.", cierra:"Lunes; domingo solo mediodía", s:"Ruta Soletes Repsol", g:[37.17248,-3.59701] },
     { id:"aliatar", ok:false, n:"Aliatar Los Caracoles", dir:"Pl. Aliatar 4 · Albaicín", w:"Caracoles picantes de tapa, berenjenas con miel y croquetas en una placeta muy viva.", cierra:"Lunes y martes solo mediodía; domingo solo mediodía", s:"Carta a Granada", g:[37.18263,-3.59133] },
@@ -2115,7 +2116,7 @@
     var host=document.getElementById("barlist"); if(!host) return;
     function card(b,nuevo){
       var pr=baresProbados[b.id];
-      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p>'+(b.s?'<p class="bsello">'+b.s+'</p>':'')+'<p>'+b.w+'</p>'+
+      return '<article class="barcard'+(nuevo?' nuevo':'')+'" data-bar="'+b.id+'"><h4>'+b.n+'</h4><p class="bdir">'+b.dir+'</p>'+(b.lleno?'<p class="blleno">Se llena siempre: llega pronto</p>':'')+(b.s?'<p class="bsello">'+b.s+'</p>':'')+'<p>'+b.w+'</p>'+
         (b.cierra?'<p class="bcierra">Cierra: '+b.cierra.toLowerCase()+' (según Google, oct 2026)</p>':'')+
         (pr&&!b.ok?'<p class="bcierra" style="color:var(--green)">Probado el '+pr.split("-").reverse().join("/")+'</p>':'')+
         '<div class="fbtns"><a class="fbtn" href="'+barMapUrl(b)+'" target="_blank" rel="noopener">Mapa</a>'+
@@ -2380,7 +2381,12 @@
       {n:"Le Bistró by El Conjuro", dir:"c/ Martínez Campos 8 · centro", w:"La casa del chef Antonio Lorenzo: carta o menú degustación, también en formato tapa.", cierra:"Martes y miércoles", s:"Sol Repsol (El Conjuro)", g:[37.17075,-3.60322]} ]},
     { t:"Buena mesa sin arruinarse", s:"Recomendados por la Guía Michelin, más asequibles.", l:[
       {n:"Albidaya", dir:"c/ Horno de Haza 25 · centro", w:"Cocina andalusí y marroquí de autor en un local escondido tras una cancela. Pocas mesas: reserva.", cierra:"Domingo y lunes; martes solo noche", s:"Bib Gourmand Michelin", g:[37.17694,-3.60460]},
-      {n:"Yama", dir:"c/ Elvira 113 · Albaicín bajo", w:"Sushi de mucho nivel, solo con reserva y pocas plazas.", cierra:"Lunes y martes", s:"Recomendado Michelin", g:[37.18169,-3.59922]} ]}
+      {n:"Yama", dir:"c/ Elvira 113 · Albaicín bajo", w:"Sushi de mucho nivel, solo con reserva y pocas plazas.", cierra:"Lunes y martes", s:"Recomendado Michelin", g:[37.18169,-3.59922]} ]},
+    { t:"Con historia y muy bien valorados", s:"Tuvieron distinción hace poco o están entre los mejor puntuados en Google con muchas reseñas. Perder un Sol no significa comer peor, pero mira reseñas recientes antes de ir.", l:[
+      {n:"Ruta del Veleta", dir:"Av. de Sierra Nevada 146 · Cenes de la Vega (10 min en coche)", w:"Casa familiar de toda la vida con una bodega que se visita; cocina granadina de producto. 4,7 en Google con casi 2.000 reseñas. Perdió el Sol Repsol en 2026.", cierra:"Lunes; de domingo a miércoles solo mediodía", s:"Sol Repsol hasta 2025", g:[37.15806,-3.53202]},
+      {n:"Arriaga", dir:"Av. de la Ciencia 2 · mirador del Parque de las Ciencias", w:"Menú degustación en un comedor acristalado con vistas a toda Granada. Las reseñas recientes son buenas pero desiguales.", cierra:"Horario sin confirmar en Google", s:"Sol Repsol hasta 2024", g:[37.16222,-3.60778]},
+      {n:"Carmen de San Miguel", dir:"Pl. de Torres Bermejas 3 · bajo la Alhambra", w:"Cocina andaluza de producto con vistas a la ciudad desde todas las mesas; para la terraza, reserva.", cierra:"Domingo; lunes solo noche", g:[37.17515,-3.59320]},
+      {n:"Mirador de Morayma", dir:"c/ Pianista García Carrillo 2 · Albaicín", w:"Carmen con jardín frente a la Alhambra; perfecto para cenar después del atardecer en San Nicolás. Pide mesa abajo, junto a las vistas.", cierra:"Lunes; domingo solo mediodía", g:[37.18076,-3.58959]} ]}
   ];
   function placeCards(groups){
     return groups.map(function(gr){
