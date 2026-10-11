@@ -332,6 +332,9 @@
   .fbtn:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
   .esc-meta{font-family:"Space Mono",monospace;font-size:12px;color:var(--ochre);margin:0 0 6px}
   .esc-comer{font-size:13.5px;color:var(--ink-soft)}
+  .esc-list{margin:0 0 8px;padding-left:18px;font-size:13.5px;color:var(--ink-soft)}
+  .esc-list li{margin:3px 0}
+  .esc-ok{font-size:11px;background:var(--green);color:#fff;border-radius:999px;padding:1px 7px}
   .ibox.flash{outline:3px solid var(--ochre)}
 
   /* agenda con pestañas */
@@ -667,7 +670,7 @@
 <section class="info escapadas">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Escapadas fuera de Granada · Alpujarra, Sierra Nevada y alrededores</p>
-    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer de los pueblos salen de reseñas y <b>aún no tienen tu visto bueno</b>.</p>
+    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer salen de reseñas, salvo los marcados con <b>tu visto bueno</b>. En los pueblos, reserva en finde.</p>
     <div class="igrid" id="escapgrid"></div>
   </div>
 </section>
@@ -1894,39 +1897,74 @@
   function mapsDir(lat,lng,name){ return "https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng+"&travelmode=walking"; }
   /* ===== escapadas y bares ===== */
   var ESCAPADAS=[
-    { id:"poqueira", t:"Barranco de Poqueira", donde:"Pampaneira, Bubión y Capileira (Alpujarra)", coche:"~1 h 15 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
-      desc:"Los tres pueblos blancos colgados del barranco: tinaos, terraos y acequias. Entre Pampaneira y Bubión hay una senda corta (cuesta arriba, ~45 min). En otoño, los castaños se ponen dorados.",
-      comer:"Bodega Asador El Lagar (Pampaneira, casera, reserva en finde) · Bar El Tinao (Capileira, tapa con la bebida) · Casa de la Abuela (Pampaneira, raciones enormes).",
-      tip:"Aparca en el aparcamiento a la entrada de Pampaneira y sube andando; dentro no hay sitio." },
-    { id:"trevelez", t:"Trevélez", donde:"Alpujarra alta", coche:"~1 h 45 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
-      desc:"Uno de los pueblos más altos de España y la capital del jamón. Perfecto para encadenar con Poqueira en un día largo.",
-      comer:"La Fragua (sale bien en alguna reseña: cocina de siempre y terraza).",
-      tip:"Compra el jamón en un secadero, no en la tienda de la carretera." },
-    { id:"lanjaron", t:"Lanjarón", donde:"Puerta de la Alpujarra", coche:"~50 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
-      desc:"El pueblo del agua: fuentes, balneario y un castillo con vistas al valle. Buen alto si vas hacia Poqueira.",
-      comer:"Venta El Buñuelo (buñuelos dulces y salados, aparcamiento) · Asador Parque (carnes, junto al balneario).",
-      tip:"Para a la ida, no a la vuelta: a última hora la venta se llena." },
     { id:"sierranevada", t:"Sierra Nevada (Pradollano)", donde:"Estación de esquí y alta montaña", coche:"~45 min (A-395)", wx:1, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
       desc:"Con nieve, esquí; sin nieve, vistas y paseo por la zona alta. La estación suele abrir a finales de noviembre (la temporada 2025-26 abrió el 29 nov).",
-      comer:"En la estación es caro: sube con bocadillo o baja a comer a Pinos Genil.",
-      tip:"Los findes con nieve la carretera se colapsa: sube antes de las 9 y lleva cadenas. Estado de pistas y carretera en sierranevada.es.", web:"https://sierranevada.es/" },
+      comer:[ {n:"Tía María", d:"Plaza de Andalucía, Pradollano", w:"Comes muy bien; reserva sí o sí.", ok:true},
+              {n:"La Antorcha", d:"c/ Virgen de las Nieves 8, Pradollano", w:"Carne a la piedra con embutido de aperitivo. Cierra los miércoles."},
+              {n:"Little Morgan", d:"Plaza de Pradollano 4", w:"Fondue y raclette; pocas mesas, reserva por la noche."} ],
+      tip:"Los findes con nieve la carretera se colapsa: sube antes de las 9 y lleva cadenas. Estado de pistas y carretera en sierranevada.es.", web:"https://sierranevada.es/", pueblo:"Sierra Nevada" },
+    { id:"poqueira", t:"Barranco de Poqueira", donde:"Pampaneira, Bubión y Capileira (Alpujarra)", coche:"~1 h 15 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
+      desc:"Los tres pueblos blancos colgados del barranco: tinaos, terraos y acequias. Entre Pampaneira y Bubión hay una senda corta (cuesta arriba, ~45 min). En otoño, los castaños se ponen dorados.",
+      comer:[ {n:"El Corral del Castaño", d:"Plaza del Calvario 5, Capileira", w:"El que mejor sale de los tres pueblos: cocina alpujarreña con giro. Cierra los miércoles."},
+              {n:"Casa Julio", d:"Av. de la Alpujarra 9, Pampaneira", w:"Migas y choto al ajillo, terraza con vistas. Solo a mediodía; cierra los martes."},
+              {n:"Casa de la Abuela", d:"c/ Martín Morales 8, Pampaneira", w:"Plato alpujarreño y raciones enormes; se llena en festivos."},
+              {n:"Los Trotamundos", d:"c/ Carretera 22, Bubión", w:"Pequeño, terraza al atardecer. Cierra los miércoles."} ],
+      tip:"Aparca a la entrada de Pampaneira y sube andando; dentro no hay sitio.", pueblo:"Pampaneira" },
+    { id:"trevelez", t:"Trevélez", donde:"Alpujarra alta", coche:"~1 h 45 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
+      desc:"Uno de los pueblos más altos de España y la capital del jamón. Perfecto para encadenar con Poqueira en un día largo.",
+      comer:[ {n:"La Despensa de la Alpujarra", d:"Carretera A-4132, a la entrada", w:"Asador con miles de reseñas muy buenas: choto, cordero y brasa. Solo hasta las 18:00."},
+              {n:"La Fragua", d:"c/ Posadas 9, barrio alto", w:"Carrilladas con higos y vistas al atardecer."} ],
+      tip:"Compra el jamón en un secadero, no en la tienda de la carretera.", pueblo:"Trevélez" },
+    { id:"lanjaron", t:"Lanjarón", donde:"Puerta de la Alpujarra", coche:"~50 min", wx:2, monte:true, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
+      desc:"El pueblo del agua: fuentes, balneario y un castillo con vistas al valle. Buen alto si vas hacia Poqueira.",
+      comer:[ {n:"Bodega González", d:"Av. de la Alpujarra 15", w:"Tapa con cada bebida y buena cocina de pueblo. Cierra los martes."},
+              {n:"Venta El Buñuelo", d:"a la salida del pueblo", w:"Buñuelos dulces y salados; aparcamiento."} ],
+      tip:"Para a la ida, no a la vuelta: a última hora se llena todo.", pueblo:"Lanjarón" },
     { id:"vereda", t:"Vereda de la Estrella", donde:"Güéjar Sierra, junto al río Genil", coche:"~35 min", wx:1, monte:true, meses:[3,4,5,6,9,10,11],
       desc:"Senda junto al río hacia las caras norte del Mulhacén y la Alcazaba. En otoño los castaños la vuelven de oro: octubre y noviembre son su mejor momento. Ida y vuelta hasta donde quieras.",
-      comer:"Lleva comida; en Güéjar Sierra hay bares en la plaza para la vuelta.",
-      tip:"Sal temprano: el aparcamiento del inicio es pequeño y se llena en otoño." },
+      comer:[ {n:"Casa Chiquito", d:"Camino antiguo del tranvía, junto al río", w:"Asador encima del río, de camino a la Vereda. Solo a mediodía; cierra los miércoles."},
+              {n:"La Hacilla", d:"Av. Duque de San Pedro 6, Güéjar Sierra", w:"Muy buena cocina; reserva a mediodía. Abre de sábado a martes a mediodía."} ],
+      tip:"Sal temprano: el aparcamiento del inicio es pequeño y se llena en otoño.", pueblo:"Güéjar Sierra" },
     { id:"cahorros", t:"Los Cahorros de Monachil", donde:"Monachil", coche:"~20 min · o bus", wx:0, monte:true, meses:[1,2,3,4,5,6,9,10,11,12],
       desc:"Desfiladero del río Monachil con puentes colgantes y tramos en los que pasas agachado bajo la roca. Corta y muy vistosa.",
-      comer:"Bares en Monachil pueblo para la vuelta.",
-      tip:"Bus desde Paseo de los Basilios: línea 183 (L–S laborables) o 181 (sáb tarde, domingos y festivos). Evítala después de lluvias fuertes." },
+      comer:[ {n:"El Puntarrón", d:"c/ Puntarrón 2, Monachil", w:"El clásico de después de los Cahorros; pide mesa junto a la ventana. Cierra los martes."},
+              {n:"María Castaña", d:"c/ Granada 13, Monachil", w:"Platos generosos y bien hechos. Cierra los martes."} ],
+      tip:"Bus desde Paseo de los Basilios: línea 183 (L–S laborables) o 181 (sáb tarde, domingos y festivos). Evítala después de lluvias fuertes.", pueblo:"Monachil" },
+    { id:"gollizno", t:"Ruta del Gollizno", donde:"Moclín", coche:"~40 min", wx:0, monte:true, meses:[2,3,4,5,6,10,11],
+      desc:"Circular de unos 8 km (~3,5 h y ~620 m de desnivel) con dos puentes colgantes y pasarelas pegadas a la pared de los Tajos de la Hoz. Más dura de lo que la pintan; en primavera el río va lleno.",
+      comer:[ {n:"El Salón 1958", d:"c/ Real 65, Moclín", w:"Tapas caseras y albóndigas para la vuelta. Según Google abre de viernes a lunes: confírmalo."} ],
+      tip:"Sale de la calle Real de Moclín por el sendero PR-A 84. En invierno hay hielo en las zonas de sombra.", pueblo:"Moclín" },
+    { id:"alhama", t:"Alhama de Granada", donde:"Pueblo sobre el tajo del río Alhama", coche:"~55 min", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
+      desc:"Un pueblo blanco colgado sobre su tajo, con paseo junto al río entre molinos. Y unas pozas termales al aire libre junto al balneario: gratis, pequeñas y a unos 35 °C según quien ha ido; se llenan rápido.",
+      comer:[ {n:"El Ventorro", d:"Carretera de Játar, km 2", w:"Cocina de campo (migas, choto, bienmesabe). Se reserva por WhatsApp o en su web."},
+              {n:"La Prevelicá", d:"Plaza de la Constitución 8", w:"Tapeo en la plaza; en finde reserva o llega pronto. Cierra los lunes."} ],
+      tip:"Lleva bañador y toalla para las pozas, y ve pronto o entre semana.", pueblo:"Alhama de Granada" },
+    { id:"montefrio", t:"Montefrío y la Peña de los Gitanos", donde:"Poniente granadino", coche:"~55 min", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
+      desc:"La iglesia de la Villa en lo alto de la peña es una de las estampas más bonitas de la provincia. A unos 7 km, la Peña de los Gitanos: dólmenes y un poblado medieval en un cerro, por pista señalizada desde la carretera.",
+      comer:[ {n:"Casa Jaime", d:"Cortijo Angosturas, a las afueras", w:"Paletilla de cordero de las que se recuerdan. Solo sábados y domingos."},
+              {n:"El Pregonero", d:"Plaza de España 3", w:"Cocina de la zona frente a la iglesia. Cierra los martes."} ],
+      tip:"Para la Peña, pregunta en la oficina de turismo cómo está el acceso: parte va por fincas.", pueblo:"Montefrío" },
+    { id:"ventanas", t:"Cueva de las Ventanas", donde:"Píñar", coche:"~45 min", wx:0, monte:false, meses:[1,2,3,4,5,6,7,8,9,10,11,12],
+      desc:"Cueva con restos prehistóricos que solo se visita con guía: compras la entrada en el centro de visitantes del pueblo y un trenecito te sube. Plan perfecto para un día de lluvia.",
+      comer:[ {n:"Lleva algo de comer", d:"Píñar es pequeño", w:"O para de vuelta en Iznalloz."} ],
+      tip:"La visita es en castellano. Llama antes para confirmar los pases (958 39 47 25).", pueblo:"Píñar" },
     { id:"guadix", t:"Guadix", donde:"Altiplano, por la A-92", coche:"~50 min", wx:0, monte:false, meses:[1,2,3,4,5,9,10,11,12],
       desc:"El barrio de cuevas habitadas (con chimeneas blancas brotando del suelo), la catedral y la alcazaba. Plan seguro si en la sierra llueve o nieva.",
-      comer:"Tapeo por el centro; pregunta por las migas.",
-      tip:"Sube al Mirador del Padre Poveda para ver el barrio de cuevas desde arriba." },
+      comer:[ {n:"El Refugio", d:"Plaza de la Constitución 9", w:"De lo mejor de la zona según reseñas; reserva. Cierra domingo y lunes."},
+              {n:"La Bodeguilla", d:"c/ Doctor Pulido 4", w:"Bar de barrio con buenas tapas y vino de barril."} ],
+      tip:"Sube al Mirador del Padre Poveda para ver el barrio de cuevas desde arriba.", pueblo:"Guadix" },
+    { id:"gorafe", t:"Gorafe y su desierto", donde:"Geoparque de Granada", coche:"~1 h 15 min", wx:0, monte:true, meses:[2,3,4,5,10,11],
+      desc:"Unos 240 dólmenes repartidos en diez necrópolis y el desierto de Los Coloraos: cárcavas y barrancos de colores que parecen de otro planeta.",
+      comer:[ {n:"Lleva comida y agua", d:"Hay pocos servicios", w:"O come en Guadix a la vuelta."} ],
+      tip:"Las pistas del desierto son de tierra: con lluvia se ponen de barro, y mejor con coche alto. Evita el verano.", pueblo:"Gorafe" },
     { id:"salobrena", t:"Salobreña", donde:"Costa Tropical", coche:"~1 h (A-44)", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
       desc:"Pueblo blanco sobre un peñón con castillo nazarí y playa a los pies. Cuando en Granada hace frío, en la costa suele haber 4–5 grados más.",
-      comer:"Chiringuitos del paseo marítimo: espetos y pescaíto.",
-      tip:"Sube al castillo a primera hora y baja a comer a la playa." }
+      comer:[ {n:"La Botica", d:"Plaza del Ayuntamiento 10, en lo alto", w:"Terraza con vistas al pueblo. Cierra los lunes."},
+              {n:"La Biznaga", d:"Paseo Marítimo 7", w:"Frente al peñón; la paella hay que encargarla. Cierra los lunes."},
+              {n:"Mar Azul", d:"Paseo Marítimo, Edificio Venus", w:"Cocina algo distinta, muy bien valorada. Cierra los martes."} ],
+      tip:"Sube al castillo a primera hora y baja a comer a la playa.", pueblo:"Salobreña" }
   ];
+
   var BARES=[
     { id:"misadeseis", ok:true, n:"Misa de Seis", dir:"c/ Obispo Hurtado 24 · Camino de Ronda", w:"Pequeñito, con terraza. Mollejas, torreznos y jamón asado.", cierra:"Domingo y lunes", g:[37.17371,-3.60757] },
     { id:"sancho", ok:true, n:"Sancho Original", dir:"c/ Tablas 16 · centro", w:"Desde 1981. En la barra o mesas altas, tapa con cada bebida; en mesa es a la carta.", cierra:"", g:[37.17590,-3.60362] },
@@ -1972,7 +2010,7 @@
     var host=document.getElementById("escapgrid"); if(!host) return;
     host.innerHTML=ESCAPADAS.map(function(e){
       return '<article class="ibox" data-esc="'+e.id+'"><h3>'+e.t+'</h3><p class="esc-meta">'+e.donde+' · '+e.coche+'</p><p>'+e.desc+'</p>'+
-        '<p class="esc-comer"><b>Comer:</b> '+e.comer+'</p><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
+        '<p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">tu visto bueno</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
         '<p class="esc-comer"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.t+" "+e.donde)+'" target="_blank" rel="noopener">Ver en mapa</a>'+(e.web?' · <a href="'+e.web+'" target="_blank" rel="noopener">Web</a>':'')+'</p></article>';
     }).join("");
   }
