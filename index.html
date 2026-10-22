@@ -468,6 +468,7 @@
   .reveal{opacity:0;transform:translateY(8px)}
   .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
 </style>
+<link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
 
@@ -2717,11 +2718,7 @@
   function add(rel,href,attrs){var l=document.createElement("link");l.rel=rel;l.href=href;if(attrs)for(var k in attrs)l.setAttribute(k,attrs[k]);document.head.appendChild(l);}
   add("apple-touch-icon",i192);
   add("icon",i192,{sizes:"192x192",type:"image/png"});
-  try{
-    var m={name:"Granada monumental",short_name:"Granada",start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#ECE8DD",theme_color:"#16305F",icons:[{src:i192,sizes:"192x192",type:"image/png",purpose:"any"},{src:i512,sizes:"512x512",type:"image/png",purpose:"any maskable"}]};
-    var b=new Blob([JSON.stringify(m)],{type:"application/manifest+json"});
-    add("manifest",URL.createObjectURL(b));
-  }catch(e){}
+  // El manifest es un archivo de verdad (manifest.webmanifest): con uno fabricado aquí, Android no crea la app y la deja como acceso directo con el icono de Chrome
   // Offline opcional: se activa solo si subes tambien sw.js junto al index
   try{ if(location.protocol.indexOf("http")===0 && "serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); } }catch(e){}
 })();
