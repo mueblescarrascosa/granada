@@ -742,7 +742,7 @@
       <button type="button" data-mf="fuera" aria-pressed="false" title="Fuera de Granada: Sierra Nevada, Alpujarra, costa…">Fuera</button>
       <button type="button" id="mapLocate" title="Cerca de mí" aria-label="Cerca de mí">📍</button>
     </div>
-    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar<i style="background:#B4532A"></i>escapada<i style="background:#7B3F98"></i>qué ver fuera<i style="background:#3E7D3A"></i>naturaleza</p>
+    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar<i style="background:#B4532A"></i>escapada<i style="background:#7B3F98"></i>qué ver fuera<i style="background:#3E7D3A"></i>naturaleza<i style="background:#2F86B5"></i>playa<i style="background:#C2416B"></i>escondido</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
     <div class="nearby" id="nearby" hidden></div>
   </div>
@@ -2187,11 +2187,30 @@
   var barSkip=0;
   function weekNum(dt){ var d=new Date(Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate())); var day=d.getUTCDay()||7; d.setUTCDate(d.getUTCDate()+4-day); var y=new Date(Date.UTC(d.getUTCFullYear(),0,1)); return Math.ceil(((d-y)/86400000+1)/7); }
 
+  // Enlace de un lugar: su web si la tiene; si no, su ficha en Google Maps
+  function lugarUrl(l,e){ return l.web || "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(l.n+" "+(e?(e.pueblo||e.t):"")); }
+  var K_TXT={ver:"qué ver", nat:"naturaleza", playa:"playa", oculto:"escondido"};
+  function queVer(e){
+    var ls=LUGARES_FUERA.filter(function(l){ return l.e===e.id && l.k!=="comer"; });
+    if(!ls.length) return "";
+    return '<p class="esc-comer"><b>Qué ver</b>:</p><ul class="esc-list">'+ls.map(function(l){
+      return '<li><a href="'+lugarUrl(l,e)+'" target="_blank" rel="noopener"><b>'+escNote(l.n)+'</b></a> <small>('+K_TXT[l.k]+')</small>'+(l.w?' · '+escNote(l.w):'')+'</li>'; }).join("")+'</ul>';
+  }
+  function buildEscondidos(){
+    var host=document.getElementById("escgrid2"); if(!host) return;
+    var ls=LUGARES_FUERA.filter(function(l){ return l.k==="oculto"; });
+    host.innerHTML=ls.map(function(l){ var e=l.e && ESCAPADAS.filter(function(x){ return x.id===l.e; })[0];
+      return '<article class="ibox"><h3>'+escNote(l.n)+'</h3><p>'+escNote(l.w||"")+'</p><p class="esc-comer"><a href="'+lugarUrl(l,e)+'" target="_blank" rel="noopener">'+(l.web?'Web':'Ver en el mapa')+'</a>'+
+        ' · <a href="https://www.google.com/maps/dir/?api=1&destination='+l.g[0]+','+l.g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a>'+(e?' · <a href="#" data-esc-go2="'+e.id+'">Escapada: '+escNote(e.t)+'</a>':'')+'</p></article>'; }).join("");
+    host.querySelectorAll("[data-esc-go2]").forEach(function(a){ a.addEventListener("click", function(ev){ ev.preventDefault(); jumpEsc(a.getAttribute("data-esc-go2")); }); });
+  }
   function buildEscapadas(){
     var host=document.getElementById("escapgrid"); if(!host) return;
+    if(!document.getElementById("escgrid2")){ var s=document.createElement("div"); s.innerHTML='<p class="kicker" style="margin-top:22px"><svg><use href="#star8"/></svg>Lugares escondidos · poco conocidos</p><p class="inote">Rincones que no salen en las guías de siempre. Accesos y caudales cambian: infórmate antes.</p><div class="igrid" id="escgrid2"></div>'; host.parentNode.appendChild(s); }
+    setTimeout(buildEscondidos,0);
     host.innerHTML=ESCAPADAS.map(function(e){
       return '<article class="ibox" data-esc="'+e.id+'"><h3>'+e.t+'</h3><p class="esc-meta">'+e.donde+' · '+e.coche+'</p><p>'+e.desc+'</p>'+
-        '<div class="esc-wx" data-escwx="'+e.id+'" hidden></div><p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">★ recomendado</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul><p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
+        '<div class="esc-wx" data-escwx="'+e.id+'" hidden></div><p class="esc-comer"><b>Comer</b> (horarios según Google; confirma antes):</p><ul class="esc-list">'+e.comer.map(function(c){ var u=/^Lleva/.test(c.n)?'':"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(c.n+" "+e.pueblo); return '<li>'+(u?'<a href="'+u+'" target="_blank" rel="noopener"><b>'+c.n+'</b></a>':'<b>'+c.n+'</b>')+(c.ok?' <span class="esc-ok">★ recomendado</span>':'')+' · '+c.d+'. '+c.w+'</li>'; }).join("")+'</ul>'+queVer(e)+'<p class="esc-comer"><b>Tip:</b> '+e.tip+'</p>'+
         '<p class="esc-comer"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.t+" "+e.donde)+'" target="_blank" rel="noopener">Ver en mapa</a>'+(e.web?' · <a href="'+e.web+'" target="_blank" rel="noopener">Web</a>':'')+'</p></article>';
     }).join("");
   }
@@ -2620,7 +2639,7 @@
           '<div class="mp-b"><button type="button" data-me="'+e.id+'">Ver ficha</button><a href="https://www.google.com/maps/dir/?api=1&destination='+g[0]+','+g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(g);
       });
-      var COL_LF={ver:"#7B3F98", nat:"#3E7D3A", comer:"#1C6B55"};
+      var COL_LF={ver:"#7B3F98", nat:"#3E7D3A", comer:"#1C6B55", playa:"#2F86B5", oculto:"#C2416B"};
       LUGARES_FUERA.forEach(function(l){
         var es=l.e && ESCAPADAS.filter(function(x){ return x.id===l.e; })[0];
         var c=l.k==="comer" && es ? es.comer.filter(function(x){ return x.n===l.n; })[0] : null;
@@ -2710,11 +2729,18 @@
     {e:"guadix", k:"nat", n:"Mirador del Fin del Mundo", g:[37.2791,-3.1963], w:"Mirador sobre las cárcavas de los badlands (Beas de Guadix); mejor al atardecer."},
     {e:"gorafe", k:"ver", n:"Parque megalítico de Gorafe", g:[37.4615,-3.0432], w:"Cientos de dólmenes repartidos por el desierto de Gorafe, con rutas señalizadas."},
     {e:"salobrena", k:"ver", n:"Castillo de Salobreña", g:[36.7437,-3.5894], w:"Castillo nazarí en lo alto del pueblo, con vistas a la vega y al mar."},
-    {e:"salobrena", k:"nat", n:"Peñón de Salobreña", g:[36.7358,-3.5936], w:"El peñón que parte la playa en dos; paseo alrededor."},
+    {e:"salobrena", k:"playa", n:"Playa del Peñón", g:[36.7366,-3.5931], w:"La playa junto al peñón que parte la costa de Salobreña en dos."},
+    {e:"salobrena", k:"playa", n:"Playa de La Guardia", g:[36.7404,-3.5959], w:"Playa larga al oeste del peñón, más tranquila."},
     {e:"almunecar", k:"ver", n:"Castillo de San Miguel", g:[36.7307,-3.6926], w:"Castillo con vistas a la bahía y al casco antiguo."},
     {e:"almunecar", k:"nat", n:"Peñón del Santo", g:[36.7284,-3.6943], w:"Mirador sobre el mar con la cruz; el mejor sitio para el atardecer."},
     {e:"almunecar", k:"ver", n:"Cueva de Siete Palacios", g:[36.7328,-3.6916], w:"Construcción romana que hoy es el museo arqueológico."},
-    {e:"almunecar", k:"nat", n:"Playa de San Cristóbal", g:[36.7311,-3.6983], w:"Playa de piedra junto al Peñón del Santo y el paseo."},
+    {e:"almunecar", k:"playa", n:"Playa de San Cristóbal", g:[36.7311,-3.6983], w:"La playa urbana de referencia, junto al Peñón del Santo y el paseo."},
+    {e:"almunecar", k:"playa", n:"Playa Puerta del Mar", g:[36.7301,-3.6871], w:"La otra playa del centro, al este del Peñón del Santo."},
+    {e:"herradura", k:"playa", n:"Playa de La Herradura", g:[36.7337,-3.7418], w:"Bahía de unos 2 km de aguas limpias; de los mejores sitios de la costa para bucear."},
+    {e:null, k:"playa", n:"Playa de Calahonda", g:[36.7004,-3.4153], w:"En Motril, con Bandera Azul. Coge profundidad muy pronto: buena para snorkel."},
+    {e:null, k:"oculto", n:"Jardín nazarí de Vélez de Benaudalla", g:[36.8316,-3.5181], w:"El «Generalife chico»: el último jardín nazarí, entre la Alpujarra y la costa."},
+    {e:"alhama", k:"oculto", n:"La Resinera (río Cacín)", g:[36.9359,-3.8615], w:"Pozas del río Cacín en la sierra de Alhama, para bañarse en verano."},
+    {e:null, k:"oculto", n:"Castillo de Mondújar", g:[36.9493,-3.5383], w:"Ruinas de un castillo sobre una atalaya rocosa, en el valle de Lecrín."},
     {e:"herradura", k:"nat", n:"Mirador de Cerro Gordo", g:[36.7341,-3.7676], w:"Mirador sobre los acantilados de Maro–Cerro Gordo y la bahía de La Herradura."},
     {e:"herradura", k:"ver", n:"Torre vigía de Cerro Gordo", g:[36.7323,-3.7674], w:"Torre almenara junto al mirador, por el sendero de la izquierda."},
     {e:"herradura", k:"nat", n:"Marina del Este", g:[36.7274,-3.7275], w:"Puerto deportivo en la Punta de la Mona, de aguas muy claras."},
