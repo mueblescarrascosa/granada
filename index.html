@@ -2072,7 +2072,17 @@
       comer:[ {n:"La Botica", d:"Plaza del Ayuntamiento 10, en lo alto", w:"Terraza con vistas al pueblo. Cierra los lunes."},
               {n:"La Biznaga", d:"Paseo Marítimo 7", w:"Frente al peñón; la paella hay que encargarla. Cierra los lunes."},
               {n:"Mar Azul", d:"Paseo Marítimo, Edificio Venus", w:"Cocina algo distinta, muy bien valorada. Cierra los martes."} ],
-      tip:"Sube al castillo a primera hora y baja a comer a la playa.", pueblo:"Salobreña" }
+      tip:"Sube al castillo a primera hora y baja a comer a la playa.", pueblo:"Salobreña" },
+    { id:"almunecar", t:"Almuñécar", donde:"Costa Tropical", coche:"~1 h (A-44 y A-7)", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
+      desc:"Castillo de San Miguel (entrada ~2,50 €) con vistas a la bahía, el parque El Majuelo con la factoría de salazones romana y la Cueva de Siete Palacios. Al atardecer, sube al mirador del Peñón del Santo por las rampas del paseo marítimo.",
+      comer:[ {n:"La Bodeguita", d:"c/ Manila, casco antiguo", w:"Pescado frito y marisco de bar de toda la vida; suele llenarse y a veces hay que esperar."},
+              {n:"Bar Los Pajaritos", d:"Cuesta del Castillo", w:"Tapas de pescado fresco, muy de pueblo y muy concurrido."},
+              {n:"Firmum", d:"Junto a la Plaza de la Constitución", w:"Restaurante con pescado de lonja; mejor reservar."} ],
+      tip:"Aparca abajo, en el paseo, y sube andando al castillo: el casco antiguo es de cuestas y calles estrechas.", pueblo:"Almuñécar" },
+    { id:"herradura", t:"La Herradura y Cerro Gordo", donde:"Costa Tropical, junto a Almuñécar", coche:"~1 h 5 min (A-44 y A-7)", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
+      desc:"Bahía tranquila entre dos cabos. Al oeste, el Mirador de Cerro Gordo y su torre vigía, con vistas a los acantilados de Maro–Cerro Gordo; al este, la Punta de la Mona y el puerto de Marina del Este, de aguas claras.",
+      comer:[ {n:"El Chambao de Joaquín", d:"Paseo Andrés Segovia, primera línea de playa", w:"Chiringuito a pie de playa; el horario cambia según la temporada, llama antes (958 64 00 44)."} ],
+      tip:"Al mirador: desvío antes del túnel de Cerro Gordo por la carretera antigua hacia Málaga; se aparca en la explanada y desde ahí un sendero corto baja al mirador (derecha) y a la torre (izquierda).", pueblo:"La Herradura" }
   ];
 
   /* ===== notas de reseñas (las actualiza la revisión automática; g = Google, ta = Tripadvisor, tf = TheFork sobre 10) ===== */
@@ -2659,7 +2669,8 @@
   if("IntersectionObserver" in window){ var mio=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ initMap(); mio.disconnect(); } },{rootMargin:"200px"}); mio.observe(document.getElementById("map")); }
   /* ===== el tiempo (Open-Meteo, sin clave) ===== */
   var ESC_LL={ sierranevada:[37.094,-3.398], poqueira:[36.955,-3.360], trevelez:[37.0025,-3.266], lanjaron:[36.918,-3.487], vereda:[37.141,-3.405], cahorros:[37.133,-3.537],
-    gollizno:[37.340,-3.787], alhama:[37.003,-3.989], montefrio:[37.321,-4.011], ventanas:[37.443,-3.440], guadix:[37.300,-3.135], gorafe:[37.480,-3.043], salobrena:[36.743,-3.588] };
+    gollizno:[37.340,-3.787], alhama:[37.003,-3.989], montefrio:[37.321,-4.011], ventanas:[37.443,-3.440], guadix:[37.300,-3.135], gorafe:[37.480,-3.043], salobrena:[36.743,-3.588],
+    almunecar:[36.733,-3.690], herradura:[36.737,-3.738] };
   var LOC_IDX={granada:0}, LOC_LL=[[37.177,-3.599]];
   ESCAPADAS.forEach(function(e){ if(ESC_LL[e.id]){ LOC_IDX[e.id]=LOC_LL.length; LOC_LL.push(ESC_LL[e.id]); } });
   var WX_URL="https://api.open-meteo.com/v1/forecast?latitude="+LOC_LL.map(function(x){ return x[0]; }).join(",")+"&longitude="+LOC_LL.map(function(x){ return x[1]; }).join(",")+
