@@ -742,7 +742,7 @@
       <button type="button" data-mf="fuera" aria-pressed="false" title="Fuera de Granada: Sierra Nevada, Alpujarra, costa…">Fuera</button>
       <button type="button" id="mapLocate" title="Cerca de mí" aria-label="Cerca de mí">📍</button>
     </div>
-    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar<i style="background:#B4532A"></i>fuera</p>
+    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar<i style="background:#B4532A"></i>escapada<i style="background:#7B3F98"></i>qué ver fuera<i style="background:#3E7D3A"></i>naturaleza</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
     <div class="nearby" id="nearby" hidden></div>
   </div>
@@ -2620,6 +2620,16 @@
           '<div class="mp-b"><button type="button" data-me="'+e.id+'">Ver ficha</button><a href="https://www.google.com/maps/dir/?api=1&destination='+g[0]+','+g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(g);
       });
+      var COL_LF={ver:"#7B3F98", nat:"#3E7D3A", comer:"#1C6B55"};
+      LUGARES_FUERA.forEach(function(l){
+        var es=l.e && ESCAPADAS.filter(function(x){ return x.id===l.e; })[0];
+        var c=l.k==="comer" && es ? es.comer.filter(function(x){ return x.n===l.n; })[0] : null;
+        var w=l.w || (c ? c.w : "");
+        var mk=L.circleMarker(l.g,{radius:l.k==="comer"?5:6,color:"#fff",weight:2,fillColor:COL_LF[l.k],fillOpacity:.95});
+        mk.bindPopup('<div class="mappop"><b>'+esc(l.n)+'</b>'+(c&&c.ok?' ★':'')+(es?'<br><span style="color:#5C554A">'+esc(es.t)+'</span>':'')+(w?'<br>'+esc(w):'')+
+          '<div class="mp-b">'+(es?'<button type="button" data-me="'+es.id+'">Ver escapada</button>':'')+'<a href="https://www.google.com/maps/dir/?api=1&destination='+l.g[0]+','+l.g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+        mk.addTo(LLAYER); pts.push(l.g);
+      });
       if(mapFilter==="fuera") pts.push([37.177,-3.599]);   // Granada, para ver la distancia
     }
     if(mapFilter==="bares" || mapFilter==="todo"){
@@ -2671,6 +2681,61 @@
   var ESC_LL={ sierranevada:[37.094,-3.398], poqueira:[36.955,-3.360], trevelez:[37.0025,-3.266], lanjaron:[36.918,-3.487], vereda:[37.141,-3.405], cahorros:[37.133,-3.537],
     gollizno:[37.340,-3.787], alhama:[37.003,-3.989], montefrio:[37.321,-4.011], ventanas:[37.443,-3.440], guadix:[37.300,-3.135], gorafe:[37.480,-3.043], salobrena:[36.743,-3.588],
     almunecar:[36.733,-3.690], herradura:[36.737,-3.738] };
+  /* Fuera de la ciudad: lugares concretos de cada escapada para el mapa (coordenadas de OpenStreetMap).
+     k: ver (monumento, pueblo), nat (naturaleza, mirador, cumbre), comer (uno de los sitios de su lista "comer"). */
+  var LUGARES_FUERA=[
+    {e:"sierranevada", k:"nat", n:"Hoya de la Mora", g:[37.0934,-3.3869], w:"Explanada a unos 2.500 m, por encima de Pradollano: vistas y punto de partida de las rutas hacia el Veleta."},
+    {e:"sierranevada", k:"nat", n:"Pico Veleta", g:[37.0560,-3.3657], w:"3.396 m, la cumbre que se ve desde Granada. Solo a pie o en bici, y con buen tiempo."},
+    {e:"trevelez", k:"nat", n:"Mulhacén", g:[37.0536,-3.3114], w:"3.479 m, el techo de la Península. Ruta larga de alta montaña, solo en verano y bien preparado."},
+    {e:"poqueira", k:"ver", n:"O Sel Ling (templo budista)", g:[36.9390,-3.3856], w:"Centro de retiro budista en la ladera, con vistas al barranco. Se puede visitar en horario limitado: consúltalo antes de subir."},
+    {e:"poqueira", k:"nat", n:"Mirador de Poqueira (Pampaneira)", g:[36.9398,-3.3617], w:"La plaza-mirador a la entrada de Pampaneira, con el barranco y Bubión y Capileira enfrente."},
+    {e:"poqueira", k:"ver", n:"Capileira", g:[36.9616,-3.3588], w:"El pueblo más alto del barranco: calles de tinaos y terraos y vistas a la sierra."},
+    {e:"poqueira", k:"nat", n:"Fuente Agria de Pórtugos", g:[36.9411,-3.3067], w:"Agua ferruginosa con gas natural que brota junto a la carretera; se puede beber (sabe a hierro). Lleva una botella."},
+    {e:"poqueira", k:"nat", n:"El Chorrerón", g:[36.9438,-3.3218], w:"Cascada teñida de rojo por el hierro, a pocos pasos de la Fuente Agria por unas escaleras."},
+    {e:"poqueira", k:"ver", n:"Pitres (La Taha)", g:[36.9357,-3.3260], w:"Pueblo de La Taha con lavaderos y senderos entre sus barrios (Capilerilla, Mecina, Ferreirola…)."},
+    {e:"trevelez", k:"ver", n:"Secaderos de jamón", g:[36.9988,-3.2656], w:"Secaderos a la entrada del pueblo: se ve cómo se cura el jamón y se compra directamente."},
+    {e:"lanjaron", k:"ver", n:"Castillo de Lanjarón", g:[36.9148,-3.4889], w:"Castillo nazarí sobre el valle del río; paseo corto desde el pueblo."},
+    {e:"lanjaron", k:"ver", n:"Balneario de Lanjarón", g:[36.9205,-3.4913], w:"El balneario de las aguas de Lanjarón, a la entrada del pueblo."},
+    {e:"lanjaron", k:"ver", n:"Puente de Tablate", g:[36.9222,-3.5264], w:"Puente histórico a la entrada de la Alpujarra, sobre el barranco de Tablate."},
+    {e:"vereda", k:"nat", n:"Maitena", g:[37.1498,-3.4167], w:"Junto al Genil, en el camino del antiguo tranvía de la sierra hacia la Vereda de la Estrella."},
+    {e:"cahorros", k:"nat", n:"Puente colgante de los Cahorros", g:[37.1276,-3.5182], w:"El puente colgante sobre el río Monachil, lo más conocido de la ruta."},
+    {e:"gollizno", k:"ver", n:"Castillo de Moclín", g:[37.3423,-3.7865], w:"Fortaleza nazarí en lo alto del pueblo, con vistas a la Vega."},
+    {e:"alhama", k:"ver", n:"Balneario de Alhama", g:[37.0191,-3.9832], w:"Aguas termales usadas desde época romana y árabe, a las afueras del pueblo."},
+    {e:"montefrio", k:"ver", n:"Castillo e iglesia de la Villa", g:[37.3217,-4.0133], w:"Lo alto del peñón de Montefrío: la estampa del pueblo se ve desde el mirador de enfrente."},
+    {e:"montefrio", k:"nat", n:"Peña de los Gitanos", g:[37.3392,-3.9607], w:"Dólmenes, poblado íbero y restos romanos y medievales en una finca; se visita con guía (resérvalo)."},
+    {e:"ventanas", k:"nat", n:"Cueva de las Ventanas", g:[37.4419,-3.4280], w:"Cueva visitable con guía en Píñar; mejor con entrada reservada."},
+    {e:"guadix", k:"ver", n:"Catedral de Guadix", g:[37.3012,-3.1362], w:"Catedral gótica, renacentista y barroca en el centro de la ciudad."},
+    {e:"guadix", k:"ver", n:"Alcazaba de Guadix", g:[37.2987,-3.1374], w:"Fortaleza árabe sobre la ciudad, con vistas a las cuevas."},
+    {e:"guadix", k:"ver", n:"Barrio de Cuevas", g:[37.2925,-3.1397], w:"Casas-cueva con sus chimeneas blancas; hay un centro de interpretación."},
+    {e:"guadix", k:"nat", n:"Mirador del Fin del Mundo", g:[37.2791,-3.1963], w:"Mirador sobre las cárcavas de los badlands (Beas de Guadix); mejor al atardecer."},
+    {e:"gorafe", k:"ver", n:"Parque megalítico de Gorafe", g:[37.4615,-3.0432], w:"Cientos de dólmenes repartidos por el desierto de Gorafe, con rutas señalizadas."},
+    {e:"salobrena", k:"ver", n:"Castillo de Salobreña", g:[36.7437,-3.5894], w:"Castillo nazarí en lo alto del pueblo, con vistas a la vega y al mar."},
+    {e:"salobrena", k:"nat", n:"Peñón de Salobreña", g:[36.7358,-3.5936], w:"El peñón que parte la playa en dos; paseo alrededor."},
+    {e:"almunecar", k:"ver", n:"Castillo de San Miguel", g:[36.7307,-3.6926], w:"Castillo con vistas a la bahía y al casco antiguo."},
+    {e:"almunecar", k:"nat", n:"Peñón del Santo", g:[36.7284,-3.6943], w:"Mirador sobre el mar con la cruz; el mejor sitio para el atardecer."},
+    {e:"almunecar", k:"ver", n:"Cueva de Siete Palacios", g:[36.7328,-3.6916], w:"Construcción romana que hoy es el museo arqueológico."},
+    {e:"almunecar", k:"nat", n:"Playa de San Cristóbal", g:[36.7311,-3.6983], w:"Playa de piedra junto al Peñón del Santo y el paseo."},
+    {e:"herradura", k:"nat", n:"Mirador de Cerro Gordo", g:[36.7341,-3.7676], w:"Mirador sobre los acantilados de Maro–Cerro Gordo y la bahía de La Herradura."},
+    {e:"herradura", k:"ver", n:"Torre vigía de Cerro Gordo", g:[36.7323,-3.7674], w:"Torre almenara junto al mirador, por el sendero de la izquierda."},
+    {e:"herradura", k:"nat", n:"Marina del Este", g:[36.7274,-3.7275], w:"Puerto deportivo en la Punta de la Mona, de aguas muy claras."},
+    {e:null, k:"nat", n:"Puerto de la Ragua", g:[37.1134,-3.0299], w:"Puerto de montaña a unos 2.000 m entre el Marquesado y la Alpujarra, con pinar y, en invierno, nieve."},
+    {e:"sierranevada", k:"comer", n:"Tía María", g:[37.0930,-3.4000]},
+    {e:"sierranevada", k:"comer", n:"La Antorcha", g:[37.0943,-3.3978]},
+    {e:"sierranevada", k:"comer", n:"Little Morgan", g:[37.0945,-3.4006]},
+    {e:"poqueira", k:"comer", n:"Casa Julio", g:[36.9397,-3.3607]},
+    {e:"poqueira", k:"comer", n:"Casa de la Abuela", g:[36.9409,-3.3610]},
+    {e:"trevelez", k:"comer", n:"La Despensa de la Alpujarra", g:[36.9987,-3.2659]},
+    {e:"trevelez", k:"comer", n:"La Fragua", g:[37.0029,-3.2657]},
+    {e:"lanjaron", k:"comer", n:"Bodega González", g:[36.9179,-3.4866]},
+    {e:"lanjaron", k:"comer", n:"Venta El Buñuelo", g:[36.9161,-3.4727]},
+    {e:"cahorros", k:"comer", n:"El Puntarrón", g:[37.1297,-3.5314]},
+    {e:"alhama", k:"comer", n:"El Ventorro", g:[36.9840,-3.9828]},
+    {e:"guadix", k:"comer", n:"El Refugio", g:[37.3006,-3.1354]},
+    {e:"salobrena", k:"comer", n:"La Botica", g:[36.7432,-3.5880]},
+    {e:"salobrena", k:"comer", n:"La Biznaga", g:[36.7368,-3.5917]},
+    {e:"salobrena", k:"comer", n:"Mar Azul", g:[36.7364,-3.5912]},
+    {e:"almunecar", k:"comer", n:"La Bodeguita", g:[36.7314,-3.6884]}
+  ];
   var LOC_IDX={granada:0}, LOC_LL=[[37.177,-3.599]];
   ESCAPADAS.forEach(function(e){ if(ESC_LL[e.id]){ LOC_IDX[e.id]=LOC_LL.length; LOC_LL.push(ESC_LL[e.id]); } });
   var WX_URL="https://api.open-meteo.com/v1/forecast?latitude="+LOC_LL.map(function(x){ return x[0]; }).join(",")+"&longitude="+LOC_LL.map(function(x){ return x[1]; }).join(",")+
