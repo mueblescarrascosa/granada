@@ -326,7 +326,10 @@
   .fbox{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;color:var(--ink-soft)}
   .fbox h4{margin:0 0 4px;font-size:13px;font-family:"Space Mono",monospace;color:var(--ochre);font-weight:400}
   .fbox .fname{display:block;font-family:Fraunces,serif;font-size:17px;color:var(--ink);margin-bottom:2px}
-  .fbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  /* Botones de cada sitio y filtros del mapa: siempre en una línea (si no caben, se deslizan de lado) */
+  .fbtns{display:flex;flex-wrap:nowrap;gap:5px;margin-top:8px;overflow-x:auto;scrollbar-width:none}
+  .fbtns::-webkit-scrollbar{display:none}
+  .fbtns>.fbtn{flex:1 0 auto;white-space:nowrap;justify-content:center;text-align:center;padding:6px 6px;font-size:12.5px}
   .fbtn{background:transparent;border:1px solid var(--indigo);color:var(--indigo);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer;font-family:inherit}
   .fbtn.solid{background:var(--indigo);color:#fff}
   .fbtn:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
@@ -387,8 +390,9 @@
   /* mapa */
   .mapsec{padding:6px 0 10px}
   #map{height:62vh;min-height:320px;border-radius:12px;border:1px solid var(--line);margin-top:8px;background:#e8e4d8;z-index:1}
-  .mapchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .mapchips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font-size:13px;font-family:inherit;cursor:pointer;color:var(--ink)}
+  .mapchips{display:flex;flex-wrap:nowrap;gap:4px;margin-top:8px;overflow-x:auto;scrollbar-width:none}
+  .mapchips::-webkit-scrollbar{display:none}
+  .mapchips button{flex:1 0 auto;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 6px;font-size:12px;font-family:inherit;cursor:pointer;color:var(--ink)}
   .mapchips button[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff}
   .maplegend{font-size:12.5px;color:var(--ink-soft);margin:6px 0 0}
   .maplegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 8px;vertical-align:-1px}
@@ -441,7 +445,7 @@
   .barcard .bhora{font-size:12.5px;color:var(--ink-soft);margin:.1rem 0}
   .barcard .bhora::before{content:"Horario · ";font-weight:700}
   .barcard .brv{font-size:12.5px;font-weight:700;color:var(--indigo);margin:.1rem 0 .3rem}
-  .barcard .fbtns{flex-wrap:wrap}
+  .barcard .fbtns{flex-wrap:nowrap}
   .cpgrid{display:grid;gap:12px;grid-template-columns:1fr}
   @media(min-width:760px){.cpgrid{grid-template-columns:1fr 1fr}}
   .cpgrp{margin:6px 0 4px;font-family:Fraunces,serif;font-size:20px;color:var(--ink)}
@@ -732,10 +736,10 @@
     <div class="mapchips" id="mapchips">
       <button type="button" data-mf="pend" aria-pressed="true">Pendientes</button>
       <button type="button" data-mf="todo" aria-pressed="false">Todo</button>
-      <button type="button" data-mf="hoy" aria-pressed="false">Gratis hoy</button>
+      <button type="button" data-mf="hoy" aria-pressed="false" title="Gratis hoy">Gratis</button>
       <button type="button" data-mf="plan" aria-pressed="false">Mi plan</button>
       <button type="button" data-mf="bares" aria-pressed="false">Bares</button>
-      <button type="button" id="mapLocate">Cerca de mí</button>
+      <button type="button" id="mapLocate" title="Cerca de mí">Cerca</button>
     </div>
     <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
