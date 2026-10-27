@@ -775,7 +775,7 @@
 <section class="info escapadas">
   <div class="wrap">
     <p class="kicker"><svg><use href="#star8"/></svg>Escapadas fuera de Granada · Alpujarra, Sierra Nevada y alrededores</p>
-    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer salen de reseñas, salvo los marcados como <b>★ recomendado</b>, probados en persona. En los pueblos, reserva en finde.</p>
+    <p class="inote">Tiempos en coche desde el centro, aproximados. Los sitios para comer salen de reseñas, salvo los marcados como <b>★ recomendado</b>, probados en persona. En los pueblos, reserva en finde. Lo que lleva * no está confirmado del todo: búscalo antes de ir.</p>
     <div class="igrid" id="escapgrid"></div>
   </div>
 </section>
@@ -2042,7 +2042,7 @@
       tip:"Bus desde Paseo de los Basilios: línea 183 (L–S laborables) o 181 (sáb tarde, domingos y festivos). Evítala después de lluvias fuertes.", pueblo:"Monachil" },
     { id:"gollizno", t:"Ruta del Gollizno", donde:"Moclín", coche:"~40 min", wx:0, monte:true, meses:[2,3,4,5,6,10,11],
       desc:"Circular de unos 8 km (~3,5 h y ~620 m de desnivel) con dos puentes colgantes y pasarelas pegadas a la pared de los Tajos de la Hoz. Más dura de lo que la pintan; en primavera el río va lleno.",
-      comer:[ {n:"El Salón 1958", d:"c/ Real 65, Moclín", w:"Tapas caseras y albóndigas para la vuelta. Según Google abre de viernes a lunes: confírmalo."} ],
+      comer:[ {n:"El Salón 1958 *", d:"c/ Real 65, Moclín", w:"Tapas caseras y albóndigas para la vuelta. Según Google abre de viernes a lunes: confírmalo."} ],
       tip:"Sale de la calle Real de Moclín por el sendero PR-A 84. En invierno hay hielo en las zonas de sombra.", pueblo:"Moclín" },
     { id:"alhama", t:"Alhama de Granada", donde:"Pueblo sobre el tajo del río Alhama", coche:"~55 min", wx:0, monte:false, meses:[1,2,3,4,5,6,9,10,11,12],
       desc:"Un pueblo blanco colgado sobre su tajo, con paseo junto al río entre molinos. Y unas pozas termales al aire libre junto al balneario: gratis, pequeñas y a unos 35 °C según quien ha ido; se llenan rápido.",
@@ -2206,7 +2206,7 @@
   }
   function buildEscapadas(){
     var host=document.getElementById("escapgrid"); if(!host) return;
-    if(!document.getElementById("escgrid2")){ var s=document.createElement("div"); s.innerHTML='<p class="kicker" style="margin-top:22px"><svg><use href="#star8"/></svg>Lugares escondidos · poco conocidos</p><p class="inote">Rincones que no salen en las guías de siempre. Accesos y caudales cambian: infórmate antes.</p><div class="igrid" id="escgrid2"></div>'; host.parentNode.appendChild(s); }
+    if(!document.getElementById("escgrid2")){ var s=document.createElement("div"); s.innerHTML='<p class="kicker" style="margin-top:22px"><svg><use href="#star8"/></svg>Lugares escondidos · poco conocidos</p><p class="inote">Rincones que no salen en las guías de siempre. Accesos y caudales cambian: infórmate antes. Lo que lleva * solo lo cita una fuente: búscalo.</p><div class="igrid" id="escgrid2"></div>'; host.parentNode.appendChild(s); }
     setTimeout(buildEscondidos,0);
     host.innerHTML=ESCAPADAS.map(function(e){
       return '<article class="ibox" data-esc="'+e.id+'"><h3>'+e.t+'</h3><p class="esc-meta">'+e.donde+' · '+e.coche+'</p><p>'+e.desc+'</p>'+
@@ -2623,7 +2623,7 @@
         var mk=L.circleMarker(g,{radius:pr?9:7,color:"#fff",weight:2,fillColor:col,fillOpacity:.95});
         var st=dayStatusDate(m,today);
         mk.bindPopup('<div class="mappop"><b>'+esc(m.name)+'</b><br>'+esc(shortPrice(m))+'<br><span style="color:#5C554A">Hoy: '+esc(st.t)+'</span>'+(AVISOS[m.id]?'<br><span style="color:#B23A2A">Hay un aviso en la ficha</span>':'')+
-          '<div class="mp-b"><button type="button" data-mj="'+m.id+'">Ver ficha</button><a href="'+mapsDir(g[0],g[1])+'" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+          '<div class="mp-b"><button type="button" data-mj="'+m.id+'">Ver ficha</button>'+'<a href="'+(webFor(m)||mapsUrl(m))+'" target="_blank" rel="noopener">'+(webFor(m)?'Web':'Ficha (Google)')+'</a>'+'<a href="'+mapsDir(g[0],g[1])+'" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(g);
       });
     }
@@ -2636,7 +2636,7 @@
           return '<li><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(c.n+" "+(e.pueblo||e.t))+'" target="_blank" rel="noopener">'+esc(c.n)+'</a>'+(c.ok?' ★':'')+'</li>'; }).join("");
         mk.bindPopup('<div class="mappop"><b>'+esc(e.t)+'</b><br>'+esc(e.donde)+' · '+esc(e.coche)+
           (comer?'<br><span style="color:#5C554A">Para comer:</span><ul style="margin:.2em 0 .3em 1.1em;padding:0">'+comer+'</ul>':'')+
-          '<div class="mp-b"><button type="button" data-me="'+e.id+'">Ver ficha</button><a href="https://www.google.com/maps/dir/?api=1&destination='+g[0]+','+g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+          '<div class="mp-b"><button type="button" data-me="'+e.id+'">Ver ficha</button>'+'<a href="'+(e.web||"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.t+" "+e.donde))+'" target="_blank" rel="noopener">'+(e.web?'Web':'Ficha (Google)')+'</a>'+'<a href="https://www.google.com/maps/dir/?api=1&destination='+g[0]+','+g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(g);
       });
       var COL_LF={ver:"#7B3F98", nat:"#3E7D3A", comer:"#1C6B55", playa:"#2F86B5", oculto:"#C2416B"};
@@ -2646,7 +2646,7 @@
         var w=l.w || (c ? c.w : "");
         var mk=L.circleMarker(l.g,{radius:l.k==="comer"?5:6,color:"#fff",weight:2,fillColor:COL_LF[l.k],fillOpacity:.95});
         mk.bindPopup('<div class="mappop"><b>'+esc(l.n)+'</b>'+(c&&c.ok?' ★':'')+(es?'<br><span style="color:#5C554A">'+esc(es.t)+'</span>':'')+(w?'<br>'+esc(w):'')+
-          '<div class="mp-b">'+(es?'<button type="button" data-me="'+es.id+'">Ver escapada</button>':'')+'<a href="https://www.google.com/maps/dir/?api=1&destination='+l.g[0]+','+l.g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+          '<div class="mp-b">'+(es?'<button type="button" data-me="'+es.id+'">Ver escapada</button>':'')+'<a href="'+lugarUrl(l,es)+'" target="_blank" rel="noopener">'+(l.web?'Web':'Ficha (Google)')+'</a>'+'<a href="https://www.google.com/maps/dir/?api=1&destination='+l.g[0]+','+l.g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(l.g);
       });
       if(mapFilter==="fuera") pts.push([37.177,-3.599]);   // Granada, para ver la distancia
@@ -2655,7 +2655,7 @@
       BARES.forEach(function(b){
         var mk=L.circleMarker(b.g,{radius:6,color:"#fff",weight:2,fillColor:"#1C6B55",fillOpacity:.95});
         mk.bindPopup('<div class="mappop"><b>'+esc(b.n)+'</b><br>'+esc(b.dir)+'<br>'+esc(b.w)+(b.cierra?'<br><span style="color:#7A5230">Cierra: '+esc(b.cierra.toLowerCase())+'</span>':'')+
-          '<div class="mp-b"><button type="button" data-mb="'+b.id+'">Ver en la lista</button><a href="'+mapsDir(b.g[0],b.g[1])+'" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+          '<div class="mp-b"><button type="button" data-mb="'+b.id+'">Ver en la lista</button>'+'<a href="'+((INFO[b.n]&&INFO[b.n].web)||barMapUrl(b))+'" target="_blank" rel="noopener">'+((INFO[b.n]&&INFO[b.n].web)?'Web':'Ficha (Google)')+'</a>'+'<a href="'+mapsDir(b.g[0],b.g[1])+'" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
         mk.addTo(LLAYER); pts.push(b.g);
       });
     }
@@ -2738,9 +2738,9 @@
     {e:"almunecar", k:"playa", n:"Playa Puerta del Mar", g:[36.7301,-3.6871], w:"La otra playa del centro, al este del Peñón del Santo."},
     {e:"herradura", k:"playa", n:"Playa de La Herradura", g:[36.7337,-3.7418], w:"Bahía de unos 2 km de aguas limpias; de los mejores sitios de la costa para bucear."},
     {e:null, k:"playa", n:"Playa de Calahonda", g:[36.7004,-3.4153], w:"En Motril, con Bandera Azul. Coge profundidad muy pronto: buena para snorkel."},
-    {e:null, k:"oculto", n:"Jardín nazarí de Vélez de Benaudalla", g:[36.8316,-3.5181], w:"El «Generalife chico»: el último jardín nazarí, entre la Alpujarra y la costa."},
-    {e:"alhama", k:"oculto", n:"La Resinera (río Cacín)", g:[36.9359,-3.8615], w:"Pozas del río Cacín en la sierra de Alhama, para bañarse en verano."},
-    {e:null, k:"oculto", n:"Castillo de Mondújar", g:[36.9493,-3.5383], w:"Ruinas de un castillo sobre una atalaya rocosa, en el valle de Lecrín."},
+    {e:null, k:"oculto", n:"Jardín nazarí de Vélez de Benaudalla *", g:[36.8316,-3.5181], w:"El «Generalife chico»: el último jardín nazarí, entre la Alpujarra y la costa."},
+    {e:"alhama", k:"oculto", n:"La Resinera (río Cacín) *", g:[36.9359,-3.8615], w:"Pozas del río Cacín en la sierra de Alhama, para bañarse en verano."},
+    {e:null, k:"oculto", n:"Castillo de Mondújar *", g:[36.9493,-3.5383], w:"Ruinas de un castillo sobre una atalaya rocosa, en el valle de Lecrín."},
     {e:"herradura", k:"nat", n:"Mirador de Cerro Gordo", g:[36.7341,-3.7676], w:"Mirador sobre los acantilados de Maro–Cerro Gordo y la bahía de La Herradura."},
     {e:"herradura", k:"ver", n:"Torre vigía de Cerro Gordo", g:[36.7323,-3.7674], w:"Torre almenara junto al mirador, por el sendero de la izquierda."},
     {e:"herradura", k:"nat", n:"Marina del Este", g:[36.7274,-3.7275], w:"Puerto deportivo en la Punta de la Mona, de aguas muy claras."},
