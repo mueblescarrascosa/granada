@@ -732,16 +732,17 @@
 
 <section class="mapsec" id="mapa">
   <div class="wrap">
-    <p class="kicker"><svg><use href="#star8"/></svg>Mapa · todos los sitios y bares</p>
+    <p class="kicker"><svg><use href="#star8"/></svg>Mapa · sitios, bares y escapadas</p>
     <div class="mapchips" id="mapchips">
-      <button type="button" data-mf="pend" aria-pressed="true">Pendientes</button>
+      <button type="button" data-mf="pend" aria-pressed="true" title="Pendientes de ver">Por ver</button>
       <button type="button" data-mf="todo" aria-pressed="false">Todo</button>
       <button type="button" data-mf="hoy" aria-pressed="false" title="Gratis hoy">Gratis</button>
       <button type="button" data-mf="plan" aria-pressed="false">Mi plan</button>
       <button type="button" data-mf="bares" aria-pressed="false">Bares</button>
-      <button type="button" id="mapLocate" title="Cerca de mí">Cerca</button>
+      <button type="button" data-mf="fuera" aria-pressed="false" title="Fuera de Granada: Sierra Nevada, Alpujarra, costa…">Fuera</button>
+      <button type="button" id="mapLocate" title="Cerca de mí" aria-label="Cerca de mí">📍</button>
     </div>
-    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar</p>
+    <p class="maplegend"><i style="background:#C99A2E"></i>imprescindible<i style="background:#20418E"></i>pendiente<i style="background:#9A958A"></i>visitado<i style="background:#1C6B55"></i>bar<i style="background:#B4532A"></i>fuera</p>
     <div id="map"><p class="mapmsg">El mapa se carga al abrirlo (necesita conexión).</p></div>
     <div class="nearby" id="nearby" hidden></div>
   </div>
@@ -2583,7 +2584,7 @@
   function drawMap(){
     if(!LMAP||!LLAYER) return; LLAYER.clearLayers(); var pts=[];
     var today=new Date(), fr=freeSpecialDate(today).map(function(m){ return m.id; });
-    if(mapFilter!=="bares"){
+    if(mapFilter!=="bares" && mapFilter!=="fuera"){
       DATA.forEach(function(m){
         var g=GEO[m.id]; if(!g) return; var v=visited.has(m.id), pr=PRINCIPAL.indexOf(m.id)>=0;
         if(mapFilter==="pend" && v) return;
@@ -2597,6 +2598,20 @@
         mk.addTo(LLAYER); pts.push(g);
       });
     }
+    // Fuera de la ciudad: cada escapada (Sierra Nevada, Alpujarra, costa…) con sus sitios para comer
+    if(mapFilter==="fuera" || mapFilter==="todo"){
+      ESCAPADAS.forEach(function(e){
+        var g=ESC_LL[e.id]; if(!g) return;
+        var mk=L.circleMarker(g,{radius:10,color:"#fff",weight:2,fillColor:"#B4532A",fillOpacity:.95});
+        var comer=e.comer.filter(function(c){ return !/^Lleva/.test(c.n); }).map(function(c){
+          return '<li><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(c.n+" "+(e.pueblo||e.t))+'" target="_blank" rel="noopener">'+esc(c.n)+'</a>'+(c.ok?' ★':'')+'</li>'; }).join("");
+        mk.bindPopup('<div class="mappop"><b>'+esc(e.t)+'</b><br>'+esc(e.donde)+' · '+esc(e.coche)+
+          (comer?'<br><span style="color:#5C554A">Para comer:</span><ul style="margin:.2em 0 .3em 1.1em;padding:0">'+comer+'</ul>':'')+
+          '<div class="mp-b"><button type="button" data-me="'+e.id+'">Ver ficha</button><a href="https://www.google.com/maps/dir/?api=1&destination='+g[0]+','+g[1]+'&travelmode=driving" target="_blank" rel="noopener">Cómo llegar</a></div></div>');
+        mk.addTo(LLAYER); pts.push(g);
+      });
+      if(mapFilter==="fuera") pts.push([37.177,-3.599]);   // Granada, para ver la distancia
+    }
     if(mapFilter==="bares" || mapFilter==="todo"){
       BARES.forEach(function(b){
         var mk=L.circleMarker(b.g,{radius:6,color:"#fff",weight:2,fillColor:"#1C6B55",fillOpacity:.95});
@@ -2608,7 +2623,8 @@
     if(pts.length) LMAP.fitBounds(pts,{padding:[24,24],maxZoom:16});
   }
   document.getElementById("map").addEventListener("click", function(e){
-    var t=e.target.closest("[data-mj],[data-mb]"); if(!t) return;
+    var t=e.target.closest("[data-mj],[data-mb],[data-me]"); if(!t) return;
+    if(t.hasAttribute("data-me")){ var ec=document.querySelector('[data-esc="'+t.getAttribute("data-me")+'"]'); if(ec) ensureVisible(ec); jumpEsc(t.getAttribute("data-me")); return; }
     if(t.hasAttribute("data-mj")) jumpTo(t.getAttribute("data-mj"));
     else { var sec=document.getElementById("bares"); openSec(sec); var c=document.querySelector('[data-bar="'+t.getAttribute("data-mb")+'"]'); if(c){ c.scrollIntoView({behavior:"smooth",block:"center"}); c.classList.add("flash"); setTimeout(function(){ c.classList.remove("flash"); },1500); } }
   });
