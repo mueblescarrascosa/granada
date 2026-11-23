@@ -1,4 +1,4 @@
-const CACHE="granada-v45";
+const CACHE="granada-v46";
 const ASSETS=["./","./index.html"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).catch(()=>{}));});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith("granada-")&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
